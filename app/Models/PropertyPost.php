@@ -19,9 +19,11 @@ class PropertyPost extends Model
         'description',
         'price',
         'location',
+        'long',
+        'lat',
         'user_id',
-        'property_type',
-        'status',
+        'property_type_id',
+        'status_id',
         'bedrooms',
         'bathrooms',
         'area',
@@ -66,7 +68,7 @@ class PropertyPost extends Model
      */
     public function propertyType()
     {
-        return $this->belongsTo(PropertyType::class);
+        // return $this->belongsTo(PropertyType::class);
     }
 
     /**
@@ -74,7 +76,7 @@ class PropertyPost extends Model
      */
     public function status()
     {
-        return $this->belongsTo(Status::class);
+        // return $this->belongsTo(Status::class);
     }
 
     /**
@@ -82,7 +84,7 @@ class PropertyPost extends Model
      */
     public function images()
     {
-        return $this->hasMany(Image::class);
+        // return $this->hasMany(Image::class);
     }
 
     /**

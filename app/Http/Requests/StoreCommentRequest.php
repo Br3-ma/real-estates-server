@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePropertyPostRequest extends FormRequest
+class StoreCommentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,11 +22,7 @@ class StorePropertyPostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // 'title' => 'required|string',
-            'description' => 'required|string',
-            'price' => 'required|numeric',
-            // Add validation rules for other fields
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust max file size if needed
+            //
         ];
     }
 }

@@ -3,8 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HandshakeController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PropertyPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,18 @@ Route::post('/connectx', [HandshakeController::class, 'connect']);
 // Route for user login with mobile number and OTP verification
 Route::post('/signin', [AuthController::class, 'login']);
 
+//Posts
+Route::get('property-posts', [PropertyPostController::class, 'index']);
+Route::get('my-property-posts/{user_id}', [PropertyPostController::class, 'mine']);
+Route::post('property-post', [PropertyPostController::class, 'store']);
+Route::put('property-post', [PropertyPostController::class, 'update']);
+Route::delete('property-post', [PropertyPostController::class, 'destroy']);
+
+//Comments and Reply Threads
+Route::get('post-comments/{post_id}', [CommentController::class, 'index']);
+Route::post('comment-reply', [CommentController::class, 'store']);
+Route::put('comments/{comment}', [CommentController::class, 'update']);
+Route::delete('comments/{comment}', [CommentController::class, 'destroy']);
 
 // Protected route to retrieve user information after successful authentication
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
