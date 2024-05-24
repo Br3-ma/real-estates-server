@@ -17,7 +17,33 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-        // Authentication logic
+        // Validate the request
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required|string|min:6',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        // Attempt to find the user
+        $user = User::where('email', $request->email)->first();
+
+        if ($request->password != $user->password) {
+            return response()->json(['error' => 'Invalid email or password'], 401);
+        }
+
+        // Generate a token (optional, for token-based auth)
+        $token = $user->createToken('authToken')->plainTextToken;
+
+        // Return the response with the token
+        return response()->json([
+            'message' => 'Login successful',
+            'token' => $token,
+            'user' => $user
+        ], 200);
+
     }
 
     /**
@@ -71,7 +97,7 @@ class AuthController extends Controller
     {
         // Validate request data
         $validator = Validator::make($request->all(), [
-            'fullname' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             // Add more validation rules as needed
         ]);
 
@@ -82,8 +108,10 @@ class AuthController extends Controller
         // Store user information in the database
         // Example:
         $user = User::create([
-            'name' => $request->input('fullname'),
-            'phone' => $request->input('phoneNumber')
+            'name' => $request->input('name'),
+            'phone' => $request->input('phone'),
+            'email' => $request->input('email'),
+            'password' => $request->input('password')
         ]);
 
         return response()->json(['message' => 'User information stored successfully', 'user' => $user ], 200);

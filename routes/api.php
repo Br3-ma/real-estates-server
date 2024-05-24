@@ -17,17 +17,14 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-// Route for user login with mobile number and OTP verification
-Route::post('/login', [AuthController::class, 'login']);
-
 // Route for user signup with mobile number
+Route::post('/signup/user-info', [AuthController::class, 'userInfo']);
 Route::post('/signup/request-otp', [AuthController::class, 'requestOtp']);
 Route::post('/signup/verify-otp', [AuthController::class, 'verifyOtp']);
-Route::post('/signup/user-info', [AuthController::class, 'userInfo']);
 Route::post('/connectx', [HandshakeController::class, 'connect']);
 
-Route::get('/products', [ProductController::class, 'products']);
-Route::get('/buy-to-cart', [CartController::class, 'add']);
+// Route for user login with mobile number and OTP verification
+Route::post('/signin', [AuthController::class, 'login']);
 
 
 // Protected route to retrieve user information after successful authentication
