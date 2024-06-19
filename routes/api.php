@@ -3,9 +3,12 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FavouriteController;
 use App\Http\Controllers\HandshakeController;
 use App\Http\Controllers\PropertyPostController;
+use App\Http\Controllers\SearchEngineController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,12 +30,22 @@ Route::post('/connectx', [HandshakeController::class, 'connect']);
 // Route for user login with mobile number and OTP verification
 Route::post('/signin', [AuthController::class, 'login']);
 
+//Preset Information
+Route::get('categories', [CategoryController::class, 'index']);
+
 //Posts
 Route::get('property-posts', [PropertyPostController::class, 'index']);
 Route::get('my-property-posts/{user_id}', [PropertyPostController::class, 'mine']);
-Route::post('property-post', [PropertyPostController::class, 'store']);
-Route::put('property-post', [PropertyPostController::class, 'update']);
-Route::delete('property-post', [PropertyPostController::class, 'destroy']);
+Route::post('post', [PropertyPostController::class, 'store']);
+Route::put('update-post', [PropertyPostController::class, 'update']);
+Route::delete('delete-post/{item}', [PropertyPostController::class, 'destroy']);
+
+//Search Engine
+Route::post('search', [SearchEngineController::class, 'index']);
+
+//Button actions
+Route::post('add-favourite', [FavouriteController::class, 'store']);
+Route::post('remove-favourite', [FavouriteController::class, 'destroy']);
 
 //Comments and Reply Threads
 Route::get('post-comments/{post_id}', [CommentController::class, 'index']);

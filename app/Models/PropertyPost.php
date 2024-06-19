@@ -49,11 +49,14 @@ class PropertyPost extends Model
     {
         parent::boot();
 
-        // Ensure only records with a non-null user_id are retrieved
+        // Ensure only records with a non-null user_id are retrieved and order them in descending order
         static::addGlobalScope('withUser', function ($builder) {
-            $builder->with('user')->whereNotNull('user_id');
+            $builder->with(['user', 'images'])
+                    ->whereNotNull('user_id')
+                    ->orderBy('created_at', 'desc'); // Adjust the column name if needed
         });
     }
+
 
     /**
      * Get the user that owns the property post.
@@ -72,11 +75,19 @@ class PropertyPost extends Model
     }
 
     /**
+     * Get the property type for the property post.
+     */
+    public function favourites()
+    {
+        return $this->hasMany(Favourite::class);
+    }
+
+    /**
      * Get the status for the property post.
      */
     public function status()
     {
-        // return $this->belongsTo(Status::class);
+        return $this->hasOne(Status::class);
     }
 
     /**
@@ -84,7 +95,23 @@ class PropertyPost extends Model
      */
     public function images()
     {
-        // return $this->hasMany(Image::class);
+        return $this->hasMany(Image::class);
+    }
+
+    /**
+     * Get the amenities for the property post.
+     */
+    public function amenities()
+    {
+        return $this->hasMany(Amenity::class);
+    }
+
+    /**
+     * Get the amenities for the property post.
+     */
+    public function type()
+    {
+        return $this->hasOne(PropertyType::class);
     }
 
     /**

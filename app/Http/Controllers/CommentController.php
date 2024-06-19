@@ -44,7 +44,7 @@ class CommentController extends Controller
         $comment->user_id = $request->user_id ;
         $comment->save();
 
-        event(new CommentEvent($comment));
+        // event(new CommentEvent($comment));
 
         return response()->json($comment, 201);
     }
