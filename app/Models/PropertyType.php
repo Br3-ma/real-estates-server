@@ -9,15 +9,18 @@ class PropertyType extends Model
 {
     use HasFactory;
 
-
-
+    protected $fillable = [
+        'name',
+        'desc',
+        'content',
+    ];
 
     /**
      * Get the user that owns the property post.
      */
     public function post()
     {
-        return $this->belongsTo(PropertyPost::class);
+        return $this->hasMany(PropertyPost::class);
     }
 
 }

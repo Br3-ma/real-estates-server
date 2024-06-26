@@ -2,21 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PropertyType;
-use App\Http\Requests\StorePropertyTypeRequest;
-use App\Http\Requests\UpdatePropertyTypeRequest;
-use App\Models\Category;
+use App\Models\Location;
+use App\Http\Requests\StoreLocationRequest;
+use App\Http\Requests\UpdateLocationRequest;
 
-class PropertyTypeController extends Controller
+class LocationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //Return all active categories
-        $data = Category::get();
-        return response()->json(['message' => 'success', 'data' => $data ], 200);
+        //
     }
 
     /**
@@ -30,7 +27,7 @@ class PropertyTypeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePropertyTypeRequest $request)
+    public function store(StoreLocationRequest $request)
     {
         //
     }
@@ -38,7 +35,7 @@ class PropertyTypeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(PropertyType $propertyType)
+    public function show(Location $location)
     {
         //
     }
@@ -46,7 +43,7 @@ class PropertyTypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(PropertyType $propertyType)
+    public function edit(Location $location)
     {
         //
     }
@@ -54,7 +51,7 @@ class PropertyTypeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePropertyTypeRequest $request, PropertyType $propertyType)
+    public function update(UpdateLocationRequest $request, Location $location)
     {
         //
     }
@@ -62,7 +59,7 @@ class PropertyTypeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PropertyType $propertyType)
+    public function destroy(Location $location)
     {
         //
     }

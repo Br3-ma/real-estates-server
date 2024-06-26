@@ -7,8 +7,11 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FavouriteController;
 use App\Http\Controllers\HandshakeController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PropertyPostController;
+use App\Http\Controllers\PropertyTypeController;
 use App\Http\Controllers\SearchEngineController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +34,9 @@ Route::post('/connectx', [HandshakeController::class, 'connect']);
 Route::post('/signin', [AuthController::class, 'login']);
 
 //Preset Information
+Route::get('property-types', [PropertyTypeController::class, 'index']);
 Route::get('categories', [CategoryController::class, 'index']);
+Route::get('locations', [CategoryController::class, 'index']);
 
 //Posts
 Route::get('property-posts', [PropertyPostController::class, 'index']);
@@ -42,6 +47,7 @@ Route::delete('delete-post/{item}', [PropertyPostController::class, 'destroy']);
 
 //Search Engine
 Route::post('search', [SearchEngineController::class, 'index']);
+Route::get('search-all', [SearchEngineController::class, 'index2']);
 
 //Button actions
 Route::post('add-favourite', [FavouriteController::class, 'store']);
@@ -52,6 +58,12 @@ Route::get('post-comments/{post_id}', [CommentController::class, 'index']);
 Route::post('comment-reply', [CommentController::class, 'store']);
 Route::put('comments/{comment}', [CommentController::class, 'update']);
 Route::delete('comments/{comment}', [CommentController::class, 'destroy']);
+
+// User
+Route::post('update-profile', [UserController::class, 'update']);
+
+//Notifications
+Route::get('notify/{user_id}', [NotificationController::class, 'index']);
 
 // Protected route to retrieve user information after successful authentication
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

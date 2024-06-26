@@ -23,12 +23,12 @@ class PropertyPost extends Model
         'lat',
         'user_id',
         'property_type_id',
+        'location_id',
+        'category_id',
         'status_id',
         'bedrooms',
         'bathrooms',
         'area',
-        'amenities',
-        'images',
     ];
 
     /**
@@ -38,8 +38,8 @@ class PropertyPost extends Model
      */
     protected $casts = [
         'price' => 'decimal:2',
-        'amenities' => 'array',
-        'images' => 'array',
+        // 'amenities' => 'array',
+        // 'images' => 'array',
     ];
 
     /**
@@ -71,16 +71,16 @@ class PropertyPost extends Model
      */
     public function propertyType()
     {
-        // return $this->belongsTo(PropertyType::class);
+        return $this->belongsTo(PropertyType::class);
     }
 
     /**
      * Get the property type for the property post.
      */
-    public function favourites()
-    {
-        return $this->hasMany(Favourite::class);
-    }
+    // public function favourites()
+    // {
+    //     return $this->hasMany(Favourite::class);
+    // }
 
     /**
      * Get the status for the property post.
@@ -107,11 +107,27 @@ class PropertyPost extends Model
     }
 
     /**
+     * Get the categories for the property post.
+     */
+    public function categories()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    /**
      * Get the amenities for the property post.
      */
     public function type()
     {
         return $this->hasOne(PropertyType::class);
+    }
+
+    /**
+     * Get the amenities for the property post.
+     */
+    public function location()
+    {
+        return $this->hasOne(Location::class);
     }
 
     /**

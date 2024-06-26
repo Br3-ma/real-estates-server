@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('property_posts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->text('description');
             $table->decimal('price', 15, 2); // Adjust precision and scale as needed
             $table->string('location')->nullable();
@@ -21,12 +21,12 @@ return new class extends Migration
             $table->string('lat')->nullable();
             $table->unsignedBigInteger('user_id')->constrained()->onDelete('cascade');
             $table->unsignedBigInteger('property_type_id')->constrained()->onDelete('cascade');
-            $table->unsignedBigInteger('status_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('location_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('category_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('status_id')->default(1);
             $table->integer('bedrooms')->nullable();
             $table->integer('bathrooms')->nullable();
             $table->integer('area')->nullable();
-            $table->json('amenities')->nullable();
-            $table->json('images')->nullable();
             $table->timestamps();
         });
     }

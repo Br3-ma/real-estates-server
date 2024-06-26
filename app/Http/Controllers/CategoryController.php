@@ -13,7 +13,15 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        //Return all active categories
+    try {
+        $data = Category::get();
+        return response()->json(['message' => 'success', 'data' => $data ], 200);
+    } catch (\Throwable $th) {
+        $data = [];
+        return response()->json(['message' => $th->getMessage(), 'data' => $data ], 200);
+    }
+
     }
 
     /**

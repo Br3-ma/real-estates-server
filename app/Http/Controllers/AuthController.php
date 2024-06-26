@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Notifications\WelcomeNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -114,6 +115,12 @@ class AuthController extends Controller
             'email' => $request->input('email'),
             'password' => $request->input('password')
         ]);
+
+        //Send a welcome notification
+        $user->notify(new WelcomeNotification(
+            'Welcome to Twalitso Rental App, login to get started on viewing wonderful houses and properties for rent and sale.',
+            $user
+        ));
 
         return response()->json(['message' => 'User information stored successfully', 'user' => $user ], 200);
     }
