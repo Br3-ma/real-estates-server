@@ -15,7 +15,7 @@ class PropertyTypeController extends Controller
     public function index()
     {
         //Return all active categories
-        $data = Category::get();
+        $data = PropertyType::get();
         return response()->json(['message' => 'success', 'data' => $data ], 200);
     }
 

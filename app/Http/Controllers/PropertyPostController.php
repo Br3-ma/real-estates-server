@@ -43,21 +43,21 @@ class PropertyPostController extends Controller
         try {
             // Log the incoming request
             // Log::info( $request->all());
-            if ($request->hasFile('images')) {
-                Log::info( 'true');
-            }else{
-                Log::info( 'false');
-            }
-
-            // $property = new PropertyPost($request->toArray());
-            // $property->save();
             // if ($request->hasFile('images')) {
-            //     foreach ($request->file('images') as $image) {
-            //         $path = $image->store('images');
-            //         $property->images()->create(['path' => $path]);
-            //     }
+            //     Log::info( 'true');
+            // }else{
+            //     Log::info( 'false');
             // }
-            // return response()->json($property);
+
+            $property = new PropertyPost($request->toArray());
+            $property->save();
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $image) {
+                    $path = $image->store('images');
+                    $property->images()->create(['path' => $path]);
+                }
+            }
+            return response()->json($property, 201);
         } catch (\Throwable $th) {
             return response()->json($th->getMessage());
         }

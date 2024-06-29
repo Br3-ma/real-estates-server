@@ -12,6 +12,8 @@ class Category extends Model
         'name',
         'desc',
         'content',
+        'icon_name',
+        'type',
     ];
 
     /**

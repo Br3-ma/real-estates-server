@@ -13,6 +13,8 @@ class PropertyType extends Model
         'name',
         'desc',
         'content',
+        'icon_name',
+        'type',
     ];
 
     /**
