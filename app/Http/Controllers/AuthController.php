@@ -113,7 +113,14 @@ class AuthController extends Controller
             'name' => $request->input('name'),
             'phone' => $request->input('phone'),
             'email' => $request->input('email'),
-            'password' => $request->input('password')
+            'password' => $request->input('password'),
+            'bio' => 'No bio',
+            'work' => 'No work',
+            'location' => 'Not set',
+            'website' => 'None',
+            'gender' => 'Not set',
+            'cover' => 'No set',
+            'picture' => 'profile/no-user.jpg'
         ]);
 
         //Send a welcome notification

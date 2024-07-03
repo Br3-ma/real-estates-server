@@ -13,11 +13,7 @@ class UserController extends Controller
 {
     public function update(Request $request)
     {
-        if ($request->hasFile('picture')) {
-            Log::info( 'true');
-        }else{
-            Log::info( 'false');
-        }
+
         // Find the authenticated user
         $user = User::where('id', $request->input('user_id'))->first();
 
@@ -29,6 +25,8 @@ class UserController extends Controller
                 if ($request->has('password')) {
                     $user->password = Hash::make($request->input('password'));
                 }
+                // Save the updated user record
+                $user->save();
                 break;
             case 'profile':
                 if ($request->filled('name')) $user->name = $request->input('name');
@@ -37,9 +35,16 @@ class UserController extends Controller
                 if ($request->filled('bio')) $user->boi = $request->input('bio');
                 if ($request->filled('location')) $user->location = $request->input('location');
                 if ($request->filled('website')) $user->website = $request->input('website');
+                // Save the updated user record
+                $user->save();
             break;
             case 'picture':
                 // Handle user picture upload/update
+                if ($request->hasFile('picture')) {
+                    Log::info( 'true');
+                }else{
+                    Log::info( 'false');
+                }
                 if ($request->hasFile('picture')) {
                     foreach ($request->file('picture') as $pic) {
                         // Store the uploaded file and get its path
@@ -49,6 +54,8 @@ class UserController extends Controller
                         $user->picture = $path;
                     }
                 }
+                // Save the updated user record
+                $user->save();
                 break;
             default:
                 # code...
@@ -56,8 +63,6 @@ class UserController extends Controller
         }
 
 
-        // Save the updated user record
-        $user->save();
 
         return response()->json(['user'=>$user,'message' => 'User information updated successfully'], 200);
     }
