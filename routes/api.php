@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FavouriteController;
 use App\Http\Controllers\HandshakeController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PropertyPostController;
 use App\Http\Controllers\PropertyTypeController;
@@ -36,7 +37,7 @@ Route::post('/signin', [AuthController::class, 'login']);
 //Preset Information
 Route::get('property-types', [PropertyTypeController::class, 'index']);
 Route::get('categories', [CategoryController::class, 'index']);
-Route::get('locations', [CategoryController::class, 'index']);
+Route::get('locations', [LocationController::class, 'index']);
 
 //Posts
 Route::get('property-posts', [PropertyPostController::class, 'index']);

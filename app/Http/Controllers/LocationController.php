@@ -13,7 +13,13 @@ class LocationController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            $data = Location::get();
+            return response()->json(['message' => 'success', 'data' => $data ], 200);
+        } catch (\Throwable $th) {
+            $data = [];
+            return response()->json(['message' => $th->getMessage(), 'data' => $data ], 200);
+        }
     }
 
     /**

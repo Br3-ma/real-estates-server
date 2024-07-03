@@ -125,7 +125,7 @@ class AuthController extends Controller
 
         //Send a welcome notification
         $user->notify(new WelcomeNotification(
-            'Welcome to Twalitso Rental App, login to get started on viewing wonderful houses and properties for rent and sale.',
+            'Welcome to Square, login to get started on viewing wonderful houses and properties for rent and sale.',
             $user
         ));
 
