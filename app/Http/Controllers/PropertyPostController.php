@@ -43,11 +43,11 @@ class PropertyPostController extends Controller
         try {
             // Log the incoming request
             // Log::info( $request->all());
-            // if ($request->hasFile('images')) {
-            //     Log::info( 'true');
-            // }else{
-            //     Log::info( 'false');
-            // }
+            if ($request->hasFile('images')) {
+                Log::info( 'true');
+            }else{
+                Log::info( 'false');
+            }
 
             $property = new PropertyPost($request->toArray());
             $property->save();
