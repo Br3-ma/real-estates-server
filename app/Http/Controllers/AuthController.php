@@ -120,7 +120,7 @@ class AuthController extends Controller
             'website' => 'None',
             'gender' => 'Not set',
             'cover' => 'No set',
-            'picture' => 'profile/no-user.jpg'
+            'picture' => 'profile/no-user.png'
         ]);
 
         //Send a welcome notification
