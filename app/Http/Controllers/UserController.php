@@ -61,9 +61,7 @@ class UserController extends Controller
                 # code...
             break;
         }
-
-
-
-        return response()->json(['user'=>$user,'message' => 'User information updated successfully'], 200);
+        $data = $user;
+        return response()->json(['message' => 'User information stored successfully', 'user' => $data ], 200);
     }
 }
