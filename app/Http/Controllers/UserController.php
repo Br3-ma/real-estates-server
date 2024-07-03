@@ -13,7 +13,11 @@ class UserController extends Controller
 {
     public function update(Request $request)
     {
-
+        if ($request->hasFile('picture')) {
+            Log::info( 'true');
+        }else{
+            Log::info( 'false');
+        }
         // Find the authenticated user
         $user = User::where('id', $request->input('user_id'))->first();
 
@@ -39,7 +43,7 @@ class UserController extends Controller
                 if ($request->hasFile('picture')) {
                     foreach ($request->file('picture') as $pic) {
                         // Store the uploaded file and get its path
-                        $path = $pic->store('profile',);
+                        $path = $pic->store('profile');
 
                         // Update user's picture field with the new path
                         $user->picture = $path;
