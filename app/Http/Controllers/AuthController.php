@@ -119,7 +119,7 @@ class AuthController extends Controller
             'location' => 'Not set',
             'website' => 'None',
             'gender' => 'Not set',
-            'cover' => 'No set',
+            'cover' => 'profile/no-cover.jpg',
             'picture' => 'profile/no-user.png'
         ]);
 
