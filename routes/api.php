@@ -29,7 +29,7 @@ use App\Http\Controllers\UserController;
 Route::post('/signup/user-info', [AuthController::class, 'userInfo']);
 Route::post('/signup/request-otp', [AuthController::class, 'requestOtp']);
 Route::post('/signup/verify-otp', [AuthController::class, 'verifyOtp']);
-Route::post('/connectx', [HandshakeController::class, 'connect']);
+Route::post('/reset-password', [AuthController::class, 'resetPassword']);
 
 // Route for user login with mobile number and OTP verification
 Route::post('/signin', [AuthController::class, 'login']);
@@ -45,6 +45,8 @@ Route::get('my-property-posts/{user_id}', [PropertyPostController::class, 'mine'
 Route::post('post', [PropertyPostController::class, 'store']);
 Route::put('update-post', [PropertyPostController::class, 'update']);
 Route::delete('delete-post/{item}', [PropertyPostController::class, 'destroy']);
+Route::post('toggle-hide-post/{property_id}', [PropertyPostController::class, 'toggleHidePost']);
+Route::post('bid-top-post/{property_id}', [PropertyPostController::class, 'Bid']);
 
 //Search Engine
 Route::post('search', [SearchEngineController::class, 'index']);
@@ -65,6 +67,9 @@ Route::post('update-profile', [UserController::class, 'update']);
 
 //Notifications
 Route::get('notify/{user_id}', [NotificationController::class, 'index']);
+
+
+Route::post('/connectx', [HandshakeController::class, 'connect']);
 
 // Protected route to retrieve user information after successful authentication
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

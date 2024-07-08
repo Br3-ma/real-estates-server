@@ -12,11 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->text('bio')->nullable();
-            $table->string('work')->nullable();
-            $table->string('location')->nullable();
-            $table->string('website')->nullable();
-            $table->string('gender')->nullable();
+            $table->integer('otp')->nullable();
+            $table->string('is_verified_otp')->default(0);
         });
     }
 

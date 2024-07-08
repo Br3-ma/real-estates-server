@@ -22,11 +22,10 @@ class PropertyPostController extends Controller
         return response()->json(PropertyPost::all());
     }
 
-
-
     public function mine($user_id){
         return response()->json(PropertyPost::where('user_id', $user_id)->get());
     }
+    
     /**
      * Show the form for creating a new resource.
      */
@@ -41,8 +40,6 @@ class PropertyPostController extends Controller
     public function store(Request $request)
     {
         try {
-            // Log the incoming request
-            // Log::info( $request->all());
             if ($request->hasFile('images')) {
                 Log::info( 'true');
             }else{
@@ -63,6 +60,27 @@ class PropertyPostController extends Controller
         }
     }
 
+    public function toggleHidePost($propertyId)
+    {
+        try {
+            // Find the property post by ID
+            $property = PropertyPost::findOrFail($propertyId);
+
+            // Toggle status_id between 0 and 1
+            $property->status_id = $property->status_id == 1 ? 0 : 1;
+
+            // Save changes
+            $property->save();
+
+            return response()->json(['message' => 'Property post status toggled successfully'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Failed to toggle property post status'], 500);
+        }
+    }
+
+    public function bid(Request $request){
+
+    }
     /**
      * Display the specified resource.
      */

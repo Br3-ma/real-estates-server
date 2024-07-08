@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->text('bio')->nullable();
-            $table->string('work')->nullable();
-            $table->string('location')->nullable();
-            $table->string('website')->nullable();
-            $table->string('gender')->nullable();
+        Schema::create('properties', function (Blueprint $table) {
+            $table->boolean('on_bid')->default(false);
+            $table->decimal('bid_value', 8, 2)->nullable();
+            $table->dateTime('bid_due_date')->nullable();
         });
     }
 
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('alter_users');
+        Schema::dropIfExists('alter_properties_bids_tables');
     }
 };

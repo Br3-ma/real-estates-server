@@ -29,6 +29,9 @@ class PropertyPost extends Model
         'bedrooms',
         'bathrooms',
         'area',
+        'on_bid',
+        'bid_value',
+        'bid_due_date'
     ];
 
     /**

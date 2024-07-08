@@ -28,7 +28,9 @@ class User extends Authenticatable
         'website',
         'gender',
         'cover',
-        'picture'
+        'picture',
+        'otp',
+        'is_verified_otp',
     ];
 
     /**

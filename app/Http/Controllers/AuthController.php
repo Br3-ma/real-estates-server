@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OTPVerificationCode;
 use App\Models\User;
 use App\Notifications\WelcomeNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -19,6 +21,29 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
+
+        // $curl = curl_init();
+
+        // curl_setopt_array($curl, array(
+        // CURLOPT_URL => 'https://api.easysendsms.app/bulksms',
+        // CURLOPT_RETURNTRANSFER => true,
+        // CURLOPT_ENCODING => '',
+        // CURLOPT_MAXREDIRS => 10,
+        // CURLOPT_TIMEOUT => 0,
+        // CURLOPT_FOLLOWLOCATION => true,
+        // CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        // CURLOPT_CUSTOMREQUEST => 'POST',
+        // CURLOPT_POSTFIELDS => 'username=bremnyelngez42024&password=xuQzJd7O&to=0772147755&from=test&text=HelloLooser%20world&type=0',
+        // CURLOPT_HTTPHEADER => array(
+        // 'Content-Type: application/x-www-form-urlencoded',
+        // 'Cookie: ASPSESSIONIDASCQBARR=NKOHDCHDOFEOOALJIGDGGPAM'
+        // ),
+        // ));
+
+        // $response = curl_exec($curl);
+
+        // curl_close($curl);
+
         // Validate the request
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
@@ -60,6 +85,17 @@ class AuthController extends Controller
         $otp = mt_rand(100000, 999999);
 
         // Send OTP to the provided mobile number (you need to implement this)
+        $user = User::where('email', $request->input('email'))->first();
+        $user->otp = $otp;
+        $user->save();
+
+        $data = [
+            'name' => $user->name,
+            'email' => $request->input('email'),
+            'message' => $otp
+        ];
+
+        Mail::to($request->input('email'))->send(new OTPVerificationCode($data));
 
         // For now, just return the OTP in the response for testing purposes
         return response()->json(['otp' => $otp], 200);
@@ -84,9 +120,13 @@ class AuthController extends Controller
 
         // Check if OTP matches the one sent to the user
         $otp = $request->input('otp');
-        $isOtpValid = true;
+        $user = User::where('email', $request->input('email'))->first();
 
-        return response()->json(['is_valid' => $isOtpValid], 200);
+        if ($otp == $user->otp) {
+            return response()->json(['is_valid' => true], 200);
+        }else{
+            return response()->json(['is_valid' => false], 200);
+        }
     }
 
     /**
@@ -131,4 +171,38 @@ class AuthController extends Controller
 
         return response()->json(['message' => 'User information stored successfully', 'user' => $user ], 200);
     }
+
+
+    /**
+     * Reset password.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function resetPassword(Request $request)
+    {
+        // Validate the request
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        // Find the user by email
+        $user = User::where('email', $request->input('email'))->first();
+
+        if ($user) {
+            // Update the user's password
+            $user->password = Hash::make($request->input('password'));
+            $user->save();
+
+            return response()->json(['resp' => true, ], 200);
+        } else {
+            return response()->json(['resp' => false], 401);
+        }
+    }
+
 }

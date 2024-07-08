@@ -13,55 +13,57 @@ class UserController extends Controller
 {
     public function update(Request $request)
     {
+        try {
+            // Find the authenticated user
+            $user = User::where('id', $request->input('user_id'))->first();
 
-        // Find the authenticated user
-        $user = User::where('id', $request->input('user_id'))->first();
+            // Update user information
+            switch ($request->input('segment')) {
+                case 'password':
 
-        // Update user information
-        switch ($request->input('segment')) {
-            case 'password':
-
-                // Check if password is provided and update it if necessary
-                if ($request->has('password')) {
-                    $user->password = Hash::make($request->input('password'));
-                }
-                // Save the updated user record
-                $user->save();
-                break;
-            case 'profile':
-                if ($request->filled('name')) $user->name = $request->input('name');
-                if ($request->filled('phone')) $user->phone = $request->input('phone');
-                if ($request->filled('email')) $user->email = $request->input('email');
-                if ($request->filled('bio')) $user->boi = $request->input('bio');
-                if ($request->filled('location')) $user->location = $request->input('location');
-                if ($request->filled('website')) $user->website = $request->input('website');
-                // Save the updated user record
-                $user->save();
-            break;
-            case 'picture':
-                // Handle user picture upload/update
-                if ($request->hasFile('picture')) {
-                    Log::info( 'true');
-                }else{
-                    Log::info( 'false');
-                }
-                if ($request->hasFile('picture')) {
-                    foreach ($request->file('picture') as $pic) {
-                        // Store the uploaded file and get its path
-                        $path = $pic->store('profile');
-
-                        // Update user's picture field with the new path
-                        $user->picture = $path;
+                    // Check if password is provided and update it if necessary
+                    if ($request->has('password')) {
+                        $user->password = Hash::make($request->input('password'));
                     }
-                }
-                // Save the updated user record
-                $user->save();
+                    // Save the updated user record
+                    $user->save();
+                    break;
+                case 'profile':
+                    if ($request->filled('name')) $user->name = $request->input('name');
+                    if ($request->filled('phone')) $user->phone = $request->input('phone');
+                    if ($request->filled('email')) $user->email = $request->input('email');
+                    if ($request->filled('bio')) $user->bio = $request->input('bio');
+                    if ($request->filled('location')) $user->location = $request->input('location');
+                    if ($request->filled('website')) $user->website = $request->input('website');
+                    // Save the updated user record
+                    $user->save();
                 break;
-            default:
-                # code...
-            break;
+                case 'picture':
+                    // Handle user picture upload/update
+                    if ($request->hasFile('picture')) {
+                        Log::info( 'true');
+                    }else{
+                        Log::info( 'false');
+                    }
+                    if ($request->hasFile('picture')) {
+                        foreach ($request->file('picture') as $pic) {
+                            // Store the uploaded file and get its path
+                            $path = $pic->store('profile');
+                            // Update user's picture field with the new path
+                            $user->picture = $path;
+                        }
+                    }
+                    // Save the updated user record
+                    $user->save();
+                    break;
+                default:
+                    # code...
+                break;
+            }
+            $data = $user;
+            return response()->json(['message' => 'User information stored successfully', 'user' => $data ], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['message' => $th->getMessage(), 'user' => $user ], 500);
         }
-        $data = $user;
-        return response()->json(['message' => 'User information stored successfully', 'user' => $data ], 200);
     }
 }
