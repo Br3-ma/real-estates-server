@@ -53,6 +53,32 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    /**
+     * The attributes that should be appended.
+     *
+     * @var array<int, string>
+     */
+    protected $appends = [
+        'total_posts',
+        'estimate_profit',
+        'total_properties',
+    ];
+
+    public function getTotalPostsAttribute()
+    {
+        return $this->posts()->where('status_id', 1)->count();
+    }
+
+    public function getTotalPropertiesAttribute()
+    {
+        return $this->posts()->count();
+    }
+
+    public function getEstimateProfitAttribute()
+    {
+        return $this->posts()->sum('price');
+    }
+
 
     public function posts(){
         return $this->hasMany(PropertyPost::class);
