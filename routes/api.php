@@ -43,6 +43,8 @@ Route::get('locations', [LocationController::class, 'index']);
 Route::get('property-posts', [PropertyPostController::class, 'index']);
 Route::get('my-property-posts/{user_id}', [PropertyPostController::class, 'mine']);
 Route::post('post', [PropertyPostController::class, 'store']);
+Route::post('upload-video-chunk', [PropertyPostController::class, 'uploadChunk']);
+Route::post('complete-upload', [PropertyPostController::class, 'completeUpload']);
 Route::put('update-post', [PropertyPostController::class, 'update']);
 Route::delete('delete-post/{item}', [PropertyPostController::class, 'destroy']);
 Route::post('toggle-hide-post/{property_id}', [PropertyPostController::class, 'toggleHidePost']);

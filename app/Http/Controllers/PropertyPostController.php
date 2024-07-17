@@ -25,7 +25,7 @@ class PropertyPostController extends Controller
     public function mine($user_id){
         return response()->json(PropertyPost::where('user_id', $user_id)->get());
     }
-    
+
     /**
      * Show the form for creating a new resource.
      */
@@ -39,25 +39,87 @@ class PropertyPostController extends Controller
      */
     public function store(Request $request)
     {
+        // Attempt to increase upload limits
+        ini_set('upload_max_filesize', '50M'); // Set to 50 megabytes
+        ini_set('post_max_size', '55M'); // Set slightly larger than upload_max_filesize
+        ini_set('memory_limit', '256M'); // Increase memory limit if needed
+        Log::info( 'Reached....!');
         try {
-            if ($request->hasFile('images')) {
-                Log::info( 'true');
+            if ($request->hasFile('videos')) {
+                Log::info( 'Video --- true');
             }else{
-                Log::info( 'false');
+                Log::info( 'Video --- false');
             }
-
-            $property = new PropertyPost($request->toArray());
-            $property->save();
             if ($request->hasFile('images')) {
-                foreach ($request->file('images') as $image) {
-                    $path = $image->store('images');
-                    $property->images()->create(['path' => $path]);
-                }
+                Log::info( 'Image --- true');
+            }else{
+                Log::info( 'Image --- false');
             }
-            return response()->json($property, 201);
+            // $property = new PropertyPost($request->toArray());
+            // $property->save();
+            // if ($request->hasFile('images')) {
+            //     foreach ($request->file('images') as $image) {
+            //         $path = $image->store('images');
+            //         $property->images()->create(['path' => $path]);
+            //     }
+            // }
+            return response()->json( 201);
         } catch (\Throwable $th) {
-            return response()->json($th->getMessage());
+            return response()->json(['error' => $th->getMessage()], 500);
         }
+    }
+
+    public function uploadChunk(Request $request)
+    {
+        $request->validate([
+            'chunk' => 'required|file',
+            'index' => 'required|integer',
+            'totalChunks' => 'required|integer',
+            'videoId' => 'required',
+        ]);
+        $chunk = $request->file('chunk');
+        $videoId = $request->input('videoId');
+        $index = $request->input('index');
+
+        // Store the chunk temporarily
+        $tempDir = storage_path('app/public/uploads/' . $videoId);
+        if (!file_exists($tempDir)) {
+            mkdir($tempDir, 0777, true);
+        }
+        $chunk->move($tempDir, "chunk_{$index}");
+        return response()->json(['message' => 'Chunk uploaded successfully']);
+    }
+
+    public function completeUpload(Request $request)
+    {
+        $request->validate([
+            'videoId' => 'required|string',
+        ]);
+        $videoId = $request->input('videoId');
+        $tempDir = storage_path('app/public/uploads/' . $videoId);
+        if (!file_exists($tempDir)) {
+            return response()->json(['error' => 'Video chunks not found'], 404);
+        }
+
+        $files = scandir($tempDir);
+        natsort($files); // Sort the files in natural order
+
+        $videoPath = storage_path('app/public/uploads/' . $videoId . '.mp4');
+        $output = fopen($videoPath, 'ab');
+
+        foreach ($files as $file) {
+            if (strpos($file, 'chunk_') === 0) {
+                $chunkPath = $tempDir . '/' . $file;
+                $chunkData = file_get_contents($chunkPath);
+                fwrite($output, $chunkData);
+                unlink($chunkPath);
+            }
+        }
+
+        fclose($output);
+        rmdir($tempDir);
+
+        return response()->json(['message' => 'Video upload complete', 'videoPath' => $videoPath]);
     }
 
     public function toggleHidePost($propertyId)
