@@ -43,51 +43,59 @@ class PropertyPostController extends Controller
         ini_set('upload_max_filesize', '50M'); // Set to 50 megabytes
         ini_set('post_max_size', '55M'); // Set slightly larger than upload_max_filesize
         ini_set('memory_limit', '256M'); // Increase memory limit if needed
-        Log::info( 'Reached....!');
+
+        Log::info('Reached....!');
+
         try {
-            if ($request->hasFile('videos')) {
-                Log::info( 'Video --- true');
-            }else{
-                Log::info( 'Video --- false');
-            }
+            $property = new PropertyPost($request->except(['images', 'video'])); // Exclude files initially
+            $property->save();
+
+            // Handle image uploads
             if ($request->hasFile('images')) {
-                Log::info( 'Image --- true');
-            }else{
-                Log::info( 'Image --- false');
+                foreach ($request->file('images') as $image) {
+                    if ($image->isValid()) {
+                        $path = $image->store('images');
+                        $property->images()->create(['path' => $path]);
+                    } else {
+                        Log::warning('Invalid image file detected.');
+                    }
+                }
+            } else {
+                Log::info('No images uploaded.');
             }
-            // $property = new PropertyPost($request->toArray());
-            // $property->save();
-            // if ($request->hasFile('images')) {
-            //     foreach ($request->file('images') as $image) {
-            //         $path = $image->store('images');
-            //         $property->images()->create(['path' => $path]);
-            //     }
-            // }
-            return response()->json( 201);
+
+            return response()->json(['property'=> $property, 'message' => 'Property post details created successfully.'], 201);
+
         } catch (\Throwable $th) {
+            Log::error('Error storing property post: ' . $th->getMessage());
             return response()->json(['error' => $th->getMessage()], 500);
         }
     }
 
-    public function uploadChunk(Request $request)
+    public function uploadvideo(Request $request)
     {
-        $request->validate([
-            'chunk' => 'required|file',
-            'index' => 'required|integer',
-            'totalChunks' => 'required|integer',
-            'videoId' => 'required',
-        ]);
-        $chunk = $request->file('chunk');
-        $videoId = $request->input('videoId');
-        $index = $request->input('index');
+        // Attempt to increase upload limits
+        ini_set('upload_max_filesize', '50M'); // Set to 50 megabytes
+        ini_set('post_max_size', '55M'); // Set slightly larger than upload_max_filesize
+        ini_set('memory_limit', '256M'); // Increase memory limit if needed
 
-        // Store the chunk temporarily
-        $tempDir = storage_path('app/public/uploads/' . $videoId);
-        if (!file_exists($tempDir)) {
-            mkdir($tempDir, 0777, true);
+        Log::info('Reached....!');
+
+        $property = PropertyPost::where('id', $request->input('post_id'))->first();
+        // Handle video uploads
+        if ($request->hasFile('video')) {
+            $video = $request->file('video');
+            if ($video->isValid()) {
+                $path = $video->store('videos');
+                $property->videos()->create(['path' => $path]);
+            } else {
+                Log::warning('Invalid video file detected.');
+            }
+        } else {
+            Log::info('No video uploaded.');
         }
-        $chunk->move($tempDir, "chunk_{$index}");
-        return response()->json(['message' => 'Chunk uploaded successfully']);
+
+        return response()->json(['message' => 'Property post created successfully.'], 201);
     }
 
     public function completeUpload(Request $request)

@@ -17,5 +17,7 @@ class VerifyCsrfToken extends Middleware
         'signin',
         'api/post',
         '/post',
+        '/pay-w-broadpay',
+        '/api/pay-w-broadpay'
     ];
 }

@@ -9,11 +9,11 @@ use App\Http\Controllers\FavouriteController;
 use App\Http\Controllers\HandshakeController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PropertyPostController;
 use App\Http\Controllers\PropertyTypeController;
 use App\Http\Controllers\SearchEngineController;
 use App\Http\Controllers\UserController;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -43,12 +43,14 @@ Route::get('locations', [LocationController::class, 'index']);
 Route::get('property-posts', [PropertyPostController::class, 'index']);
 Route::get('my-property-posts/{user_id}', [PropertyPostController::class, 'mine']);
 Route::post('post', [PropertyPostController::class, 'store']);
-Route::post('upload-video-chunk', [PropertyPostController::class, 'uploadChunk']);
-Route::post('complete-upload', [PropertyPostController::class, 'completeUpload']);
+Route::post('upload-video', [PropertyPostController::class, 'uploadvideo']);
 Route::put('update-post', [PropertyPostController::class, 'update']);
 Route::delete('delete-post/{item}', [PropertyPostController::class, 'destroy']);
 Route::post('toggle-hide-post/{property_id}', [PropertyPostController::class, 'toggleHidePost']);
 Route::post('bid-top-post/{property_id}', [PropertyPostController::class, 'Bid']);
+
+//Payment
+Route::post('/pay-w-broadpay', [PaymentController::class, 'store']);
 
 //Search Engine
 Route::post('search', [SearchEngineController::class, 'index']);
@@ -69,12 +71,12 @@ Route::post('update-profile', [UserController::class, 'update']);
 
 //Notifications
 Route::get('notify/{user_id}', [NotificationController::class, 'index']);
-
-
 Route::post('/connectx', [HandshakeController::class, 'connect']);
 
+
+
 // Protected route to retrieve user information after successful authentication
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
