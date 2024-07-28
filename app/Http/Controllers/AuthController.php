@@ -137,39 +137,44 @@ class AuthController extends Controller
      */
     public function userInfo(Request $request)
     {
-        // Validate request data
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            // Add more validation rules as needed
-        ]);
 
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 422);
+        try {
+            // Validate request data
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|string|max:255',
+                // Add more validation rules as needed
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json(['error' => $validator->errors()], 422);
+            }
+
+            // Store user information in the database
+            // Example:
+            $user = User::create([
+                'name' => $request->input('name'),
+                'phone' => $request->input('phone'),
+                'email' => $request->input('email'),
+                'password' => $request->input('password'),
+                'bio' => 'No bio',
+                'work' => 'No work',
+                'location' => 'Not set',
+                'website' => 'None',
+                'gender' => 'Not set',
+                'cover' => 'profile/no-cover.jpg',
+                'picture' => 'profile/no-user.png'
+            ]);
+
+            //Send a welcome notification
+            $user->notify(new WelcomeNotification(
+                'Welcome to Square, login to get started on viewing wonderful houses and properties for rent and sale.',
+                $user
+            ));
+
+            return response()->json(['message' => 'User information stored successfully', 'user' => $user ], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'Failed', 'error' => $th->getMessage() ], 200);
         }
-
-        // Store user information in the database
-        // Example:
-        $user = User::create([
-            'name' => $request->input('name'),
-            'phone' => $request->input('phone'),
-            'email' => $request->input('email'),
-            'password' => $request->input('password'),
-            'bio' => 'No bio',
-            'work' => 'No work',
-            'location' => 'Not set',
-            'website' => 'None',
-            'gender' => 'Not set',
-            'cover' => 'profile/no-cover.jpg',
-            'picture' => 'profile/no-user.png'
-        ]);
-
-        //Send a welcome notification
-        $user->notify(new WelcomeNotification(
-            'Welcome to Square, login to get started on viewing wonderful houses and properties for rent and sale.',
-            $user
-        ));
-
-        return response()->json(['message' => 'User information stored successfully', 'user' => $user ], 200);
     }
 
 

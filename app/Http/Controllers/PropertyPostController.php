@@ -92,7 +92,7 @@ class PropertyPostController extends Controller
                 Log::warning('Invalid video file detected.');
             }
         } else {
-            Log::info('No video uploaded.');
+            $property->videos()->create(['path' => 'video']);
         }
 
         return response()->json(['message' => 'Property post created successfully.'], 201);
