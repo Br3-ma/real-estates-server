@@ -14,18 +14,12 @@ class UserController extends Controller
     public function update(Request $request)
     {
         try {
-            // Find the authenticated user
-            $user = User::where('id', $request->input('user_id'))->first();
-
-            // Update user information
+            $user = User::with('posts')->where('id', $request->input('user_id'))->first();
             switch ($request->input('segment')) {
                 case 'password':
-
-                    // Check if password is provided and update it if necessary
                     if ($request->has('password')) {
                         $user->password = Hash::make($request->input('password'));
                     }
-                    // Save the updated user record
                     $user->save();
                     break;
                 case 'profile':
@@ -35,29 +29,31 @@ class UserController extends Controller
                     if ($request->filled('bio')) $user->bio = $request->input('bio');
                     if ($request->filled('location')) $user->location = $request->input('location');
                     if ($request->filled('website')) $user->website = $request->input('website');
-                    // Save the updated user record
                     $user->save();
                 break;
                 case 'picture':
-                    // Handle user picture upload/update
-                    if ($request->hasFile('picture')) {
-                        Log::info( 'true');
-                    }else{
-                        Log::info( 'false');
-                    }
                     if ($request->hasFile('picture')) {
                         foreach ($request->file('picture') as $pic) {
-                            // Store the uploaded file and get its path
                             $path = $pic->store('profile');
-                            // Update user's picture field with the new path
                             $user->picture = $path;
                         }
+                    }else{
+                        Log::info( 'No Profile Picture');
                     }
-                    // Save the updated user record
+                    $user->save();
+                    break;
+                case 'cover':
+                    if ($request->hasFile('picture')) {
+                        foreach ($request->file('picture') as $pic) {
+                            $path = $pic->store('profile');
+                            $user->cover = $path;
+                        }
+                    }else{
+                        Log::info( 'No Cover Picture');
+                    }
                     $user->save();
                     break;
                 default:
-                    # code...
                 break;
             }
             $data = $user;

@@ -64,6 +64,16 @@ class User extends Authenticatable
         'total_properties',
     ];
 
+    // /**
+    //  * Boot method to attach model event listeners.
+    // */
+    // protected static function booted()
+    // {
+    //     static::addGlobalScope('withRelations', function ($builder) {
+    //         $builder->with(['posts', 'favourites']);
+    //     });
+    // }
+
     public function getTotalPostsAttribute()
     {
         return $this->posts()->where('status_id', 1)->count();
