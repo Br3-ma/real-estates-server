@@ -73,6 +73,61 @@ class AuthController extends Controller
 
     }
 
+    public function google(Request $request)
+    {
+        // dd($request);
+        try {
+            // Validate request data (ensure required fields from Google data are present)
+            $validator = Validator::make($request->all(), [
+                'email' => 'required|email',
+                'name' => 'required|string|max:255',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json(['error' => $validator->errors(), 'request'=>$request], 422);
+            }
+
+            // Check if the user already exists by Google sub ID or email
+            $user = User::where('email', $request->input('email'))
+                        ->orWhere('google_id', $request->input('sub'))
+                        ->first();
+
+            if ($user) {
+                // If user exists, return user data
+
+            return response()->json(['message' => 'Already LoggedIn', 'user' => $user], 200);
+            }
+
+            // Create a new user if they don't exist
+            $user = User::create([
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'google_id' => $request->input('sub'), // Store Google sub as google_id
+                'email_verified_at' => now(),
+                'bio' => 'No bio',
+                'work' => 'No work',
+                'location' => 'Not set',
+                'website' => 'None',
+                'gender' => 'Not set',
+                'cover' => 'profile/no-cover.jpg',
+                'picture' => $request->input('picture', 'profile/no-user.png'), // Use Google profile picture if available
+                'google_pic' => $request->input('picture', 'profile/no-user.png'), // Use Google profile picture if available
+                'password' => 'password777' // Generate a random password, as it's not needed for Google users
+            ]);
+
+            // Send a welcome notification
+            $user->notify(new WelcomeNotification(
+                'Welcome to Square, login to get started on viewing wonderful houses and properties for rent and sale.',
+                $user
+            ));
+
+            return response()->json(['message' => 'User created successfully', 'user' => $user], 201);
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'Failed', 'error' => $th->getMessage()], 500);
+        }
+    }
+
+
     /**
      * Generate and send OTP to the provided mobile number.
      *

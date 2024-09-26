@@ -21,6 +21,16 @@ class PropertyPostController extends Controller
     {
         return response()->json(PropertyPost::all());
     }
+    
+    public function hot()
+    {
+        return response()->json(PropertyPost::where('on_bid', true)->all());
+    }
+    
+    public function featured()
+    {
+        return response()->json(PropertyPost::where('on_bid', true)->all());
+    }
 
     public function mine($user_id){
         return response()->json(PropertyPost::where('user_id', $user_id)->get());

@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('property_posts', function (Blueprint $table) {
-            $table->boolean('on_bid')->default(false);
-            $table->decimal('bid_value', 8, 2)->nullable();
-            $table->dateTime('bid_due_date')->nullable();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('google_id')->nullable();
+            $table->string('google_pic')->nullable();
+            $table->string('fname')->nullable();
+            $table->string('lname')->nullable();
         });
     }
 
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('alter_properties_bids_tables');
+        Schema::dropIfExists('alter_users');
     }
 };
