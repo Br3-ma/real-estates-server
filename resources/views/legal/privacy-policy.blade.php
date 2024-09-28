@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RealEst - Real Estate Technology Solutions in Zambia</title>
+    <title>RealEst - Privacy Policy</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script>
@@ -29,8 +29,8 @@
             </div>
             <nav class="hidden md:block">
                 <a href="{{ route('home') }}" class="text-white hover:text-accent mx-3 transition duration-300">Home</a>
-                {{-- <a href="#features" class="text-white hover:text-accent mx-3 transition duration-300">Features</a>
-                <a href="#contact" class="text-white hover:text-accent mx-3 transition duration-300">Contact</a> --}}
+                {{-- <a href="#" class="text-white hover:text-accent mx-3 transition duration-300">Features</a>
+                <a href="#" class="text-white hover:text-accent mx-3 transition duration-300">Contact</a> --}}
                 <a href="{{ route('privacy-policy') }}" class="text-white hover:text-accent mx-3 transition duration-300">Privacy Policy</a>
             </nav>
             <button class="md:hidden text-white focus:outline-none">
@@ -41,9 +41,8 @@
 
     <main class="container mx-auto px-4 py-12">
         <section class="text-center mb-20">
-            <h2 class="text-5xl font-bold mb-6 text-primary">Revolutionizing Real Estate in Zambia</h2>
-            <p class="text-xl mb-10 text-gray-600 max-w-3xl mx-auto">Simplify property management, buying, selling, and renting with our innovative technology.</p>
-            <a href="#" class="bg-accent text-white py-3 px-8 rounded-full text-lg font-semibold hover:bg-opacity-90 transition duration-300 inline-block shadow-lg hover:shadow-xl mb-6">Get Started</a>
+            <h2 class="text-5xl font-bold mb-6 text-primary">Privacy Policy</h2>
+            <p class="text-xl mb-10 text-gray-600 max-w-3xl mx-auto">Your privacy is our top priority. Learn how we protect your personal information while providing innovative real estate solutions in Zambia.</p>
             <div class="flex flex-wrap justify-center gap-4 mb-12">
                 <a href="#" class="bg-gray-800 text-white py-2 px-6 rounded-full text-base font-semibold hover:bg-opacity-90 transition duration-300 inline-block shadow-lg hover:shadow-xl">
                     <i class="fas fa-download mr-2"></i>Download APK
@@ -55,26 +54,50 @@
                     <i class="fab fa-apple mr-2"></i>App Store
                 </a>
             </div>
-            <img src="/api/placeholder/1200/600" alt="Zambian Real Estate" class="w-full h-auto rounded-xl mt-12 shadow-2xl">
+            <img src="/api/placeholder/1200/600" alt="Privacy and Security" class="w-full h-auto rounded-xl mt-12 shadow-2xl">
         </section>
 
-        <section id="features" class="mb-20">
-            <h3 class="text-4xl font-bold mb-12 text-center text-primary">Our Features</h3>
-            <div class="grid md:grid-cols-3 gap-8">
+        <section class="mb-20">
+            <div class="bg-gray-50 p-8 rounded-xl shadow-lg mb-8">
+                <p class="text-sm text-gray-600 mb-4">Last Updated: September 28, 2024</p>
+                <p class="mb-6">Welcome to RealEst, Zambia's premier real estate technology solution. Our mission is to revolutionize property management, buying, selling, and renting for all Zambians. This privacy policy outlines how we collect, use, and protect your information, ensuring you have full control over your data while enjoying our innovative real estate services.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
                 <div class="bg-gray-50 p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
-                    <i class="fas fa-home text-5xl mb-6 text-accent"></i>
-                    <h4 class="text-2xl font-semibold mb-4 text-primary">Property Listings</h4>
-                    <p class="text-gray-600">Browse through a wide range of properties across Zambia. Our comprehensive database includes residential, commercial, and industrial properties.</p>
+                    <h3 class="text-2xl font-semibold mb-4 text-primary">1. Who We Are</h3>
+                    <p>RealEst is a cutting-edge real estate technology company based in Lusaka, Zambia. Our innovative platform seamlessly connects users with a wide array of real estate opportunities across the nation, leveraging the latest in PropTech to make property transactions smoother and more accessible.</p>
                 </div>
                 <div class="bg-gray-50 p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
-                    <i class="fas fa-chart-line text-5xl mb-6 text-accent"></i>
-                    <h4 class="text-2xl font-semibold mb-4 text-primary">Market Analysis</h4>
-                    <p class="text-gray-600">Get insights on property values and market trends. Our advanced analytics tools provide you with real-time data and forecasts for informed decisions.</p>
+                    <h3 class="text-2xl font-semibold mb-4 text-primary">2. Information We Collect</h3>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li><strong>Personal Information:</strong> Name, email, phone number, and address</li>
+                        <li><strong>Property Information:</strong> Listings, preferences, and search history</li>
+                        <li><strong>Usage Data:</strong> Interactions with our platform and services</li>
+                        <li><strong>Device Information:</strong> Type of device, operating system, and browser</li>
+                    </ul>
                 </div>
                 <div class="bg-gray-50 p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
-                    <i class="fas fa-handshake text-5xl mb-6 text-accent"></i>
-                    <h4 class="text-2xl font-semibold mb-4 text-primary">Easy Transactions</h4>
-                    <p class="text-gray-600">Experience streamlined processes for buying, selling, and renting. Our platform simplifies documentation, payments, and communication between parties.</p>
+                    <h3 class="text-2xl font-semibold mb-4 text-primary">3. How We Use Your Information</h3>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li>Provide personalized property listings and services</li>
+                        <li>Enhance and optimize your user experience</li>
+                        <li>Respond promptly to inquiries and support requests</li>
+                        <li>Maintain and improve platform security</li>
+                        <li>Comply with legal and regulatory requirements</li>
+                        <li>Analyze market trends and user behavior to improve our offerings</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                    <h3 class="text-2xl font-semibold mb-4 text-primary">4. Your Privacy Rights</h3>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li>Access and review your personal data</li>
+                        <li>Correct any inaccuracies in your information</li>
+                        <li>Request deletion of your data (subject to legal requirements)</li>
+                        <li>Opt-out of marketing communications</li>
+                        <li>Restrict certain data processing activities</li>
+                        <li>Request a copy of your data in a portable format</li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -83,14 +106,14 @@
             <h3 class="text-3xl font-bold mb-8 text-primary">Contact Us</h3>
             <div class="flex flex-wrap md:flex-nowrap">
                 <div class="w-full md:w-1/2 md:pr-8">
-                    <p class="mb-6 text-gray-600">Have questions or need assistance? Our team of real estate experts is here to help you navigate the Zambian property market:</p>
+                    <p class="mb-6 text-gray-600">We value your feedback and are here to address any questions or concerns regarding this Privacy Policy. Please don't hesitate to reach out:</p>
                     <div class="space-y-4 text-gray-600">
-                        <p><i class="fas fa-envelope text-accent mr-2"></i> <strong>Email:</strong> info@realest-realestate.co.zm</p>
-                        <p><i class="fas fa-phone text-accent mr-2"></i> <strong>Phone:</strong> +260 123 456 789</p>
+                        <p><i class="fas fa-envelope text-accent mr-2"></i> <strong>Email:</strong> privacy@RealEst-realestate.co.zm</p>
+                        <p><i class="fas fa-phone text-accent mr-2"></i> <strong>Phone:</strong> +260 970 123 456</p>
                         <p><i class="fas fa-map-marker-alt text-accent mr-2"></i> <strong>Address:</strong> RealEst Real Estate Technology, 123 Independence Avenue, Lusaka, Zambia</p>
                     </div>
                 </div>
-                <div class="w-full md:w-1/2 mt-8 md:mt-0">
+                <div class="w-full md:w-1-2 mt-8 md:mt-0">
                     <img src="/api/placeholder/600/400" alt="Contact Us" class="w-full h-auto rounded-lg shadow-lg">
                 </div>
             </div>

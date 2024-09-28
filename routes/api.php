@@ -45,6 +45,8 @@ Route::get('featured-list-posts', [PropertyPostController::class, 'featured']);
 Route::get('hot-list-posts', [PropertyPostController::class, 'hot']);
 
 Route::get('property-posts', [PropertyPostController::class, 'index']);
+Route::get('hot-property-posts', [PropertyPostController::class, 'hot']);
+
 Route::get('my-property-posts/{user_id}', [PropertyPostController::class, 'mine']);
 Route::post('post', [PropertyPostController::class, 'store']);
 Route::post('upload-video', [PropertyPostController::class, 'uploadvideo']);

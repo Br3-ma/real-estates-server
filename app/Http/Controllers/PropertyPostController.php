@@ -19,12 +19,12 @@ class PropertyPostController extends Controller
      */
     public function index()
     {
-        return response()->json(PropertyPost::all());
+        return response()->json(PropertyPost::inRandomOrder()->get());    
     }
     
     public function hot()
     {
-        return response()->json(PropertyPost::where('on_bid', true)->all());
+        return response()->json(PropertyPost::all());
     }
     
     public function featured()

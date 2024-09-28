@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Legal\PrivacyPolicyPageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
+Route::get('/privacy-policy', [PrivacyPolicyPageController::class, 'index'])->name('privacy-policy');
+
