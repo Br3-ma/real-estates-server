@@ -45,15 +45,15 @@
             <p class="text-xl mb-10 text-gray-600 max-w-3xl mx-auto">Simplify property management, buying, selling, and renting with our innovative technology.</p>
             <a href="#" class="bg-accent text-white py-3 px-8 rounded-full text-lg font-semibold hover:bg-opacity-90 transition duration-300 inline-block shadow-lg hover:shadow-xl mb-6">Get Started</a>
             <div class="flex flex-wrap justify-center gap-4 mb-12">
-                <a href="#" class="bg-gray-800 text-white py-2 px-6 rounded-full text-base font-semibold hover:bg-opacity-90 transition duration-300 inline-block shadow-lg hover:shadow-xl">
+                <a href="https://expo.dev/artifacts/eas/7SAa5wZ37hyMTakkUesdLo.apk" class="bg-gray-800 text-white py-2 px-6 rounded-full text-base font-semibold hover:bg-opacity-90 transition duration-300 inline-block shadow-lg hover:shadow-xl">
                     <i class="fas fa-download mr-2"></i>Download APK
                 </a>
-                <a href="#" class="bg-green-600 text-white py-2 px-6 rounded-full text-base font-semibold hover:bg-opacity-90 transition duration-300 inline-block shadow-lg hover:shadow-xl">
+                <a href="https://expo.dev/artifacts/eas/7SAa5wZ37hyMTakkUesdLo.apk" class="bg-green-600 text-white py-2 px-6 rounded-full text-base font-semibold hover:bg-opacity-90 transition duration-300 inline-block shadow-lg hover:shadow-xl">
                     <i class="fab fa-google-play mr-2"></i>Google Play
                 </a>
-                <a href="#" class="bg-blue-500 text-white py-2 px-6 rounded-full text-base font-semibold hover:bg-opacity-90 transition duration-300 inline-block shadow-lg hover:shadow-xl">
+                {{-- <a href="#" class="bg-blue-500 text-white py-2 px-6 rounded-full text-base font-semibold hover:bg-opacity-90 transition duration-300 inline-block shadow-lg hover:shadow-xl">
                     <i class="fab fa-apple mr-2"></i>App Store
-                </a>
+                </a> --}}
             </div>
             <img src="/api/placeholder/1200/600" alt="Zambian Real Estate" class="w-full h-auto rounded-xl mt-12 shadow-2xl">
         </section>

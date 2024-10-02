@@ -44,15 +44,15 @@
             <h2 class="text-5xl font-bold mb-6 text-primary">Privacy Policy</h2>
             <p class="text-xl mb-10 text-gray-600 max-w-3xl mx-auto">Your privacy is our top priority. Learn how we protect your personal information while providing innovative real estate solutions in Zambia.</p>
             <div class="flex flex-wrap justify-center gap-4 mb-12">
-                <a href="#" class="bg-gray-800 text-white py-2 px-6 rounded-full text-base font-semibold hover:bg-opacity-90 transition duration-300 inline-block shadow-lg hover:shadow-xl">
+                <a href="https://expo.dev/artifacts/eas/7SAa5wZ37hyMTakkUesdLo.apk" class="bg-gray-800 text-white py-2 px-6 rounded-full text-base font-semibold hover:bg-opacity-90 transition duration-300 inline-block shadow-lg hover:shadow-xl">
                     <i class="fas fa-download mr-2"></i>Download APK
                 </a>
-                <a href="#" class="bg-green-600 text-white py-2 px-6 rounded-full text-base font-semibold hover:bg-opacity-90 transition duration-300 inline-block shadow-lg hover:shadow-xl">
+                <a href="https://expo.dev/artifacts/eas/7SAa5wZ37hyMTakkUesdLo.apk" class="bg-green-600 text-white py-2 px-6 rounded-full text-base font-semibold hover:bg-opacity-90 transition duration-300 inline-block shadow-lg hover:shadow-xl">
                     <i class="fab fa-google-play mr-2"></i>Google Play
                 </a>
-                <a href="#" class="bg-blue-500 text-white py-2 px-6 rounded-full text-base font-semibold hover:bg-opacity-90 transition duration-300 inline-block shadow-lg hover:shadow-xl">
+                {{-- <a href="#" class="bg-blue-500 text-white py-2 px-6 rounded-full text-base font-semibold hover:bg-opacity-90 transition duration-300 inline-block shadow-lg hover:shadow-xl">
                     <i class="fab fa-apple mr-2"></i>App Store
-                </a>
+                </a> --}}
             </div>
             <img src="/api/placeholder/1200/600" alt="Privacy and Security" class="w-full h-auto rounded-xl mt-12 shadow-2xl">
         </section>
