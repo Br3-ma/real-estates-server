@@ -54,7 +54,7 @@ class PropertyPost extends Model
 
         // Ensure only records with a non-null user_id are retrieved and order them in descending order
         static::addGlobalScope('withUser', function ($builder) {
-            $builder->with(['user', 'images', 'videos'])
+            $builder->with(['user', 'images', 'videos', 'amenities'])
                     ->whereNotNull('user_id')
                     ->orderBy('created_at', 'desc'); // Adjust the column name if needed
         });
@@ -110,14 +110,6 @@ class PropertyPost extends Model
     }
 
     /**
-     * Get the amenities for the property post.
-     */
-    public function amenities()
-    {
-        return $this->hasMany(Amenity::class);
-    }
-
-    /**
      * Get the categories for the property post.
      */
     public function categories()
@@ -126,7 +118,7 @@ class PropertyPost extends Model
     }
 
     /**
-     * Get the amenities for the property post.
+     * Get the type for the property post.
      */
     public function type()
     {
@@ -134,11 +126,19 @@ class PropertyPost extends Model
     }
 
     /**
-     * Get the amenities for the property post.
+     * Get the location for the property post.
      */
     public function location()
     {
         return $this->hasOne(Location::class);
+    }
+    
+    /**
+     * Get the amenities for the property post.
+     */
+    public function amenities()
+    {
+        return $this->hasMany(PropertyAmenities::class, );
     }
 
     /**

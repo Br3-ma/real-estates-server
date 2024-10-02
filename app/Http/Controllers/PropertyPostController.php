@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PropertyPost;
 use App\Http\Requests\StorePropertyPostRequest;
 use App\Http\Requests\UpdatePropertyPostRequest;
+use App\Models\PropertyAmenities;
 use Illuminate\Http\JsonResponse;
 use Termwind\Components\Raw;
 use Illuminate\Http\Request;
@@ -19,17 +20,20 @@ class PropertyPostController extends Controller
      */
     public function index()
     {
-        return response()->json(PropertyPost::inRandomOrder()->get());    
+        //Get random unhidden posts
+        return response()->json(PropertyPost::inRandomOrder()->where('status_id', 1)->get());    
     }
     
     public function hot()
     {
-        return response()->json(PropertyPost::all());
+        //Get all unhidden posts
+        return response()->json(PropertyPost::where('status_id', 1)->get());
     }
     
     public function featured()
     {
-        return response()->json(PropertyPost::where('on_bid', true)->all());
+        //Get top bids featured unhidden posts
+        return response()->json(PropertyPost::where('on_bid', true)->where('status_id', 1)->get());
     }
 
     public function mine($user_id){
@@ -57,9 +61,20 @@ class PropertyPostController extends Controller
         Log::info('Reached....!');
 
         try {
-            $property = new PropertyPost($request->except(['images', 'video'])); // Exclude files initially
+            $property = new PropertyPost($request->except(['images', 'video', 'amenities'])); // Exclude files initially
             $property->save();
 
+            // Save amenities to PropertyAmenities model
+            if ($request->filled('amenities')) {
+                $amenities = explode(',', $request->amenities); // Split amenities by comma
+                foreach ($amenities as $amenity) {
+                    // Assuming you have a PropertyAmenities model that has 'property_id' and 'amenity_name' columns
+                    PropertyAmenities::create([
+                        'property_post_id' => $property->id,
+                        'amenity_name' => trim($amenity),
+                    ]);
+                }
+            }
             // Handle image uploads
             if ($request->hasFile('images')) {
                 foreach ($request->file('images') as $image) {
@@ -67,11 +82,13 @@ class PropertyPostController extends Controller
                         $path = $image->store('images');
                         $property->images()->create(['path' => $path]);
                     } else {
-                        Log::warning('Invalid image file detected.');
+                        $property->images()->create(['path' => 'images/no-img.png']);
+                        Log::warning('Invalid image file detected. Fake one has been added');
                     }
                 }
             } else {
-                Log::info('No images uploaded.');
+                $property->images()->create(['path' => 'images/no-img.png']);
+                Log::info('No images uploaded. Fake one has been added');
             }
 
             return response()->json(['property'=> $property, 'message' => 'Property post details created successfully.'], 201);
