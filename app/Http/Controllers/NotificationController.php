@@ -19,12 +19,16 @@ class NotificationController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the count of unread notifications for a specific user.
      */
-    public function create()
+    public function count($user_id)
     {
-        //
+        $user = User::where('id', $user_id)->first();
+        $unreadCount = $user->notifications->count(); // Get count of unread notifications
+
+        return response()->json($unreadCount, 200);
     }
+
 
     /**
      * Store a newly created resource in storage.

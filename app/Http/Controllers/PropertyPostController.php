@@ -6,6 +6,9 @@ use App\Models\PropertyPost;
 use App\Http\Requests\StorePropertyPostRequest;
 use App\Http\Requests\UpdatePropertyPostRequest;
 use App\Models\PropertyAmenities;
+use App\Models\User;
+use App\Notifications\NewPostComment;
+use App\Notifications\PostSuccessful;
 use Illuminate\Http\JsonResponse;
 use Termwind\Components\Raw;
 use Illuminate\Http\Request;
@@ -91,6 +94,12 @@ class PropertyPostController extends Controller
                 Log::info('No images uploaded. Fake one has been added');
             }
 
+            // Send a Post success notification
+            $user = User::where('id', $request->user_id)->first();
+            $user->notify(new PostSuccessful(
+                'Your property was posted successfully.',
+                $user
+            ));
             return response()->json(['property'=> $property, 'message' => 'Property post details created successfully.'], 201);
 
         } catch (\Throwable $th) {

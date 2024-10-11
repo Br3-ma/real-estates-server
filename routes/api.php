@@ -77,6 +77,7 @@ Route::post('update-profile', [UserController::class, 'update']);
 
 //Notifications
 Route::get('notify/{user_id}', [NotificationController::class, 'index']);
+Route::get('notify-count/{user_id}', [NotificationController::class, 'count']);
 Route::post('/connectx', [HandshakeController::class, 'connect']);
 
 

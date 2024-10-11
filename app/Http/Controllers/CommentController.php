@@ -7,7 +7,9 @@ use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCommentRequest;
 use App\Http\Requests\UpdateCommentRequest;
-
+use App\Models\PropertyPost;
+use App\Models\User;
+use App\Notifications\NewPostComment;
 use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
@@ -29,24 +31,37 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'post_id' => 'required|exists:property_posts,id',
-            'content' => 'required|string|max:500',
-            'parent_id' => 'nullable|exists:comments,id',
-            'user_id' => 'required',
-        ]);
-
-        $comment = new Comment();
-        $comment->user_id = Auth::id();
-        $comment->post_id = $request->post_id;
-        $comment->content = $request->content;
-        $comment->parent_id = $request->parent_id;
-        $comment->user_id = $request->user_id ;
-        $comment->save();
-
-        // event(new CommentEvent($comment));
-
-        return response()->json($comment, 201);
+        try {
+            $request->validate([
+                'post_id' => 'required|exists:property_posts,id',
+                'content' => 'required|string|max:500',
+                'parent_id' => 'nullable|exists:comments,id',
+                'user_id' => 'required',
+            ]);
+    
+            $comment = new Comment();
+            // $comment->user_id = Auth::id();
+            $comment->post_id = $request->post_id;
+            $comment->content = $request->content;
+            $comment->parent_id = $request->parent_id;
+            $comment->user_id = $request->user_id ;
+            $comment->save();
+            
+    
+            // Send a Post success notification
+            $post_owner_id = PropertyPost::where('id', $request->post_id)->first()->user_id;
+            $owner = User::where('id', $post_owner_id)->first();
+            $user = User::where('id', $request->user_id)->first();
+            
+            $owner->notify(new NewPostComment(
+                $user->name.' commented on a property you recently posted.',
+                $user
+            ));
+    
+            return response()->json($comment, 201);
+        } catch (\Throwable $th) {
+            return response()->json($th->getMessage(), 500);
+        }
     }
 
     /**
