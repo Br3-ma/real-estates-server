@@ -28,7 +28,7 @@
                 <h1 class="text-3xl font-bold">RealEst</h1>
             </div>
             <nav class="hidden md:block">
-                <a href="{{ route('home') }}" class="text-white hover:text-accent mx-3 transition duration-300">Home</a>
+                <a href="{{ route('home') }}" class="text-white hover:text-accent mx-3 transition duration-300">Dashboard</a>
                 {{-- <a href="#features" class="text-white hover:text-accent mx-3 transition duration-300">Features</a>
                 <a href="#contact" class="text-white hover:text-accent mx-3 transition duration-300">Contact</a> --}}
                 <a href="{{ route('privacy-policy') }}" class="text-white hover:text-accent mx-3 transition duration-300">Privacy Policy</a>

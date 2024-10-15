@@ -10,15 +10,16 @@ use Illuminate\Notifications\Notification;
 class PostSuccessful extends Notification
 {
     use Queueable;
-    private $message, $from;
+    private $message, $from, $post;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct($message, $from)
+    public function __construct($message, $from, $post = null)
     {
         $this->message = $message;
         $this->from = $from;
+        $this->post = $post;
     }
 
     /**
@@ -54,6 +55,7 @@ class PostSuccessful extends Notification
             'message' => $this->message,
             'from' => $this->from,
             'type' => 'post',
+            'post' => '',
         ];
     }
 }

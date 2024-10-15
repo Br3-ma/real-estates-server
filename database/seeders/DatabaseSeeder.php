@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             PropertyPostSeeder::class,
             CommentSeeder::class,
             LocationSeeder::class,
+            AdminSeeder::class,
         ]);
     }
 }
