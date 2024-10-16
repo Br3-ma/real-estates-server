@@ -17,7 +17,7 @@
     <link href="public/vendor/owl-carousel/owl.carousel.css" rel="stylesheet" type="text/css"/>
     <link href="public/css/style.css" rel="stylesheet" type="text/css"/>
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 
     <!-- Styles -->
     @livewireStyles
@@ -86,7 +86,7 @@
 				<div class="tab-content">
 					<div class="tab-pane fade active show" id="chat" role="tabpanel">
 						<div class="card mb-sm-3 mb-md-0 contacts_card dz-chat-user-box">
-							<div class="card-header chat-list-header text-center">
+							<div class="text-center card-header chat-list-header">
 								<a href="#"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect fill="#000000" x="4" y="11" width="16" height="2" rx="1"/><rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) rotate(-270.000000) translate(-12.000000, -12.000000) " x="4" y="11" width="16" height="2" rx="1"/></g></svg></a>
 								<div>
 									<h6 class="mb-1">Chat List</h6>
@@ -94,7 +94,7 @@
 								</div>
 								<a href="#"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg></a>
 							</div>
-							<div class="card-body contacts_body p-0 dz-scroll  " id="DZ_W_Contacts_Body">
+							<div class="p-0 card-body contacts_body dz-scroll " id="DZ_W_Contacts_Body">
 								<ul class="contacts">
 									<li class="name-first-letter">A</li>
 									<li class="active dz-chat-user">
@@ -285,7 +285,7 @@
 							</div>
 						</div>
 						<div class="card chat dz-chat-history-box d-none">
-							<div class="card-header chat-list-header text-center">
+							<div class="text-center card-header chat-list-header">
 								<a href="#" class="dz-chat-history-back">
 									<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><polygon points="0 0 24 0 24 24 0 24"/><rect fill="#000000" opacity="0.3" transform="translate(15.000000, 12.000000) scale(-1, 1) rotate(-90.000000) translate(-15.000000, -12.000000) " x="14" y="7" width="2" height="10" rx="1"/><path d="M3.7071045,15.7071045 C3.3165802,16.0976288 2.68341522,16.0976288 2.29289093,15.7071045 C1.90236664,15.3165802 1.90236664,14.6834152 2.29289093,14.2928909 L8.29289093,8.29289093 C8.67146987,7.914312 9.28105631,7.90106637 9.67572234,8.26284357 L15.6757223,13.7628436 C16.0828413,14.136036 16.1103443,14.7686034 15.7371519,15.1757223 C15.3639594,15.5828413 14.7313921,15.6103443 14.3242731,15.2371519 L9.03007346,10.3841355 L3.7071045,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(9.000001, 11.999997) scale(-1, -1) rotate(90.000000) translate(-9.000001, -11.999997) "/></g></svg>
 								</a>
@@ -296,15 +296,15 @@
 								<div class="dropdown">
 									<a href="#" data-toggle="dropdown" ><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg></a>
 									<ul class="dropdown-menu dropdown-menu-right">
-										<li class="dropdown-item"><i class="fa fa-user-circle text-primary mr-2"></i> View profile</li>
-										<li class="dropdown-item"><i class="fa fa-users text-primary mr-2"></i> Add to close friends</li>
-										<li class="dropdown-item"><i class="fa fa-plus text-primary mr-2"></i> Add to group</li>
-										<li class="dropdown-item"><i class="fa fa-ban text-primary mr-2"></i> Block</li>
+										<li class="dropdown-item"><i class="mr-2 fa fa-user-circle text-primary"></i> View profile</li>
+										<li class="dropdown-item"><i class="mr-2 fa fa-users text-primary"></i> Add to close friends</li>
+										<li class="dropdown-item"><i class="mr-2 fa fa-plus text-primary"></i> Add to group</li>
+										<li class="dropdown-item"><i class="mr-2 fa fa-ban text-primary"></i> Block</li>
 									</ul>
 								</div>
 							</div>
 							<div class="card-body msg_card_body dz-scroll" id="DZ_W_Contacts_Body3">
-								<div class="d-flex justify-content-start mb-4">
+								<div class="mb-4 d-flex justify-content-start">
 									<div class="img_cont_msg">
 										<img  src="public/images/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
 									</div>
@@ -313,7 +313,7 @@
 										<span class="msg_time">8:40 AM, Today</span>
 									</div>
 								</div>
-								<div class="d-flex justify-content-end mb-4">
+								<div class="mb-4 d-flex justify-content-end">
 									<div class="msg_cotainer_send">
 										Hi Khalid i am good tnx how about you?
 										<span class="msg_time_send">8:55 AM, Today</span>
@@ -322,7 +322,7 @@
 								<img  src="public/images/avatar/2.jpg" class="rounded-circle user_img_msg" alt=""/>
 									</div>
 								</div>
-								<div class="d-flex justify-content-start mb-4">
+								<div class="mb-4 d-flex justify-content-start">
 									<div class="img_cont_msg">
 										<img  src="public/images/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
 									</div>
@@ -331,7 +331,7 @@
 										<span class="msg_time">9:00 AM, Today</span>
 									</div>
 								</div>
-								<div class="d-flex justify-content-end mb-4">
+								<div class="mb-4 d-flex justify-content-end">
 									<div class="msg_cotainer_send">
 										You are welcome
 										<span class="msg_time_send">9:05 AM, Today</span>
@@ -340,7 +340,7 @@
 								<img  src="public/images/avatar/2.jpg" class="rounded-circle user_img_msg" alt=""/>
 									</div>
 								</div>
-								<div class="d-flex justify-content-start mb-4">
+								<div class="mb-4 d-flex justify-content-start">
 									<div class="img_cont_msg">
 										<img  src="public/images/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
 									</div>
@@ -349,7 +349,7 @@
 										<span class="msg_time">9:07 AM, Today</span>
 									</div>
 								</div>
-								<div class="d-flex justify-content-end mb-4">
+								<div class="mb-4 d-flex justify-content-end">
 									<div class="msg_cotainer_send">
 										Ok, thank you have a good day
 										<span class="msg_time_send">9:10 AM, Today</span>
@@ -358,7 +358,7 @@
 										<img  src="public/images/avatar/2.jpg" class="rounded-circle user_img_msg" alt=""/>
 									</div>
 								</div>
-								<div class="d-flex justify-content-start mb-4">
+								<div class="mb-4 d-flex justify-content-start">
 									<div class="img_cont_msg">
 										<img  src="public/images/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
 									</div>
@@ -367,7 +367,7 @@
 										<span class="msg_time">9:12 AM, Today</span>
 									</div>
 								</div>
-								<div class="d-flex justify-content-start mb-4">
+								<div class="mb-4 d-flex justify-content-start">
 									<div class="img_cont_msg">
 										<img  src="public/images/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
 									</div>
@@ -376,7 +376,7 @@
 										<span class="msg_time">8:40 AM, Today</span>
 									</div>
 								</div>
-								<div class="d-flex justify-content-end mb-4">
+								<div class="mb-4 d-flex justify-content-end">
 									<div class="msg_cotainer_send">
 										Hi Khalid i am good tnx how about you?
 										<span class="msg_time_send">8:55 AM, Today</span>
@@ -385,7 +385,7 @@
 								<img  src="public/images/avatar/2.jpg" class="rounded-circle user_img_msg" alt=""/>
 									</div>
 								</div>
-								<div class="d-flex justify-content-start mb-4">
+								<div class="mb-4 d-flex justify-content-start">
 									<div class="img_cont_msg">
 										<img  src="public/images/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
 									</div>
@@ -394,7 +394,7 @@
 										<span class="msg_time">9:00 AM, Today</span>
 									</div>
 								</div>
-								<div class="d-flex justify-content-end mb-4">
+								<div class="mb-4 d-flex justify-content-end">
 									<div class="msg_cotainer_send">
 										You are welcome
 										<span class="msg_time_send">9:05 AM, Today</span>
@@ -403,7 +403,7 @@
 								<img  src="public/images/avatar/2.jpg" class="rounded-circle user_img_msg" alt=""/>
 									</div>
 								</div>
-								<div class="d-flex justify-content-start mb-4">
+								<div class="mb-4 d-flex justify-content-start">
 									<div class="img_cont_msg">
 										<img  src="public/images/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
 									</div>
@@ -412,7 +412,7 @@
 										<span class="msg_time">9:07 AM, Today</span>
 									</div>
 								</div>
-								<div class="d-flex justify-content-end mb-4">
+								<div class="mb-4 d-flex justify-content-end">
 									<div class="msg_cotainer_send">
 										Ok, thank you have a good day
 										<span class="msg_time_send">9:10 AM, Today</span>
@@ -421,7 +421,7 @@
 										<img  src="public/images/avatar/2.jpg" class="rounded-circle user_img_msg" alt=""/>
 									</div>
 								</div>
-								<div class="d-flex justify-content-start mb-4">
+								<div class="mb-4 d-flex justify-content-start">
 									<div class="img_cont_msg">
 										<img  src="public/images/avatar/1.jpg" class="rounded-circle user_img_msg" alt=""/>
 									</div>
@@ -443,7 +443,7 @@
 					</div>
 					<div class="tab-pane fade" id="alerts" role="tabpanel">
 						<div class="card mb-sm-3 mb-md-0 contacts_card">
-							<div class="card-header chat-list-header text-center">
+							<div class="text-center card-header chat-list-header">
 								<a href="#"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg></a>
 								<div>
 									<h6 class="mb-1">Notications</h6>
@@ -451,7 +451,7 @@
 								</div>
 								<a href="#"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><path d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/><path d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z" fill="#000000" fill-rule="nonzero"/></g></svg></a>
 							</div>
-							<div class="card-body contacts_body p-0 dz-scroll" id="DZ_W_Contacts_Body1">
+							<div class="p-0 card-body contacts_body dz-scroll" id="DZ_W_Contacts_Body1">
 								<ul class="contacts">
 									<li class="name-first-letter">SEVER STATUS</li>
 									<li class="active">
@@ -499,7 +499,7 @@
 					</div>
 					<div class="tab-pane fade" id="notes">
 						<div class="card mb-sm-3 mb-md-0 note_card">
-							<div class="card-header chat-list-header text-center">
+							<div class="text-center card-header chat-list-header">
 								<a href="#"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect fill="#000000" x="4" y="11" width="16" height="2" rx="1"/><rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) rotate(-270.000000) translate(-12.000000, -12.000000) " x="4" y="11" width="16" height="2" rx="1"/></g></svg></a>
 								<div>
 									<h6 class="mb-1">Notes</h6>
@@ -507,7 +507,7 @@
 								</div>
 								<a href="#"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><path d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/><path d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z" fill="#000000" fill-rule="nonzero"/></g></svg></a>
 							</div>
-							<div class="card-body contacts_body p-0 dz-scroll" id="DZ_W_Contacts_Body2">
+							<div class="p-0 card-body contacts_body dz-scroll" id="DZ_W_Contacts_Body2">
 								<ul class="contacts">
 									<li class="active">
 										<div class="d-flex bd-highlight">
@@ -516,7 +516,7 @@
 												<p>10 Aug 2020</p>
 											</div>
 											<div class="ml-auto">
-												<a href="#" class="btn btn-primary btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
+												<a href="#" class="mr-1 btn btn-primary btn-xs sharp"><i class="fa fa-pencil"></i></a>
 												<a href="#" class="btn btn-danger btn-xs sharp"><i class="fa fa-trash"></i></a>
 											</div>
 										</div>
@@ -528,7 +528,7 @@
 												<p>10 Aug 2020</p>
 											</div>
 											<div class="ml-auto">
-												<a href="#" class="btn btn-primary btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
+												<a href="#" class="mr-1 btn btn-primary btn-xs sharp"><i class="fa fa-pencil"></i></a>
 												<a href="#" class="btn btn-danger btn-xs sharp"><i class="fa fa-trash"></i></a>
 											</div>
 										</div>
@@ -540,7 +540,7 @@
 												<p>10 Aug 2020</p>
 											</div>
 											<div class="ml-auto">
-												<a href="#" class="btn btn-primary btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
+												<a href="#" class="mr-1 btn btn-primary btn-xs sharp"><i class="fa fa-pencil"></i></a>
 												<a href="#" class="btn btn-danger btn-xs sharp"><i class="fa fa-trash"></i></a>
 											</div>
 										</div>
@@ -552,7 +552,7 @@
 												<p>10 Aug 2020</p>
 											</div>
 											<div class="ml-auto">
-												<a href="#" class="btn btn-primary btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
+												<a href="#" class="mr-1 btn btn-primary btn-xs sharp"><i class="fa fa-pencil"></i></a>
 												<a href="#" class="btn btn-danger btn-xs sharp"><i class="fa fa-trash"></i></a>
 											</div>
 										</div>
@@ -578,12 +578,12 @@
                         <div class="header-left">
                             <div class="dashboard_bar">
                                 <div class="search_bar dropdown">
-                                <div class="dropdown-menu p-0 m-0">
+                                <div class="p-0 m-0 dropdown-menu">
                                     <form>
                                         <input class="form-control" type="search" placeholder="Search Here" aria-label="Search">
                                     </form>
                                 </div>
-								<span class="search_icon p-3 c-pointer" data-toggle="dropdown">
+								<span class="p-3 search_icon c-pointer" data-toggle="dropdown">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="../../../www.w3.org/2000/svg.html">
 										<path d="M23.7871 22.7761L17.9548 16.9437C19.5193 15.145 20.4665 12.7982 20.4665 10.2333C20.4665 4.58714 15.8741 0 10.2333 0C4.58714 0 0 4.59246 0 10.2333C0 15.8741 4.59246 20.4665 10.2333 20.4665C12.7982 20.4665 15.145 19.5193 16.9437 17.9548L22.7761 23.7871C22.9144 23.9255 23.1007 24 23.2816 24C23.4625 24 23.6488 23.9308 23.7871 23.7871C24.0639 23.5104 24.0639 23.0528 23.7871 22.7761ZM1.43149 10.2333C1.43149 5.38004 5.38004 1.43681 10.2279 1.43681C15.0812 1.43681 19.0244 5.38537 19.0244 10.2333C19.0244 15.0812 15.0812 19.035 10.2279 19.035C5.38004 19.035 1.43149 15.0865 1.43149 10.2333Z" fill="#3B4CB8"/>
 									</svg>
@@ -594,18 +594,18 @@
 
                         <ul class="navbar-nav header-right">
 							<li class="nav-item dropdown notification_dropdown">
-                                <a class="nav-link  ai-icon" href="#" role="button" data-toggle="dropdown">
+                                <a class="nav-link ai-icon" href="#" role="button" data-toggle="dropdown">
                                     <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="../../../www.w3.org/2000/svg.html">
 										<path d="M21.75 14.8385V12.0463C21.7471 9.88552 20.9385 7.80353 19.4821 6.20735C18.0258 4.61116 16.0264 3.61555 13.875 3.41516V1.625C13.875 1.39294 13.7828 1.17038 13.6187 1.00628C13.4546 0.842187 13.2321 0.75 13 0.75C12.7679 0.75 12.5454 0.842187 12.3813 1.00628C12.2172 1.17038 12.125 1.39294 12.125 1.625V3.41534C9.97361 3.61572 7.97429 4.61131 6.51794 6.20746C5.06159 7.80361 4.25291 9.88555 4.25 12.0463V14.8383C3.26257 15.0412 2.37529 15.5784 1.73774 16.3593C1.10019 17.1401 0.751339 18.1169 0.75 19.125C0.750764 19.821 1.02757 20.4882 1.51969 20.9803C2.01181 21.4724 2.67904 21.7492 3.375 21.75H8.71346C8.91521 22.738 9.45205 23.6259 10.2331 24.2636C11.0142 24.9013 11.9916 25.2497 13 25.2497C14.0084 25.2497 14.9858 24.9013 15.7669 24.2636C16.548 23.6259 17.0848 22.738 17.2865 21.75H22.625C23.321 21.7492 23.9882 21.4724 24.4803 20.9803C24.9724 20.4882 25.2492 19.821 25.25 19.125C25.2486 18.117 24.8998 17.1402 24.2622 16.3594C23.6247 15.5786 22.7374 15.0414 21.75 14.8385ZM6 12.0463C6.00232 10.2113 6.73226 8.45223 8.02974 7.15474C9.32723 5.85726 11.0863 5.12732 12.9212 5.125H13.0788C14.9137 5.12732 16.6728 5.85726 17.9703 7.15474C19.2677 8.45223 19.9977 10.2113 20 12.0463V14.75H6V12.0463ZM13 23.5C12.4589 23.4983 11.9316 23.3292 11.4905 23.0159C11.0493 22.7026 10.716 22.2604 10.5363 21.75H15.4637C15.284 22.2604 14.9507 22.7026 14.5095 23.0159C14.0684 23.3292 13.5411 23.4983 13 23.5ZM22.625 20H3.375C3.14298 19.9999 2.9205 19.9076 2.75644 19.7436C2.59237 19.5795 2.50014 19.357 2.5 19.125C2.50076 18.429 2.77757 17.7618 3.26969 17.2697C3.76181 16.7776 4.42904 16.5008 5.125 16.5H20.875C21.571 16.5008 22.2382 16.7776 22.7303 17.2697C23.2224 17.7618 23.4992 18.429 23.5 19.125C23.4999 19.357 23.4076 19.5795 23.2436 19.7436C23.0795 19.9076 22.857 19.9999 22.625 20Z" fill="#3B4CB8"/>
 									</svg>
 									<div class="pulse-css"></div>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <div id="DZ_W_Notification1" class="widget-media dz-scroll p-3 height380">
+                                    <div id="DZ_W_Notification1" class="p-3 widget-media dz-scroll height380">
 										<ul class="timeline">
 											<li>
 												<div class="timeline-panel">
-													<div class="media mr-2">
+													<div class="mr-2 media">
 														<img alt="image" width="50"  src="public/images/avatar/1.jpg">
 													</div>
 													<div class="media-body">
@@ -616,7 +616,7 @@
 											</li>
 											<li>
 												<div class="timeline-panel">
-													<div class="media mr-2 media-info">
+													<div class="mr-2 media media-info">
 														KG
 													</div>
 													<div class="media-body">
@@ -627,7 +627,7 @@
 											</li>
 											<li>
 												<div class="timeline-panel">
-													<div class="media mr-2 media-success">
+													<div class="mr-2 media media-success">
 														<i class="fa fa-home"></i>
 													</div>
 													<div class="media-body">
@@ -638,7 +638,7 @@
 											</li>
 											 <li>
 												<div class="timeline-panel">
-													<div class="media mr-2">
+													<div class="mr-2 media">
 														<img alt="image" width="50"  src="public/images/avatar/1.jpg">
 													</div>
 													<div class="media-body">
@@ -649,7 +649,7 @@
 											</li>
 											<li>
 												<div class="timeline-panel">
-													<div class="media mr-2 media-danger">
+													<div class="mr-2 media media-danger">
 														KG
 													</div>
 													<div class="media-body">
@@ -660,7 +660,7 @@
 											</li>
 											<li>
 												<div class="timeline-panel">
-													<div class="media mr-2 media-primary">
+													<div class="mr-2 media media-primary">
 														<i class="fa fa-home"></i>
 													</div>
 													<div class="media-body">
@@ -692,7 +692,7 @@
 									<div class="pulse-css"></div>
                                 </a>
 								<div class="dropdown-menu dropdown-menu-right">
-									<div id="DZ_W_TimeLine02" class="widget-timeline dz-scroll style-1 ps ps--active-y p-3 height370">
+									<div id="DZ_W_TimeLine02" class="p-3 widget-timeline dz-scroll style-1 ps ps--active-y height370">
                                     <ul class="timeline">
                                         <li>
                                             <div class="timeline-badge primary"></div>
@@ -750,7 +750,7 @@
                                 <a class="nav-link" href="#" role="button" data-toggle="dropdown">
 									<div class="header-info">
 										<span class="text-black">{{ auth()->user()->name }}</span>
-										<p class="fs-12 mb-0">{{ auth()->user()->role }}</p>
+										<p class="mb-0 fs-12">{{ auth()->user()->role }}</p>
 									</div>
                                     <img  src="data:image/png;base64,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" width="20" alt=""/>
                                 </a>
@@ -938,7 +938,7 @@
         <!--**********************************
             Content body start
         ***********************************-->
-       
+
         {{ $slot }}
         <!--**********************************
             Content body end
