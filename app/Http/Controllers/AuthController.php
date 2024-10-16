@@ -197,12 +197,15 @@ class AuthController extends Controller
             // Validate request data
             $validator = Validator::make($request->all(), [
                 'name' => 'required|string|max:255',
-                // Add more validation rules as needed
+                'email' => 'required|string|email|max:255|unique:users',
+                'phone' => 'required|string|max:15|unique:users',
             ]);
 
+            // If validation fails, return an error response
             if ($validator->fails()) {
                 return response()->json(['error' => $validator->errors()], 422);
             }
+
 
             // Store user information in the database
             // Example:
@@ -226,9 +229,9 @@ class AuthController extends Controller
                 $user
             ));
 
-            return response()->json(['message' => 'User information stored successfully', 'user' => $user ], 200);
+            return response()->json(['message' => 'success', 'user' => $user ], 200);
         } catch (\Throwable $th) {
-            return response()->json(['message' => 'Failed', 'error' => $th->getMessage() ], 200);
+            return response()->json(['message' => 'failed', 'error' => $th->getMessage() ], 200);
         }
     }
 
