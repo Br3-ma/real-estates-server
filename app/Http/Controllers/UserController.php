@@ -61,14 +61,13 @@ class UserController extends Controller
                     }
                     $user->save();
                     break;
-
-
                 default:
                 break;
-            }
+            };
             $data = $user;
             return response()->json(['message' => 'User information stored successfully', 'user' => $data ], 200);
         } catch (\Throwable $th) {
+            dd($th);
             return response()->json(['message' => $th->getMessage(), 'user' => [] ], 500);
         }
     }

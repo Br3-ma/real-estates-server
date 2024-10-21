@@ -21,29 +21,6 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-
-        // $curl = curl_init();
-
-        // curl_setopt_array($curl, array(
-        // CURLOPT_URL => 'https://api.easysendsms.app/bulksms',
-        // CURLOPT_RETURNTRANSFER => true,
-        // CURLOPT_ENCODING => '',
-        // CURLOPT_MAXREDIRS => 10,
-        // CURLOPT_TIMEOUT => 0,
-        // CURLOPT_FOLLOWLOCATION => true,
-        // CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        // CURLOPT_CUSTOMREQUEST => 'POST',
-        // CURLOPT_POSTFIELDS => 'username=bremnyelngez42024&password=xuQzJd7O&to=0772147755&from=test&text=HelloLooser%20world&type=0',
-        // CURLOPT_HTTPHEADER => array(
-        // 'Content-Type: application/x-www-form-urlencoded',
-        // 'Cookie: ASPSESSIONIDASCQBARR=NKOHDCHDOFEOOALJIGDGGPAM'
-        // ),
-        // ));
-
-        // $response = curl_exec($curl);
-
-        // curl_close($curl);
-
         // Validate the request
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
@@ -51,14 +28,14 @@ class AuthController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
+            return response()->json(['message' => $validator->errors(),'errors' => $validator->errors()], 422);
         }
 
         // Attempt to find the user
-        $user = User::with('posts')->where('email', $request->email)->first();
+        $user = User::where('email', $request->email)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
-            return response()->json(['error' => 'Invalid email or password'], 401);
+            return response()->json(['message' => 'Invalid email or password','error' => 'Invalid email or password'], 401);
         }
 
         // Generate a token (optional, for token-based auth)
@@ -66,7 +43,7 @@ class AuthController extends Controller
 
         // Return the response with the token
         return response()->json([
-            'message' => 'Login successful',
+            'message' => 'success',
             'token' => $token,
             'user' => $user
         ], 200);
@@ -203,17 +180,19 @@ class AuthController extends Controller
 
             // If validation fails, return an error response
             if ($validator->fails()) {
-                return response()->json(['error' => $validator->errors()], 422);
+                return response()->json(['message' => $validator->errors(), 'error' => $validator->errors()], 422);
             }
 
 
+            // Hash the password before storing it
+            $hashedPassword = Hash::make($request->input('password'));
+
             // Store user information in the database
-            // Example:
             $user = User::create([
                 'name' => $request->input('name'),
                 'phone' => $request->input('phone'),
                 'email' => $request->input('email'),
-                'password' => $request->input('password'),
+                'password' => $hashedPassword, // Save the hashed password
                 'bio' => 'No bio',
                 'work' => 'No work',
                 'location' => 'Not set',

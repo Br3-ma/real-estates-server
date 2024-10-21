@@ -42,7 +42,9 @@ class User extends Authenticatable
         'fname',
         'lname',
         'current_team_id',
-        'role'
+        'role',
+        'isSub',
+        'is_plan_id',
     ];
 
     /**
@@ -73,5 +75,46 @@ class User extends Authenticatable
      */
     protected $appends = [
         'profile_photo_url',
+        'total_posts_count', // Derived attribute 1
+        'total_active_posts_count', // Derived attribute 2
+        'estimate_profit', // Derived attribute 2
     ];
+
+    public function posts(){
+        return $this->hasMany(PropertyPost::class);
+    }
+
+    /**
+     * Get total posts count.
+     *
+     * @return int
+     */
+    public function getTotalPostsCountAttribute()
+    {
+        return $this->posts()->count();
+    }
+
+    /**
+     * Get total active posts count.
+     *
+     * @return int
+     */
+    public function getTotalActivePostsCountAttribute()
+    {
+        return $this->posts()->count();
+        // return $this->posts()->where('status', 'active')->count();
+    }
+
+    /**
+     * Get total active posts count.
+     *
+     * @return int
+     */
+    public function getEstimateProfitAttribute()
+    {
+        return $this->posts()->sum('price');
+        // return $this->posts()->where('status', 'active')->count();
+    }
 }
+
+

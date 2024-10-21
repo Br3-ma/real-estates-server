@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Callback\PaymentCallbackController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FavouriteController;
@@ -81,6 +82,8 @@ Route::get('notify-count/{user_id}', [NotificationController::class, 'count']);
 Route::post('/connectx', [HandshakeController::class, 'connect']);
 
 
+// User
+Route::post('deposit-callback', [PaymentCallbackController::class, 'deposit']);
 
 // Protected route to retrieve user information after successful authentication
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

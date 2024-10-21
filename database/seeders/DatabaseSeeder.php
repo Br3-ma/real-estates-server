@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             CommentSeeder::class,
             LocationSeeder::class,
             AdminSeeder::class,
+            PlanSeeder::class,
         ]);
     }
 }
