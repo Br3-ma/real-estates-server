@@ -43,10 +43,9 @@ Route::get('locations', [LocationController::class, 'index']);
 
 //Posts
 Route::get('featured-list-posts', [PropertyPostController::class, 'featured']);
-Route::get('hot-list-posts', [PropertyPostController::class, 'hot']);
-
 Route::get('property-posts', [PropertyPostController::class, 'index']);
 Route::get('hot-property-posts', [PropertyPostController::class, 'hot']);
+Route::get('hot-property-posts-x2', [PropertyPostController::class, 'hotx2']);
 
 Route::get('my-property-posts/{user_id}', [PropertyPostController::class, 'mine']);
 Route::post('post', [PropertyPostController::class, 'store']);

@@ -24,15 +24,25 @@ class PropertyPostController extends Controller
     public function index()
     {
         //Get random unhidden posts
-        return response()->json(PropertyPost::inRandomOrder()->where('status_id', 1)->get());    
+        return response()->json(PropertyPost::inRandomOrder()->where('status_id', 1)->get());
     }
-    
+
     public function hot()
     {
-        //Get all unhidden posts
-        return response()->json(PropertyPost::where('status_id', 1)->get());
+        //Get all unhidden posts that are on bid 1
+        return response()->json(PropertyPost::inRandomOrder()->where('status_id', 1)->where('on_bid', 1)->get());
     }
     
+    public function hotx2()
+    {
+        // Get all unhidden posts that are on bid 1, ordered by bid_value descending
+        return response()->json(PropertyPost::where('status_id', 1)
+            ->where('on_bid', 1)
+            ->orderBy('bid_value', 'desc')
+            ->get());
+    }
+
+
     public function featured()
     {
         //Get top bids featured unhidden posts

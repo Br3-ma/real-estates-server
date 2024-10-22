@@ -24,7 +24,7 @@ class PaymentCallbackController extends Controller
             'amount'        => $data['depositedAmount'],
             'item'          => $data['metadata']['type'],
             'txn_fee'       => 0, // Set txn fee if available
-            // 'txn_ref'       => $data['correspondentIds']['MTN_FINAL'],
+            'txn_ref'       => $data['payer']['address']['value'],
             'txn_status'    => $data['status'],
             'status'        => ($data['status'] == 'COMPLETED') ? 'success' : 'failed'
         ]);
@@ -53,12 +53,12 @@ class PaymentCallbackController extends Controller
 
             case 'post_boost':
                 // Insert into PostBoost Table or handle post boost logic
-                PropertyPost::create([
-                    'user_id'    => $data['metadata']['user_id'],
-                    'post_id'    => $data['metadata']['post_id'],
-                    'on_bid'     => true,
-                    'bid_value'  => 0,
-                    'bid_due_date' =>   $data['metadata']['boost']['bid_due_date'] // Set status to boosted or as per your logic
+                PropertyPost::where('post_id', $data['metadata']['post_id'])
+                ->update([
+                    'user_id'      => $data['metadata']['user_id'],
+                    'on_bid'       => true,
+                    'bid_value'    => 0,
+                    'bid_due_date' => $data['metadata']['boost']['bid_due_date'], // Set status to boosted or as per your logic
                 ]);
                 break;
 
