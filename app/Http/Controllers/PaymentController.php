@@ -86,8 +86,14 @@ class PaymentController extends Controller
             "country" => "ZMB",
             "preAuthorisationCode" => "PMxQYqfDx",
             "metadata" => [
-                ["fieldName" => "orderId", "fieldValue" => (string)$request->input('post_id')],
-                ["fieldName" => "customerId", "fieldValue" => (string)$request->input('user_id'), "isPII" => true]
+                [
+                    "plan_id" => (string)$request->input('plan_id'),
+                    "post_id" => (string)$request->input('post_id'),
+                    "user_id" => (string)$request->input('user_id'),
+                    "isPII" => true,
+                    "type"=> (string)$request->input('payingFor'),
+                    "boost"=> $request->input('boost'),
+                ]
             ]
         ];
     }
