@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\Payment;
 use App\Models\PropertyPost;
 use App\Models\Subscription;
+use App\Models\User;
+use App\Notifications\PaymentMade;
+
 // use App\Models\PostBoost;
 
 class PaymentCallbackController extends Controller
@@ -16,6 +19,7 @@ class PaymentCallbackController extends Controller
         try {
             // Parse the incoming request
             $data = $request->all();
+            $payer = User::where('id', $data['metadata']['user_id'])->first();
 
             // Insert into Payment Table
             $payment = Payment::create([
@@ -50,17 +54,26 @@ class PaymentCallbackController extends Controller
                         'status'              => 'active', // Default to active if payment is completed
                         'cancellation_run_at' => now()->addMonth(),
                     ]);
+                    $payer->notify(new PaymentMade(
+                        'You have successfully subscribed to package ID'.$data['metadata']['plan_id'],
+                        'Square Subscription Plan'
+                    ));
                     break;
 
                 case 'post_boost':
                     // Insert into PostBoost Table or handle post boost logic
-                    PropertyPost::where('post_id', $data['metadata']['post_id'])
+                    $post = PropertyPost::where('post_id', $data['metadata']['post_id'])
                     ->update([
                         'user_id'      => $data['metadata']['user_id'],
                         'on_bid'       => true,
                         'bid_value'    => $data['depositedAmount'],
                         // 'bid_due_date' => $data['metadata']['boost']['bid_due_date'], // Set status to boosted or as per your logic
                     ]);
+                    $payer->notify(new PaymentMade(
+                        'You have successfully boosted your post ID'.$data['metadata']['post_id'],
+                        User::first(),
+                        $post
+                    ));
                     break;
 
                 // Add other cases for additional types
