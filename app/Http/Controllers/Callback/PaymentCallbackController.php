@@ -58,8 +58,8 @@ class PaymentCallbackController extends Controller
                     ->update([
                         'user_id'      => $data['metadata']['user_id'],
                         'on_bid'       => true,
-                        'bid_value'    => 0,
-                        'bid_due_date' => $data['metadata']['boost']['bid_due_date'], // Set status to boosted or as per your logic
+                        'bid_value'    => $data['depositedAmount'],
+                        // 'bid_due_date' => $data['metadata']['boost']['bid_due_date'], // Set status to boosted or as per your logic
                     ]);
                     break;
 

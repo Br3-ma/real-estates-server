@@ -90,9 +90,9 @@ class PaymentController extends Controller
                     "plan_id" => (string)$request->input('plan_id'),
                     "post_id" => (string)$request->input('post_id'),
                     "user_id" => (string)$request->input('user_id'),
-                    "isPII" => true,
                     "type"=> (string)$request->input('payingFor'),
                     "boost"=> (string)$request->input('boost'),
+                    "isPII" => true,
                 ]
             ]
         ];
