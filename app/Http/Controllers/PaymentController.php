@@ -82,7 +82,7 @@ class PaymentController extends Controller
                 "type" => "MSISDN"
             ],
             "customerTimestamp" => now()->toIso8601String(),
-            "statementDescription" => "Payment of a certain subscription or booster package from Square",
+            "statementDescription" => "Payment of item on SQr",
             "country" => "ZMB",
             "preAuthorisationCode" => "PMxQYqfDx",
             "metadata" => [
