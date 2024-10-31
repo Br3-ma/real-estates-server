@@ -87,12 +87,13 @@ class PaymentController extends Controller
             "preAuthorisationCode" => "PMxQYqfDx",
             "metadata" => [
                 [
-                    "plan_id" => (string)$request->input('plan_id'),
-                    "post_id" => (string)$request->input('post_id'),
-                    "user_id" => (string)$request->input('user_id'),
-                    "type"=> (string)$request->input('payingFor'),
-                    "boost"=> (string)$request->input('boost'),
-                    "isPII" => true,
+                    "fieldName" => "orderId",
+                    "fieldValue" => $request->input('post_id') ? (string)$request->input('post_id') : (string)$request->input('plan_id')
+                ],
+                [
+                    "fieldName" => "customerId",
+                    "fieldValue" => (string)$request->input('user_id'),
+                    "isPII" => true
                 ]
             ]
         ];
