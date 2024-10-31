@@ -199,7 +199,9 @@ class AuthController extends Controller
                 'website' => 'None',
                 'gender' => 'Not set',
                 'cover' => 'profile/no-cover.jpg',
-                'picture' => 'profile/no-user.png'
+                'picture' => 'profile/no-user.png',
+                'isSub' => 0,
+                'is_plan_id',
             ]);
 
             //Send a welcome notification

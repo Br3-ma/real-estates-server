@@ -8,7 +8,10 @@ use App\Http\Requests\UpdatePaymentRequest;
 use App\Models\PropertyPost;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Ramsey\Uuid\Uuid;
+use Exception;
 class PaymentController extends Controller
 {
     /**
@@ -26,6 +29,80 @@ class PaymentController extends Controller
     {
         //
     }
+    public function deposit(Request $request)
+    {
+        // Validate the form data
+        $request->validate([
+            'correspondent' => 'required',
+            'phone' => 'required',
+            'amount' => 'required',
+            'user_id' => 'required',
+        ]);
+
+        try {
+            // Generate a UUIDv4 for the depositId
+            $depositId = Uuid::uuid4()->toString();
+
+            // Prepare payload for the external API request
+            $payload = $this->preparePayload($request, $depositId);
+
+            Log::info($payload);
+
+            // Make the API request
+            $response = Http::withHeaders($this->getHeaders())->post('https://api.pawapay.io/deposits', $payload);
+
+            // Check if the request was successful and return the response
+            if ($response->successful()) {
+                return response()->json(['message' => 'Payment submitted successfully', 'data' => $response->json()]);
+            }
+
+            // If unsuccessful, throw an exception with detailed info
+            throw new Exception("API request failed with status {$response->status()} and message: " . $response->body());
+
+        } catch (Exception $e) {
+            Log::error('Payment submission failed', [
+                'exception' => $e
+            ]);
+            // Catch any exception and return the detailed error message
+            return response()->json(['error' => 'Failed to submit payment', 'details' => $e->getMessage()], 500);
+        }
+    }
+
+    private function preparePayload(Request $request, string $depositId): array
+    {
+        return [
+            "depositId" => $depositId,
+            "amount" => (string)$request->input('amount'),
+            "currency" => "ZMW",
+            "correspondent" => (string)$request->input('correspondent'),
+            "payer" => [
+                "address" => [
+                    "value" => (string)$request->input('phone')
+                ],
+                "type" => "MSISDN"
+            ],
+            "customerTimestamp" => now()->toIso8601String(),
+            "statementDescription" => "Payment of a certain subscription or booster package from Square",
+            "country" => "ZMB",
+            "preAuthorisationCode" => "PMxQYqfDx",
+            "metadata" => [
+                ["fieldName" => "orderId", "fieldValue" => (string)$request->input('post_id')],
+                ["fieldName" => "customerId", "fieldValue" => (string)$request->input('user_id'), "isPII" => true]
+            ]
+        ];
+    }
+
+    private function getHeaders(): array
+    {
+        return [
+            'Content-Digest' => 'Twalitso Innovation Square',
+            'Authorization' => 'Bearer eyJraWQiOiIxIiwiYWxnIjoiRVMyNTYifQ.eyJ0dCI6IkFBVCIsInN1YiI6IjkzNSIsImV4cCI6MjA0NDc5MzI2NiwiaWF0IjoxNzI5MjYwNDY2LCJwbSI6IkRBRixQQUYiLCJqdGkiOiIzOTU5NmMyOS02MWJlLTQ2MjMtOTczZS1lMGE3Yzg3MzE0NDgifQ.mhcRvNtSGalGqzWqeqzFopLf1D1kmVxOjWyCb_7jCibrCMlPDbK5HunE7BbtKOYnGSsB_66ovRFsTV8b93xoqg',
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json'
+        ];
+    }
+
+
     /**
      * Store a newly created resource in storage.
      */

@@ -82,6 +82,7 @@ Route::post('/connectx', [HandshakeController::class, 'connect']);
 
 
 // User
+Route::post('/v1/submit-mobile-payment', [PaymentController::class, 'deposit']);
 Route::post('deposit-callback', [PaymentCallbackController::class, 'deposit']);
 
 // Protected route to retrieve user information after successful authentication
