@@ -92,7 +92,7 @@ class PaymentController extends Controller
                     "user_id" => (string)$request->input('user_id'),
                     "isPII" => true,
                     "type"=> (string)$request->input('payingFor'),
-                    "boost"=> $request->input('boost'),
+                    "boost"=> (string)$request->input('boost'),
                 ]
             ]
         ];
