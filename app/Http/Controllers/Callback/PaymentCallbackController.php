@@ -64,8 +64,7 @@ class PaymentCallbackController extends Controller
                     // Insert into PostBoost Table or handle post boost logic
                     $post = PropertyPost::where('post_id', $data['metadata']['post_id'])
                     ->update([
-                        'user_id'      => $data['metadata']['user_id'],
-                        'on_bid'       => true,
+                        'on_bid'       => 1,
                         'bid_value'    => $data['depositedAmount'],
                         // 'bid_due_date' => $data['metadata']['boost']['bid_due_date'], // Set status to boosted or as per your logic
                     ]);

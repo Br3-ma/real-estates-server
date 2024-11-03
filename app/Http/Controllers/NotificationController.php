@@ -15,6 +15,11 @@ class NotificationController extends Controller
         $user = User::where('id', $user_id)->first();
         $data = $user->notifications;
 
+        // Mark all unread notifications as read if any exist
+        if ($user->unreadNotifications->isNotEmpty()) {
+            $user->unreadNotifications->markAsRead();
+        }
+
         return response()->json($data, 200);
     }
 
@@ -24,7 +29,7 @@ class NotificationController extends Controller
     public function count($user_id)
     {
         $user = User::where('id', $user_id)->first();
-        $unreadCount = $user->notifications->count(); // Get count of unread notifications
+        $unreadCount = $user->unreadNotifications->count(); // Get count of unread notifications
 
         return response()->json($unreadCount, 200);
     }
