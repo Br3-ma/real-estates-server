@@ -113,8 +113,8 @@ class AuthController extends Controller
      */
     public function requestOtp(Request $request)
     {
-        // Generate OTP (for example, a 6-digit random code)
-        $otp = mt_rand(100000, 999999);
+        // Generate OTP (for example, a 4-digit random code)
+        $otp = mt_rand(1000, 9999);
 
         // Send OTP to the provided mobile number (you need to implement this)
         $user = User::where('email', $request->input('email'))->first();
@@ -243,9 +243,9 @@ class AuthController extends Controller
             $user->password = Hash::make($request->input('password'));
             $user->save();
 
-            return response()->json(['resp' => true, ], 200);
+            return response()->json(['resp' => true, 'user' => $user, 'message'=>'Updated successfully'], 200);
         } else {
-            return response()->json(['resp' => false], 401);
+            return response()->json(['resp' => false, 'user' => [], 'message'=>'Account with this email does not exit, Please sign up'], 401);
         }
     }
 
