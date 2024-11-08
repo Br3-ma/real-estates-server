@@ -43,15 +43,15 @@
                             <div class="card-body">
                                 <div class="media align-items-center">
                                     <div class="media-body mr-3">
-                                        <h2 class="fs-36 text-black font-w600">2,356</h2>
-                                        <p class="fs-18 mb-0 text-black font-w500">Properties for Sale</p>
-                                        <span class="fs-13">Target 3k/month</span>
+                                        <h2 class="fs-36 text-black font-w600">{{ $total_properties }}</h2>
+                                        <p class="fs-18 mb-0 text-black font-w500">Properties Posted (Sale & Rent)</p>
+                                        <span class="fs-13">Target 300/month</span>
                                     </div>
-                                    <div class="d-inline-block position-relative donut-chart-sale">
+                                    {{-- <div class="d-inline-block position-relative donut-chart-sale">
                                         <span class="donut1" data-peity='{ "fill": ["rgb(60, 76, 184)", "rgba(236, 236, 236, 1)"],   "innerRadius": 38, "radius": 10}'>5/8</span>
                                         <small class="text-primary">71%</small>
                                         <span class="circle bgl-primary"></span>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -61,15 +61,15 @@
                             <div class="card-body">
                                 <div class="media align-items-center">
                                     <div class="media-body mr-3">
-                                        <h2 class="fs-36 text-black font-w600">2,206</h2>
-                                        <p class="fs-18 mb-0 text-black font-w500">Properties for Rent</p>
-                                        <span class="fs-13">Target 3k/month</span>
+                                        <h2 class="fs-36 text-black font-w600">{{ $total_users }}</h2>
+                                        <p class="fs-18 mb-0 text-black font-w500">Total Users</p>
+                                        <span class="fs-13">Target 300/month</span>
                                     </div>
-                                    <div class="d-inline-block position-relative donut-chart-sale">
+                                    {{-- <div class="d-inline-block position-relative donut-chart-sale">
                                         <span class="donut1" data-peity='{ "fill": ["rgb(55, 209, 90)", "rgba(236, 236, 236, 1)"],   "innerRadius": 38, "radius": 10}'>7/8</span>
                                         <small class="text-success">90%</small>
                                         <span class="circle bgl-success"></span>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>

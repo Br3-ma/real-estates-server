@@ -23,7 +23,7 @@
                                      src="{{ $user->cover ? '/storage/app/' . $user->cover : 'https://t3.ftcdn.net/jpg/03/94/89/90/360_F_394899054_4TMgw6eiMYUfozaZU3Kgr5e0LdH4ZrsU.jpg' }}"
                                      alt="">
                                 <div class="media-body">
-                                    <h3 class="fs-20 text-black font-w600 mb-1"> {{ $user->name }} | {{ $user->fname.' '.$user->lname }}</h3>
+                                    <h3 class="fs-20 text-black font-w600 mb-1"> {{ $user->name }} {{ $user->fname.' '.$user->lname }}</h3>
                                     <span class="d-block mb-lg-0 mb-0">Join on {{ $user->created_at->toFormattedDateString() }}</span>
                                 </div>
                             </div>
