@@ -9,11 +9,11 @@ class Boost extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'amount',
-        'desc',
-        'icon',
-        'duration',
-        'duration_type',
+        'amount', //string
+        'desc', //string
+        'icon', //string
+        'duration', //integer
+        'duration_type', //day. week. month, year
     ];
 
     /**

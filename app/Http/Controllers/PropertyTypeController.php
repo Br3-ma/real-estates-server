@@ -6,6 +6,7 @@ use App\Models\PropertyType;
 use App\Http\Requests\StorePropertyTypeRequest;
 use App\Http\Requests\UpdatePropertyTypeRequest;
 use App\Models\Category;
+use Illuminate\Http\Request;
 
 class PropertyTypeController extends Controller
 {
@@ -19,51 +20,47 @@ class PropertyTypeController extends Controller
         return response()->json(['message' => 'success', 'data' => $data ], 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+
+    // Store a new property type
+    public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'desc' => 'nullable|string',
+            'icon_name' => 'nullable|string',
+        ]);
+
+        $type = PropertyType::create($request->all());
+
+        return response()->json($type, 201);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StorePropertyTypeRequest $request)
+    public function show($id)
     {
-        //
+        return response()->json(PropertyType::findOrFail($id));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(PropertyType $propertyType)
+    // Update an existing property type
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'desc' => 'nullable|string',
+            'icon_name' => 'nullable|string',
+        ]);
+
+        $type = PropertyType::findOrFail($id);
+        $type->update($request->all());
+
+        return response()->json($type);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(PropertyType $propertyType)
+    // Delete a property type
+    public function destroy($id)
     {
-        //
-    }
+        $type = PropertyType::findOrFail($id);
+        $type->delete();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdatePropertyTypeRequest $request, PropertyType $propertyType)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(PropertyType $propertyType)
-    {
-        //
+        return response()->json(['message' => 'Property type deleted successfully']);
     }
 }

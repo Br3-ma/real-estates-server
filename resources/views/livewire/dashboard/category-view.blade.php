@@ -4,7 +4,7 @@
             <div class="mr-auto d-lg-block">
                 <h2 class="text-black font-w600">Categories</h2>
             </div>
-            <button wire:click="create" class="mr-3 rounded btn btn-primary light">Create One</button>
+            <button id="createCategoryBtn" class="mr-3 rounded btn btn-primary light">Create One</button>
         </div>
 
         <div class="row">
@@ -31,8 +31,8 @@
                                         Actions
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="javascript:void(0);" wire:click="edit({{ $cat->id }})">Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);" wire:click="confirmDelete({{ $cat->id }})">Delete</a>
+                                        <a class="dropdown-item" href="javascript:void(0);" onclick="editCategory({{ $cat->id }})">Edit</a>
+                                        <a class="dropdown-item" href="javascript:void(0);" onclick="confirmDelete({{ $cat->id }})">Delete</a>
                                     </div>
                                 </div>
                             </div>
@@ -44,43 +44,122 @@
         </div>
     </div>
 
-    {{-- Modal for Create/Edit --}}
-    @if($showModal)
-    <div class="modal show d-block" tabindex="-1">
+    <!-- Modal for Create/Edit -->
+    <div id="categoryModal" class="modal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">{{ $categoryId ? 'Edit Category' : 'Create Category' }}</h5>
-                    <button type="button" wire:click="$set('showModal', false)" class="close">&times;</button>
+                    <h5 class="modal-title" id="modalTitle">Create Category</h5>
+                    <button type="button" class="close" onclick="closeModal()">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <form wire:submit.prevent="save">
+                    <form id="categoryForm">
                         <div class="form-group">
                             <label>Category Name</label>
-                            <input type="text" class="form-control" wire:model.defer="name">
+                            <input type="text" class="form-control" id="categoryName" required>
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            <textarea class="form-control" wire:model.defer="desc"></textarea>
+                            <textarea class="form-control" id="categoryDesc"></textarea>
                         </div>
                         <div class="form-group">
                             <label>Icon Name</label>
-                            <input type="text" class="form-control" wire:model.defer="icon_name">
+                            <input type="text" class="form-control" id="categoryIcon">
                         </div>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-primary" onclick="saveCategory()">Save</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    @endif
 
-    {{-- Delete Confirmation --}}
+    <!-- JavaScript for CRUD Operations -->
     <script>
-        window.addEventListener('show-delete-confirmation', event => {
-            if (confirm("Are you sure you want to delete this category?")) {
-                @this.call('delete')
-            }
+        let editingCategoryId = null;
+
+        document.getElementById('createCategoryBtn').addEventListener('click', () => {
+            editingCategoryId = null;
+            document.getElementById('modalTitle').textContent = 'Create Category';
+            document.getElementById('categoryForm').reset();
+            document.getElementById('categoryModal').style.display = 'block';
         });
+
+        function closeModal() {
+            document.getElementById('categoryModal').style.display = 'none';
+        }
+
+        function saveCategory() {
+            const name = document.getElementById('categoryName').value;
+            const desc = document.getElementById('categoryDesc').value;
+            const icon = document.getElementById('categoryIcon').value;
+
+            const data = {
+                name: name,
+                desc: desc,
+                icon_name: icon
+            };
+
+            let url = `{{ env('APP_URL') }}/api/categories`;
+            let method = 'POST';
+
+            if (editingCategoryId) {
+                url = `{{ env('APP_URL') }}/api/categories/${editingCategoryId}`;
+                method = 'PUT';
+            }
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+            fetch(url, {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': csrfToken,
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                alert(result.message || 'Operation successful');
+                window.location.reload(); // Refresh the page to see changes
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            });
+
+            closeModal();
+        }
+
+        function editCategory(id) {
+            editingCategoryId = id;
+            fetch(`{{ env('APP_URL') }}/api/categories/${id}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('modalTitle').textContent = 'Edit Category';
+                document.getElementById('categoryName').value = data.name;
+                document.getElementById('categoryDesc').value = data.desc;
+                document.getElementById('categoryIcon').value = data.icon_name;
+                document.getElementById('categoryModal').style.display = 'block';
+            })
+            .catch(error => {
+                console.error('Error fetching category:', error);
+            });
+        }
+
+        function confirmDelete(id) {
+            if (confirm("Are you sure you want to delete this category?")) {
+                fetch(`{{ env('APP_URL') }}/api/categories/${id}`, {
+                    method: 'DELETE'
+                })
+                .then(response => response.json())
+                .then(result => {
+                    alert(result.message || 'Category deleted successfully');
+                    window.location.reload();
+                })
+                .catch(error => {
+                    console.error('Error deleting category:', error);
+                    alert('An error occurred. Please try again.');
+                });
+            }
+        }
     </script>
 </div>

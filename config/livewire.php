@@ -63,8 +63,7 @@ return [
     |
     */
 
-    'asset_url' => 'public',
-
+    // "assets"=> "http://localhost/square-api-server/public/",
     /*
     |--------------------------------------------------------------------------
     | Livewire App URL
@@ -77,7 +76,7 @@ return [
     |
     */
 
-    'app_url' => env('APP_URL', 'http://localhost/square-api-server'),
+    // 'app_url' => 'http://localhost/square-api-server/public/',
 
     'lazy_placeholder' => null,
 

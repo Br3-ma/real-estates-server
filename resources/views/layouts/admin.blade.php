@@ -1,35 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
 <!-- Mirrored from omah.dexignzone.com/laravel/demo/index by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Oct 2024 12:43:55 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Laravel | Dashboard</title>
-	
+    <title>Square | Dashboard</title>
+
 	<meta name="description" content="Some description for the page"/>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="public/images/favicon.png">
-	
-	
-	
-	 
-						<link href="public/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet" type="text/css"/>
-						<link href="public/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet" type="text/css"/>
-						<link href="public/vendor/chartist/css/chartist.min.css" rel="stylesheet" type="text/css"/>
-						<link href="../../../cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet" type="text/css"/>
-						<link href="public/vendor/owl-carousel/owl.carousel.css" rel="stylesheet" type="text/css"/>
-				
-
-	
-	 
-					<link href="public/css/style.css" rel="stylesheet" type="text/css"/>
-				
-
-
+    <link href="public/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet" type="text/css"/>
+    <link href="public/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="public/vendor/chartist/css/chartist.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet" type="text/css"/>
+    <link href="public/vendor/owl-carousel/owl.carousel.css" rel="stylesheet" type="text/css"/>
+    <link href="public/css/style.css" rel="stylesheet" type="text/css"/>
+    @livewireStyles
 </head>
 
 <body>
@@ -58,12 +49,10 @@
         ***********************************-->
         <div class="nav-header">
             <a href="index-2.html" class="brand-logo">
-							<img class="logo-abbr" src="public/images/logo.png" alt="">
-						                <img class="logo-compact" src="public/images/logo-text.png" alt="">
+                <img class="logo-abbr" src="public/images/logo.png" alt="">
+                <img class="logo-compact" src="public/images/logo-text.png" alt="">
                 <img class="brand-title" src="public/images/logo-text.png" alt="">
-				
             </a>
-
             <div class="nav-control">
                 <div class="hamburger">
                     <span class="line"></span><span class="line"></span><span class="line"></span>
@@ -77,7 +66,7 @@
         <!--**********************************
             Header start
         ***********************************-->
-        
+
 		<div class="chatbox">
 			<div class="chatbox-close"></div>
 			<div class="custom-tab-1">
@@ -301,7 +290,7 @@
 								<div>
 									<h6 class="mb-1">Chat with Khelesh</h6>
 									<p class="mb-0 text-success">Online</p>
-								</div>							
+								</div>
 								<div class="dropdown">
 									<a href="#" data-toggle="dropdown" ><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg></a>
 									<ul class="dropdown-menu dropdown-menu-right">
@@ -576,7 +565,7 @@
 		<!--**********************************
             Chat box End
         ***********************************-->
-		
+
 		<!--**********************************
             Header start
         ***********************************-->
@@ -782,8 +771,8 @@
                     </div>
                 </nav>
             </div>
-        </div>		
-		
+        </div>
+
         <!--**********************************
             Header end ti-comment-alt
         ***********************************-->
@@ -932,7 +921,7 @@
                         </ul>
                     </li>
                 </ul>
-				
+
 				<div class="copyright">
 					<p><strong>Omah Dashboard</strong> ©All Rights Reserved</p>
 					<p>by DexignZone</p>
@@ -942,8 +931,8 @@
             Sidebar end
         ***********************************-->
 
-		
-		
+
+
         <!--**********************************
             Content body start
         ***********************************-->
@@ -991,7 +980,7 @@
 								<div class="card">
 									<div class="card-body">
 										<div class="media align-items-center">
-											<div class="media-body mr-3">	
+											<div class="media-body mr-3">
 												<h2 class="fs-36 text-black font-w600">2,356</h2>
 												<p class="fs-18 mb-0 text-black font-w500">Properties for Sale</p>
 												<span class="fs-13">Target 3k/month</span>
@@ -1009,7 +998,7 @@
 								<div class="card">
 									<div class="card-body">
 										<div class="media align-items-center">
-											<div class="media-body mr-3">	
+											<div class="media-body mr-3">
 												<h2 class="fs-36 text-black font-w600">2,206</h2>
 												<p class="fs-18 mb-0 text-black font-w500">Properties for Rent</p>
 												<span class="fs-13">Target 3k/month</span>
@@ -1367,7 +1356,7 @@
 					</div>
 				</div>
             </div>
-			
+
         </div>
         <!--**********************************
             Content body end
@@ -1377,12 +1366,14 @@
         <!--**********************************
             Footer start
         ***********************************-->
-        
+
 		<div class="footer">
     <div class="copyright">
         <p>Copyright © Designed &amp; Developed by <a href="../../../dexignzone.com/index.html" target="_blank">DexignZone</a> 2020</p>
     </div>
-</div>		
+</div>
+
+@livewireScripts
         <!--**********************************
             Footer end
         ***********************************-->
@@ -1394,8 +1385,6 @@
         <!--**********************************
            Support ticket button end
         ***********************************-->
-
-
     </div>
     <!--**********************************
         Main wrapper end
@@ -1404,21 +1393,21 @@
     <!--**********************************
         Scripts
     ***********************************-->
-	<script src="public/vendor/global/global.min.js" type="text/javascript"></script>
-					<script src="public/vendor/bootstrap-select/dist/js/bootstrap-select.min.js" type="text/javascript"></script>
-				<script src="public/vendor/chart.js/Chart.bundle.min.js" type="text/javascript"></script>
-				<script src="public/vendor/apexchart/apexchart.js" type="text/javascript"></script>
-				<script src="public/vendor/owl-carousel/owl.carousel.js" type="text/javascript"></script>
-				<script src="public/vendor/jqvmap/js/jquery.vmap.min.js" type="text/javascript"></script>
-				<script src="public/vendor/jqvmap/js/jquery.vmap.world.js" type="text/javascript"></script>
-				<script src="public/vendor/peity/jquery.peity.min.js" type="text/javascript"></script>
-				<script src="public/js/dashboard/dashboard-1.js" type="text/javascript"></script>
-				<script src="public/js/custom.min.js" type="text/javascript"></script>
-				<script src="public/js/deznav-init.js" type="text/javascript"></script>
-		<!--		<script src="https://omah.dexignzone.com/laravel/demo/js/custom.min.js" type="text/javascript"></script>
-			<script src="https://omah.dexignzone.com/laravel/demo/js/deznav-init.js" type="text/javascript"></script> -->
-<!--	
- 	--></body>
+    <script src="public/vendor/global/global.min.js" type="text/javascript"></script>
+    <script src="public/vendor/bootstrap-select/dist/js/bootstrap-select.min.js" type="text/javascript"></script>
+    <script src="public/vendor/chart.js/Chart.bundle.min.js" type="text/javascript"></script>
+    <script src="public/vendor/apexchart/apexchart.js" type="text/javascript"></script>
+    <script src="public/vendor/owl-carousel/owl.carousel.js" type="text/javascript"></script>
+    <script src="public/vendor/jqvmap/js/jquery.vmap.min.js" type="text/javascript"></script>
+    <script src="public/vendor/jqvmap/js/jquery.vmap.world.js" type="text/javascript"></script>
+    <script src="public/vendor/peity/jquery.peity.min.js" type="text/javascript"></script>
+    <script src="public/js/dashboard/dashboard-1.js" type="text/javascript"></script>
+    <script src="public/js/custom.min.js" type="text/javascript"></script>
+    <script src="public/js/deznav-init.js" type="text/javascript"></script>
+    <!--
+    <script src="https://omah.dexignzone.com/laravel/demo/js/custom.min.js" type="text/javascript"></script>
+    <script src="https://omah.dexignzone.com/laravel/demo/js/deznav-init.js" type="text/javascript"></script>
+    -->
 
-<!-- Mirrored from omah.dexignzone.com/laravel/demo/index by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Oct 2024 12:43:55 GMT -->
+</body>
 </html>

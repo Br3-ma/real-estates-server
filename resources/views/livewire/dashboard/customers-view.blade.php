@@ -10,10 +10,10 @@
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Customer List</a></li>
                 </ol>
             </div>
-            <a href="javascript:void(0);" class="btn btn-primary rounded light mr-3">Refresh</a>
-            <a href="javascript:void(0);" class="btn btn-primary rounded"><i class="flaticon-381-settings-2 mr-0"></i></a>
+            {{-- <a href="javascript:void(0);" class="btn btn-primary rounded light mr-3">Refresh</a>
+            <a href="javascript:void(0);" class="btn btn-primary rounded"><i class="flaticon-381-settings-2 mr-0"></i></a> --}}
         </div>
-       
+
         <div class="row">
             <div class="col-xl-12">
                 <div class="card">
@@ -22,8 +22,8 @@
                         @foreach ($users as $user )
                         <div class="row border-bottom mx-0 pt-4 px-2 align-items-center ">
                             <div class="col-xl-3 col-xxl-4 col-lg-6 col-sm-12 mb-sm-4 mb-3 align-items-center  media">
-                                <img class="mr-sm-4 mr-3 img-fluid rounded" width="90" 
-                                    src="{{ $user->cover ? '/storage/app/' . $user->cover : 'https://t3.ftcdn.net/jpg/03/94/89/90/360_F_394899054_4TMgw6eiMYUfozaZU3Kgr5e0LdH4ZrsU.jpg' }}" 
+                                <img class="mr-sm-4 mr-3 img-fluid rounded" width="90"
+                                    src="{{ $user->cover ? '/storage/app/' . $user->cover : 'https://t3.ftcdn.net/jpg/03/94/89/90/360_F_394899054_4TMgw6eiMYUfozaZU3Kgr5e0LdH4ZrsU.jpg' }}"
                                     alt="">
 
                                 <div class="media-body">
@@ -95,12 +95,12 @@
                                 </div>
                             </div>
                         </div>
-                            
+
                         @endforeach
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
 </div>

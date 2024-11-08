@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BoostController;
 use App\Http\Controllers\Callback\PaymentCallbackController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\HandshakeController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PlanController;
 use App\Http\Controllers\PropertyPostController;
 use App\Http\Controllers\PropertyTypeController;
 use App\Http\Controllers\SearchEngineController;
@@ -85,8 +87,38 @@ Route::post('/connectx', [HandshakeController::class, 'connect']);
 Route::post('/v1/submit-mobile-payment', [PaymentController::class, 'deposit']);
 Route::post('deposit-callback', [PaymentCallbackController::class, 'deposit']);
 
+
+Route::get('/categories/{id}', [CategoryController::class, 'show']); // Fetch a single category
+Route::post('/categories', [CategoryController::class, 'store']); // Create a new category
+Route::put('/categories/{id}', [CategoryController::class, 'update']); // Update an existing category
+Route::delete('/categories/{id}', [CategoryController::class, 'destroy']); // Delete a category
+// In web.php or api.php
+
+Route::get('/property-types/{id}', [PropertyTypeController::class, 'show'])->name('property-types.show');
+Route::post('/property-types', [PropertyTypeController::class, 'store'])->name('property-types.store');
+Route::put('/property-types/{id}', [PropertyTypeController::class, 'update'])->name('property-types.update');
+Route::delete('/property-types/{id}', [PropertyTypeController::class, 'destroy'])->name('property-types.destroy');
+
+// Route for creating a new location
+Route::post('/locations', [LocationController::class, 'store']);
+Route::get('/locations/{id}', [LocationController::class, 'show']);
+Route::put('/locations/{id}', [LocationController::class, 'update']);
+Route::delete('/locations/{id}', [LocationController::class, 'destroy']);
+
+// Subscription Plan API Routes
+Route::get('plans/{id}', [PlanController::class, 'show']); // Get a single plan by ID
+Route::post('plans', [PlanController::class, 'store']); // Create a new plan
+Route::put('plans/{id}', [PlanController::class, 'update']); // Update a plan
+Route::delete('plans/{id}', [PlanController::class, 'destroy']); // Delete a plan
+
+// Boost Plan API Routes
+Route::get('boostplans/{id}', [BoostController::class, 'show']); // Get a single plan by ID
+Route::post('boostplans', [BoostController::class, 'store']); // Create a new plan
+Route::put('boostplans/{id}', [BoostController::class, 'update']); // Update a plan
+Route::delete('boostplans/{id}', [BoostController::class, 'destroy']); // Delete a plan
+
+
 // Protected route to retrieve user information after successful authentication
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
+// Route::middleware('auth:sanctum')->group(function () {
 // });
 

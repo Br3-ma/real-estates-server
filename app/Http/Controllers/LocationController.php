@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Location;
 use App\Http\Requests\StoreLocationRequest;
 use App\Http\Requests\UpdateLocationRequest;
+use Illuminate\Http\Request;
 
 class LocationController extends Controller
 {
@@ -21,52 +22,70 @@ class LocationController extends Controller
             return response()->json(['message' => $th->getMessage(), 'data' => $data ], 200);
         }
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'desc' => 'nullable|string',
+            'icon_name' => 'nullable|string|max:255',
+        ]);
+
+        $location = Location::create([
+            'name' => $request->name,
+            'desc' => $request->desc,
+            'icon_name' => $request->icon_name,
+        ]);
+
+        return response()->json(['message' => 'Location created successfully', 'data' => $location], 201);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreLocationRequest $request)
+    // Get a single location by ID
+    public function show($id)
     {
-        //
+        $location = Location::find($id);
+
+        if (!$location) {
+            return response()->json(['message' => 'Location not found'], 404);
+        }
+
+        return response()->json($location);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Location $location)
+    // Update a location
+    public function update(Request $request, $id)
     {
-        //
+        $location = Location::find($id);
+
+        if (!$location) {
+            return response()->json(['message' => 'Location not found'], 404);
+        }
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'desc' => 'nullable|string',
+            'icon_name' => 'nullable|string|max:255',
+        ]);
+
+        $location->update([
+            'name' => $request->name,
+            'desc' => $request->desc,
+            'icon_name' => $request->icon_name,
+        ]);
+
+        return response()->json(['message' => 'Location updated successfully', 'data' => $location]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Location $location)
+    // Delete a location
+    public function destroy($id)
     {
-        //
-    }
+        $location = Location::find($id);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateLocationRequest $request, Location $location)
-    {
-        //
-    }
+        if (!$location) {
+            return response()->json(['message' => 'Location not found'], 404);
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Location $location)
-    {
-        //
+        $location->delete();
+
+        return response()->json(['message' => 'Location deleted successfully']);
     }
 }
