@@ -26,15 +26,9 @@
                                 <span class="text-black font-w600">{{ $cat->icon_name }}</span>
                             </div>
                             <div class="col-xl-3 col-lg-6 col-sm-6 d-flex">
-                                <div class="dropdown">
-                                    <button class="btn btn-link" data-toggle="dropdown">
-                                        Actions
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="javascript:void(0);" onclick="editCategory({{ $cat->id }})">Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);" onclick="confirmDelete({{ $cat->id }})">Delete</a>
-                                    </div>
-                                </div>
+                                <a class="btn btn-primary" href="javascript:void(0);" onclick="editCategory({{ $cat->id }})">Edit</a>
+                                <a class="btn btn-danger" href="javascript:void(0);" onclick="confirmDelete({{ $cat->id }})">Delete</a>
+
                             </div>
                         </div>
                         @endforeach

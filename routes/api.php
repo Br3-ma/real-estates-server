@@ -117,7 +117,7 @@ Route::post('boostplans', [BoostController::class, 'store']); // Create a new pl
 Route::put('boostplans/{id}', [BoostController::class, 'update']); // Update a plan
 Route::delete('boostplans/{id}', [BoostController::class, 'destroy']); // Delete a plan
 
-
+Route::delete('/users/{id}', [UserController::class, 'deleteUser']);
 // Protected route to retrieve user information after successful authentication
 // Route::middleware('auth:sanctum')->group(function () {
 // });
