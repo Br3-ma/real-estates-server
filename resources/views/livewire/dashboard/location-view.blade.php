@@ -26,15 +26,8 @@
                                 <span class="text-black font-w600">{{ $loc->icon_name }}</span>
                             </div>
                             <div class="col-xl-3 col-lg-6 col-sm-6 d-flex">
-                                <div class="dropdown">
-                                    <button class="btn btn-link" data-toggle="dropdown">
-                                        Actions
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="javascript:void(0);" onclick="editLocation({{ $loc->id }})">Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);" onclick="confirmDelete({{ $loc->id }})">Delete</a>
-                                    </div>
-                                </div>
+                                <a class="btn btn-primary" href="javascript:void(0);" onclick="editLocation({{ $loc->id }})">Edit</a>
+                                <a class="btn btn-danger" href="javascript:void(0);" onclick="confirmDelete({{ $loc->id }})">Delete</a>
                             </div>
                         </div>
                         @endforeach
@@ -64,8 +57,34 @@
                         </div>
                         <div class="form-group">
                             <label>Icon Name</label>
-                            <input type="text" class="form-control" id="locationIcon">
+                            <select type="text" class="form-control" id="locationIcon">
+                                <option value="home-city">home-city</option>
+                                <option value="home">home</option>
+                                <option value="office-building">office-building</option>
+                                <option value="apartment-building">apartment-building</option>
+                                <option value="store">store</option>
+                                <option value="city">city</option>
+                                <option value="city-variant">city-variant</option>
+                                <option value="map-marker">map-marker</option>
+                                <option value="map">map</option>
+                                <option value="home-floor">home-floor</option>
+                                <option value="warehouse">warehouse</option>
+                                <option value="key">key</option>
+                                <option value="bank">bank</option>
+                                <option value="home-outline">home-outline</option>
+                                <option value="building">building</option>
+                                <option value="location-enter">location-enter</option>
+                                <option value="home-analytics">home-analytics</option>
+                                <option value="door">door</option>
+                                <option value="home-account">home-account</option>
+                                <option value="garage">garage</option>
+                                <option value="leaf">leaf</option>
+                                <option value="building-cog">building-cog</option>
+                                <option value="ruler-square">ruler-square</option>
+                                <option value="key-chain">key-chain</option>
+                            </select>
                         </div>
+
                         <button type="button" class="btn btn-primary" onclick="saveLocation()">Save</button>
                     </form>
                 </div>
