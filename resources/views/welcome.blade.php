@@ -24,7 +24,7 @@
     <header class="bg-primary text-white">
         <div class="container mx-auto px-4 py-6 flex items-center justify-between">
             <div class="flex items-center">
-                <img src="/api/placeholder/80/80" alt="Square Logo" class="w-12 h-12 rounded-full mr-4 bg-white p-1">
+                <img src="{{ asset('public/images/logo.png') }}" alt="Square Logo" class="w-12 h-12 rounded-full mr-4 bg-white p-1">
                 <h1 class="text-3xl font-bold">Square</h1>
             </div>
             <nav class="hidden md:block">
@@ -101,7 +101,7 @@
         <div class="container mx-auto px-4">
             <div class="flex flex-wrap justify-between items-center">
                 <div class="w-full md:w-1/3 text-center md:text-left mb-6 md:mb-0">
-                    <img src="/api/placeholder/80/80" alt="Square Logo" class="w-12 h-12 rounded-full inline-block bg-white p-1">
+                    <img src="{{ asset('public/images/logo.png') }}" alt="Square Logo" class="w-12 h-12 rounded-full inline-block bg-white p-1">
                     <span class="text-2xl font-bold ml-2">Square</span>
                 </div>
                 <div class="w-full md:w-1/3 text-center mb-6 md:mb-0">

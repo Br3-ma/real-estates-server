@@ -24,7 +24,7 @@
     <header class="bg-primary text-white">
         <div class="container mx-auto px-4 py-6 flex items-center justify-between">
             <div class="flex items-center">
-                <img src="/api/placeholder/80/80" alt="Square Logo" class="w-12 h-12 rounded-full mr-4 bg-white p-1">
+                <img src="{{ asset('public/images/logo.png') }}" alt="Square Logo" class="w-12 h-12 rounded-full mr-4 bg-white p-1">
                 <h1 class="text-3xl font-bold">Square</h1>
             </div>
             <nav class="hidden md:block">
@@ -44,17 +44,17 @@
             <h2 class="text-5xl font-bold mb-6 text-primary">Privacy Policy</h2>
             <p class="text-xl mb-10 text-gray-600 max-w-3xl mx-auto">Your privacy is our top priority. Learn how we protect your personal information while providing innovative real estate solutions in Zambia.</p>
             <div class="flex flex-wrap justify-center gap-4 mb-12">
-                <a href="https://expo.dev/artifacts/eas/7SAa5wZ37hyMTakkUesdLo.apk" class="bg-gray-800 text-white py-2 px-6 rounded-full text-base font-semibold hover:bg-opacity-90 transition duration-300 inline-block shadow-lg hover:shadow-xl">
+                <a href="#" class="bg-gray-800 text-white py-2 px-6 rounded-full text-base font-semibold hover:bg-opacity-90 transition duration-300 inline-block shadow-lg hover:shadow-xl">
                     <i class="fas fa-download mr-2"></i>Download APK
                 </a>
-                <a href="https://expo.dev/artifacts/eas/7SAa5wZ37hyMTakkUesdLo.apk" class="bg-green-600 text-white py-2 px-6 rounded-full text-base font-semibold hover:bg-opacity-90 transition duration-300 inline-block shadow-lg hover:shadow-xl">
+                <a href="#" class="bg-green-600 text-white py-2 px-6 rounded-full text-base font-semibold hover:bg-opacity-90 transition duration-300 inline-block shadow-lg hover:shadow-xl">
                     <i class="fab fa-google-play mr-2"></i>Google Play
                 </a>
                 {{-- <a href="#" class="bg-blue-500 text-white py-2 px-6 rounded-full text-base font-semibold hover:bg-opacity-90 transition duration-300 inline-block shadow-lg hover:shadow-xl">
                     <i class="fab fa-apple mr-2"></i>App Store
                 </a> --}}
             </div>
-            <img src="/api/placeholder/1200/600" alt="Privacy and Security" class="w-full h-auto rounded-xl mt-12 shadow-2xl">
+            {{-- <img src="/api/placeholder/1200/600" alt="Privacy and Security" class="w-full h-auto rounded-xl mt-12 shadow-2xl"> --}}
         </section>
 
         <section class="mb-20">
@@ -113,9 +113,9 @@
                         <p><i class="fas fa-map-marker-alt text-accent mr-2"></i> <strong>Address:</strong> Square Real Estate Technology, 123 Independence Avenue, Lusaka, Zambia</p>
                     </div>
                 </div>
-                <div class="w-full md:w-1-2 mt-8 md:mt-0">
-                    <img src="/api/placeholder/600/400" alt="Contact Us" class="w-full h-auto rounded-lg shadow-lg">
-                </div>
+                {{-- <div class="w-full md:w-1-2 mt-8 md:mt-0">
+                    <img src="{{ asset('public/images/logo.png') }}" alt="Contact Us" class="w-full h-auto rounded-lg shadow-lg">
+                </div> --}}
             </div>
         </section>
     </main>
@@ -124,7 +124,7 @@
         <div class="container mx-auto px-4">
             <div class="flex flex-wrap justify-between items-center">
                 <div class="w-full md:w-1/3 text-center md:text-left mb-6 md:mb-0">
-                    <img src="/api/placeholder/80/80" alt="Square Logo" class="w-12 h-12 rounded-full inline-block bg-white p-1">
+                    <img src="{{ asset('public/images/logo.png') }}" alt="Square Logo" class="w-12 h-12 rounded-full inline-block bg-white p-1">
                     <span class="text-2xl font-bold ml-2">Square</span>
                 </div>
                 <div class="w-full md:w-1/3 text-center mb-6 md:mb-0">
