@@ -86,7 +86,7 @@
                     <p class="mb-6 text-gray-600">Have questions or need assistance? Our team of real estate experts is here to help you navigate the Zambian property market:</p>
                     <div class="space-y-4 text-gray-600">
                         <p><i class="fas fa-envelope text-accent mr-2"></i> <strong>Email:</strong> info@square.twalitso.com</p>
-                        <p><i class="fas fa-phone text-accent mr-2"></i> <strong>Phone:</strong> +260 123 456 789</p>
+                        <p><i class="fas fa-phone text-accent mr-2"></i> <strong>Phone:</strong> +260 952 564 843</p>
                         <p><i class="fas fa-map-marker-alt text-accent mr-2"></i> <strong>Address:</strong> Square Real Estate Technology, 123 Independence Avenue, Lusaka, Zambia</p>
                     </div>
                 </div>
