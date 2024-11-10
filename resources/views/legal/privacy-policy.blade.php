@@ -20,17 +20,17 @@
         }
     </script>
 </head>
-<body class="bg-white text-gray-800 font-sans">
+<body class="bg-[#6A4C93] text-gray-800 ">
     <header class="bg-primary text-white">
         <div class="container mx-auto px-4 py-6 flex items-center justify-between">
-            <div class="flex items-center">
+            <a href="{{ url('/') }}" class="flex items-center">
                 <img src="{{ asset('public/images/logo.png') }}" alt="Square Logo" class="w-12 h-12 rounded-full mr-4 bg-white p-1">
                 <h1 class="text-3xl font-bold">Square</h1>
-            </div>
+            </a>
             <nav class="hidden md:block">
-                <a href="{{ route('home') }}" class="text-white hover:text-accent mx-3 transition duration-300">Home</a>
-                {{-- <a href="#" class="text-white hover:text-accent mx-3 transition duration-300">Features</a>
-                <a href="#" class="text-white hover:text-accent mx-3 transition duration-300">Contact</a> --}}
+                <a href="{{ route('dashboard') }}" class="text-white hover:text-accent mx-3 transition duration-300">Dashboard</a>
+                {{-- <a href="#features" class="text-white hover:text-accent mx-3 transition duration-300">Features</a>
+                <a href="#contact" class="text-white hover:text-accent mx-3 transition duration-300">Contact</a> --}}
                 <a href="{{ route('privacy-policy') }}" class="text-white hover:text-accent mx-3 transition duration-300">Privacy Policy</a>
             </nav>
             <button class="md:hidden text-white focus:outline-none">
@@ -38,105 +38,72 @@
             </button>
         </div>
     </header>
+    <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6">
+        <h1 class="text-3xl font-bold text-primary mb-4">Privacy Policy</h1>
+        <p class="mb-4">This privacy policy applies to the Square app (hereby referred to as "Application") for mobile devices created by Twalitso Innovations Ltd (hereby referred to as "Service Provider") as a Commercial service. This service is intended for use "AS IS".</p>
 
-    <main class="container mx-auto px-4 py-12">
-        <section class="text-center mb-20">
-            <h2 class="text-5xl font-bold mb-6 text-primary">Privacy Policy</h2>
-            <p class="text-xl mb-10 text-gray-600 max-w-3xl mx-auto">Your privacy is our top priority. Learn how we protect your personal information while providing innovative real estate solutions in Zambia.</p>
-            <div class="flex flex-wrap justify-center gap-4 mb-12">
-                <a href="#" class="bg-gray-800 text-white py-2 px-6 rounded-full text-base font-semibold hover:bg-opacity-90 transition duration-300 inline-block shadow-lg hover:shadow-xl">
-                    <i class="fas fa-download mr-2"></i>Download APK
-                </a>
-                <a href="#" class="bg-green-600 text-white py-2 px-6 rounded-full text-base font-semibold hover:bg-opacity-90 transition duration-300 inline-block shadow-lg hover:shadow-xl">
-                    <i class="fab fa-google-play mr-2"></i>Google Play
-                </a>
-                {{-- <a href="#" class="bg-blue-500 text-white py-2 px-6 rounded-full text-base font-semibold hover:bg-opacity-90 transition duration-300 inline-block shadow-lg hover:shadow-xl">
-                    <i class="fab fa-apple mr-2"></i>App Store
-                </a> --}}
-            </div>
-            {{-- <img src="/api/placeholder/1200/600" alt="Privacy and Security" class="w-full h-auto rounded-xl mt-12 shadow-2xl"> --}}
-        </section>
+        <h2 class="text-2xl font-semibold text-secondary mt-6 mb-2">Information Collection and Use</h2>
+        <p class="mb-4">The Application collects information when you download and use it, including:</p>
+        <ul class="list-disc ml-6 mb-4">
+            <li>Your device's Internet Protocol (IP) address.</li>
+            <li>The pages of the Application you visit, the time and date of your visit, and the time spent on those pages.</li>
+            <li>The operating system used on your mobile device.</li>
+            <li>Your device's location to provide the following services:
+                <ul class="list-disc ml-6 mt-2">
+                    <li><strong>Geolocation Services:</strong> To offer personalized content, recommendations, and location-based services.</li>
+                    <li><strong>Analytics and Improvements:</strong> To analyze user behavior, identify trends, and improve Application performance.</li>
+                    <li><strong>Third-Party Services:</strong> Transmit anonymized location data to enhance and optimize the Application.</li>
+                </ul>
+            </li>
+        </ul>
+        <p class="mb-4">The Service Provider may contact you to provide important information, notices, and marketing promotions. Personally identifiable information (such as email, user ID, password, and phone) may be requested and retained in accordance with this privacy policy.</p>
 
-        <section class="mb-20">
-            <div class="bg-gray-50 p-8 rounded-xl shadow-lg mb-8">
-                <p class="text-sm text-gray-600 mb-4">Last Updated: September 28, 2024</p>
-                <p class="mb-6">Welcome to Square, Zambia's premier real estate technology solution. Our mission is to revolutionize property management, buying, selling, and renting for all Zambians. This privacy policy outlines how we collect, use, and protect your information, ensuring you have full control over your data while enjoying our innovative real estate services.</p>
-            </div>
+        <h2 class="text-2xl font-semibold text-secondary mt-6 mb-2">Third Party Access</h2>
+        <p class="mb-4">Aggregated, anonymized data may be shared with third-party services to improve the Application and its offerings. The Application uses third-party services with their own Privacy Policies:</p>
+        <ul class="list-disc ml-6 mb-4">
+            <li><a href="https://policies.google.com/privacy" target="_blank" class="text-accent underline">Google Play Services</a></li>
+            <li><a href="https://support.google.com/admob/answer/6128543?hl=en" target="_blank" class="text-accent underline">AdMob</a></li>
+            <li><a href="https://www.facebook.com/policy.php" target="_blank" class="text-accent underline">Facebook</a></li>
+            <li><a href="https://expo.dev/privacy" target="_blank" class="text-accent underline">Expo</a></li>
+        </ul>
 
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-gray-50 p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
-                    <h3 class="text-2xl font-semibold mb-4 text-primary">1. Who We Are</h3>
-                    <p>Sqaure is a cutting-edge real estate technology company based in Lusaka, Zambia. Our innovative platform seamlessly connects users with a wide array of real estate opportunities across the nation, leveraging the latest in PropTech to make property transactions smoother and more accessible.</p>
-                </div>
-                <div class="bg-gray-50 p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
-                    <h3 class="text-2xl font-semibold mb-4 text-primary">2. Information We Collect</h3>
-                    <ul class="list-disc list-inside space-y-2">
-                        <li><strong>Personal Information:</strong> Name, email, phone number, and address</li>
-                        <li><strong>Property Information:</strong> Listings, preferences, and search history</li>
-                        <li><strong>Usage Data:</strong> Interactions with our platform and services</li>
-                        <li><strong>Device Information:</strong> Type of device, operating system, and browser</li>
-                    </ul>
-                </div>
-                <div class="bg-gray-50 p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
-                    <h3 class="text-2xl font-semibold mb-4 text-primary">3. How We Use Your Information</h3>
-                    <ul class="list-disc list-inside space-y-2">
-                        <li>Provide personalized property listings and services</li>
-                        <li>Enhance and optimize your user experience</li>
-                        <li>Respond promptly to inquiries and support requests</li>
-                        <li>Maintain and improve platform security</li>
-                        <li>Comply with legal and regulatory requirements</li>
-                        <li>Analyze market trends and user behavior to improve our offerings</li>
-                    </ul>
-                </div>
-                <div class="bg-gray-50 p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
-                    <h3 class="text-2xl font-semibold mb-4 text-primary">4. Your Privacy Rights</h3>
-                    <ul class="list-disc list-inside space-y-2">
-                        <li>Access and review your personal data</li>
-                        <li>Correct any inaccuracies in your information</li>
-                        <li>Request deletion of your data (subject to legal requirements)</li>
-                        <li>Opt-out of marketing communications</li>
-                        <li>Restrict certain data processing activities</li>
-                        <li>Request a copy of your data in a portable format</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+        <h2 class="text-2xl font-semibold text-secondary mt-6 mb-2">Disclosure of Information</h2>
+        <p class="mb-4">User Provided and Automatically Collected Information may be disclosed:</p>
+        <ul class="list-disc ml-6 mb-4">
+            <li>As required by law or to comply with legal processes.</li>
+            <li>To protect the rights, safety of users, or investigate fraud.</li>
+            <li>To trusted service providers who act on the Service Provider's behalf and adhere to this privacy policy.</li>
+        </ul>
 
-        <section id="contact" class="bg-gray-50 p-12 rounded-xl shadow-xl">
-            <h3 class="text-3xl font-bold mb-8 text-primary">Contact Us</h3>
-            <div class="flex flex-wrap md:flex-nowrap">
-                <div class="w-full md:w-1/2 md:pr-8">
-                    <p class="mb-6 text-gray-600">We value your feedback and are here to address any questions or concerns regarding this Privacy Policy. Please don't hesitate to reach out:</p>
-                    <div class="space-y-4 text-gray-600">
-                        <p><i class="fas fa-envelope text-accent mr-2"></i> <strong>Email:</strong> info@square.twalitso.com</p>
-                        <p><i class="fas fa-phone text-accent mr-2"></i> <strong>Phone:</strong> +260 952 564 843</p>
-                        <p><i class="fas fa-map-marker-alt text-accent mr-2"></i> <strong>Address:</strong> Square Real Estate Technology, 123 Independence Avenue, Lusaka, Zambia</p>
-                    </div>
-                </div>
-                {{-- <div class="w-full md:w-1-2 mt-8 md:mt-0">
-                    <img src="{{ asset('public/images/logo.png') }}" alt="Contact Us" class="w-full h-auto rounded-lg shadow-lg">
-                </div> --}}
-            </div>
-        </section>
-    </main>
+        <h2 class="text-2xl font-semibold text-secondary mt-6 mb-2">Opt-Out Rights</h2>
+        <p class="mb-4">You can stop all collection of information by uninstalling the Application through your device's standard uninstall processes.</p>
 
-    <footer class="bg-primary text-white py-8 mt-20">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-wrap justify-between items-center">
-                <div class="w-full md:w-1/3 text-center md:text-left mb-6 md:mb-0">
-                    <img src="{{ asset('public/images/logo.png') }}" alt="Square Logo" class="w-12 h-12 rounded-full inline-block bg-white p-1">
-                    <span class="text-2xl font-bold ml-2">Square</span>
-                </div>
-                <div class="w-full md:w-1/3 text-center mb-6 md:mb-0">
-                    <p>&copy; 2024 Twalisto Innovations. All rights reserved.</p>
-                </div>
-                <div class="w-full md:w-1/3 text-center md:text-right">
-                    {{-- <a href="#" class="hover:text-accent mx-2 transition duration-300">Terms of Service</a> --}}
-                    <a href="{{ route('privacy-policy') }}" class="hover:text-accent mx-2 transition duration-300">Privacy Policy</a>
-                    {{-- <a href="#" class="hover:text-accent mx-2 transition duration-300">Cookie Policy</a> --}}
-                </div>
-            </div>
+        <h2 class="text-2xl font-semibold text-secondary mt-6 mb-2">Data Retention Policy</h2>
+        <p class="mb-4">User data is retained while you use the Application and for a reasonable time after. To request the deletion of data provided, contact: <a href="mailto:nyeleti.bremah@gmail.com" class="text-accent underline">nyeleti.bremah@gmail.com</a>.</p>
+
+        <h2 class="text-2xl font-semibold text-secondary mt-6 mb-2">Children</h2>
+        <p class="mb-4">The Application does not knowingly collect data from children under 13. If personal information from a child under 13 is discovered, it will be deleted immediately. Parents or guardians aware of such data collection should contact: <a href="mailto:nyeleti.bremah@gmail.com" class="text-accent underline">nyeleti.bremah@gmail.com</a>.</p>
+
+        <h2 class="text-2xl font-semibold text-secondary mt-6 mb-2">Security</h2>
+        <p class="mb-4">The Service Provider uses physical, electronic, and procedural safeguards to protect user information.</p>
+
+        <h2 class="text-2xl font-semibold text-secondary mt-6 mb-2">Changes to This Policy</h2>
+        <p class="mb-4">The Privacy Policy may be updated periodically. Changes will be notified by updating this page. Continued use indicates acceptance of changes. This policy is effective as of 2024-11-10.</p>
+
+        <h2 class="text-2xl font-semibold text-secondary mt-6 mb-2">Your Consent</h2>
+        <p>By using the Application, you consent to the processing of your information as outlined in this policy.</p>
+
+        <br>
+        <br>
+        <br>
+        <hr>
+        <br>
+        <div>
+            <p>
+                Contact Us
+        If you have any questions regarding privacy while using the Application, or have questions about the practices, please contact the Service Provider via email at nyeleti.bremah@gmail.com.
+            </p>
         </div>
-    </footer>
+    </div>
 </body>
 </html>

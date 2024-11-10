@@ -13,7 +13,7 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="public/images/brand/logo5.png">
     <link href="public/css/style.css" rel="stylesheet">
-    
+
 </head>
 
 <body class="h-100">
@@ -26,7 +26,7 @@
               <div class="col-xl-12">
                   <div class="auth-form">
                       <div class="text-center mb-3">
-                        <a href="index-2.html"><img width="100" src="public/images/brand/logo6.png" alt=""></a>
+                        <a href="{{ url('/') }}"><img width="100" src="public/images/brand/logo6.png" alt=""></a>
                       </div>
                       <h4 class="text-center mb-4">Sign in your account</h4>
 
@@ -82,7 +82,7 @@
 				<script src="public/js/deznav-init.js" type="text/javascript"></script>
 		<!--		<script src="https://omah.dexignzone.com/laravel/demo/js/custom.min.js" type="text/javascript"></script>
 			<script src="https://omah.dexignzone.com/laravel/demo/js/deznav-init.js" type="text/javascript"></script> -->
-<!--	
+<!--
  	--></body>
 
 

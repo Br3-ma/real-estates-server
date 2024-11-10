@@ -28,7 +28,7 @@
                 <h1 class="text-3xl font-bold">Square</h1>
             </div>
             <nav class="hidden md:block">
-                <a href="{{ route('home') }}" class="text-white hover:text-accent mx-3 transition duration-300">Dashboard</a>
+                <a href="{{ route('dashboard') }}" class="text-white hover:text-accent mx-3 transition duration-300">Dashboard</a>
                 {{-- <a href="#features" class="text-white hover:text-accent mx-3 transition duration-300">Features</a>
                 <a href="#contact" class="text-white hover:text-accent mx-3 transition duration-300">Contact</a> --}}
                 <a href="{{ route('privacy-policy') }}" class="text-white hover:text-accent mx-3 transition duration-300">Privacy Policy</a>
@@ -55,7 +55,7 @@
                     <i class="fab fa-apple mr-2"></i>App Store
                 </a> --}}
             </div>
-            <img src="/api/placeholder/1200/600" alt="Zambian Real Estate" class="w-full h-auto rounded-xl mt-12 shadow-2xl">
+            {{-- <img src="/api/placeholder/1200/600" alt="Zambian Real Estate" class="w-full h-auto rounded-xl mt-12 shadow-2xl"> --}}
         </section>
 
         <section id="features" class="mb-20">
