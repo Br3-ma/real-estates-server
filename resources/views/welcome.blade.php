@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RealEst - Real Estate Technology Solutions in Zambia</title>
+    <title>Sqaure - Real Estate Technology Solutions in Zambia</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script>
@@ -24,8 +24,8 @@
     <header class="bg-primary text-white">
         <div class="container mx-auto px-4 py-6 flex items-center justify-between">
             <div class="flex items-center">
-                <img src="/api/placeholder/80/80" alt="RealEst Logo" class="w-12 h-12 rounded-full mr-4 bg-white p-1">
-                <h1 class="text-3xl font-bold">RealEst</h1>
+                <img src="/api/placeholder/80/80" alt="Square Logo" class="w-12 h-12 rounded-full mr-4 bg-white p-1">
+                <h1 class="text-3xl font-bold">Square</h1>
             </div>
             <nav class="hidden md:block">
                 <a href="{{ route('home') }}" class="text-white hover:text-accent mx-3 transition duration-300">Dashboard</a>
@@ -85,9 +85,9 @@
                 <div class="w-full md:w-1/2 md:pr-8">
                     <p class="mb-6 text-gray-600">Have questions or need assistance? Our team of real estate experts is here to help you navigate the Zambian property market:</p>
                     <div class="space-y-4 text-gray-600">
-                        <p><i class="fas fa-envelope text-accent mr-2"></i> <strong>Email:</strong> info@realest-realestate.co.zm</p>
+                        <p><i class="fas fa-envelope text-accent mr-2"></i> <strong>Email:</strong> info@square.twalitso.com</p>
                         <p><i class="fas fa-phone text-accent mr-2"></i> <strong>Phone:</strong> +260 123 456 789</p>
-                        <p><i class="fas fa-map-marker-alt text-accent mr-2"></i> <strong>Address:</strong> RealEst Real Estate Technology, 123 Independence Avenue, Lusaka, Zambia</p>
+                        <p><i class="fas fa-map-marker-alt text-accent mr-2"></i> <strong>Address:</strong> Square Real Estate Technology, 123 Independence Avenue, Lusaka, Zambia</p>
                     </div>
                 </div>
                 <div class="w-full md:w-1/2 mt-8 md:mt-0">
@@ -101,11 +101,11 @@
         <div class="container mx-auto px-4">
             <div class="flex flex-wrap justify-between items-center">
                 <div class="w-full md:w-1/3 text-center md:text-left mb-6 md:mb-0">
-                    <img src="/api/placeholder/80/80" alt="RealEst Logo" class="w-12 h-12 rounded-full inline-block bg-white p-1">
-                    <span class="text-2xl font-bold ml-2">RealEst</span>
+                    <img src="/api/placeholder/80/80" alt="Square Logo" class="w-12 h-12 rounded-full inline-block bg-white p-1">
+                    <span class="text-2xl font-bold ml-2">Square</span>
                 </div>
                 <div class="w-full md:w-1/3 text-center mb-6 md:mb-0">
-                    <p>&copy; 2024 RealEst Real Estate Technology. All rights reserved.</p>
+                    <p>&copy; 2024 Square Real Estate Technology. All rights reserved.</p>
                 </div>
                 <div class="w-full md:w-1/3 text-center md:text-right">
                     {{-- <a href="#" class="hover:text-accent mx-2 transition duration-300">Terms of Service</a> --}}

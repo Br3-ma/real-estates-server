@@ -137,7 +137,7 @@ class PaymentController extends Controller
                 'customerEmail' => $post->user->email,
                 'wallet' => $post->user->phone,
                 'qty' => 1,
-                'callback' => 'http://localhost/realestserver/est-server/payment-callback/' . $uuid . '/',
+                'callback' => 'https://square.twalitso.com/api/payment-callback/' . $uuid . '/',
                 'uuid' => $uuid,
                 'amount' => $request->input('selectedPackage').'00',
                 'currency' => 'ZMW',

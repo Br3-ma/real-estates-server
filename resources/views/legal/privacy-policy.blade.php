@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RealEst - Privacy Policy</title>
+    <title>Square - Privacy Policy</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script>
@@ -24,8 +24,8 @@
     <header class="bg-primary text-white">
         <div class="container mx-auto px-4 py-6 flex items-center justify-between">
             <div class="flex items-center">
-                <img src="/api/placeholder/80/80" alt="RealEst Logo" class="w-12 h-12 rounded-full mr-4 bg-white p-1">
-                <h1 class="text-3xl font-bold">RealEst</h1>
+                <img src="/api/placeholder/80/80" alt="Square Logo" class="w-12 h-12 rounded-full mr-4 bg-white p-1">
+                <h1 class="text-3xl font-bold">Square</h1>
             </div>
             <nav class="hidden md:block">
                 <a href="{{ route('home') }}" class="text-white hover:text-accent mx-3 transition duration-300">Home</a>
@@ -60,13 +60,13 @@
         <section class="mb-20">
             <div class="bg-gray-50 p-8 rounded-xl shadow-lg mb-8">
                 <p class="text-sm text-gray-600 mb-4">Last Updated: September 28, 2024</p>
-                <p class="mb-6">Welcome to RealEst, Zambia's premier real estate technology solution. Our mission is to revolutionize property management, buying, selling, and renting for all Zambians. This privacy policy outlines how we collect, use, and protect your information, ensuring you have full control over your data while enjoying our innovative real estate services.</p>
+                <p class="mb-6">Welcome to Square, Zambia's premier real estate technology solution. Our mission is to revolutionize property management, buying, selling, and renting for all Zambians. This privacy policy outlines how we collect, use, and protect your information, ensuring you have full control over your data while enjoying our innovative real estate services.</p>
             </div>
 
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="bg-gray-50 p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
                     <h3 class="text-2xl font-semibold mb-4 text-primary">1. Who We Are</h3>
-                    <p>RealEst is a cutting-edge real estate technology company based in Lusaka, Zambia. Our innovative platform seamlessly connects users with a wide array of real estate opportunities across the nation, leveraging the latest in PropTech to make property transactions smoother and more accessible.</p>
+                    <p>Sqaure is a cutting-edge real estate technology company based in Lusaka, Zambia. Our innovative platform seamlessly connects users with a wide array of real estate opportunities across the nation, leveraging the latest in PropTech to make property transactions smoother and more accessible.</p>
                 </div>
                 <div class="bg-gray-50 p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
                     <h3 class="text-2xl font-semibold mb-4 text-primary">2. Information We Collect</h3>
@@ -108,9 +108,9 @@
                 <div class="w-full md:w-1/2 md:pr-8">
                     <p class="mb-6 text-gray-600">We value your feedback and are here to address any questions or concerns regarding this Privacy Policy. Please don't hesitate to reach out:</p>
                     <div class="space-y-4 text-gray-600">
-                        <p><i class="fas fa-envelope text-accent mr-2"></i> <strong>Email:</strong> privacy@RealEst-realestate.co.zm</p>
+                        <p><i class="fas fa-envelope text-accent mr-2"></i> <strong>Email:</strong> info@square.twalitso.com</p>
                         <p><i class="fas fa-phone text-accent mr-2"></i> <strong>Phone:</strong> +260 970 123 456</p>
-                        <p><i class="fas fa-map-marker-alt text-accent mr-2"></i> <strong>Address:</strong> RealEst Real Estate Technology, 123 Independence Avenue, Lusaka, Zambia</p>
+                        <p><i class="fas fa-map-marker-alt text-accent mr-2"></i> <strong>Address:</strong> Square Real Estate Technology, 123 Independence Avenue, Lusaka, Zambia</p>
                     </div>
                 </div>
                 <div class="w-full md:w-1-2 mt-8 md:mt-0">
@@ -124,11 +124,11 @@
         <div class="container mx-auto px-4">
             <div class="flex flex-wrap justify-between items-center">
                 <div class="w-full md:w-1/3 text-center md:text-left mb-6 md:mb-0">
-                    <img src="/api/placeholder/80/80" alt="RealEst Logo" class="w-12 h-12 rounded-full inline-block bg-white p-1">
-                    <span class="text-2xl font-bold ml-2">RealEst</span>
+                    <img src="/api/placeholder/80/80" alt="Square Logo" class="w-12 h-12 rounded-full inline-block bg-white p-1">
+                    <span class="text-2xl font-bold ml-2">Square</span>
                 </div>
                 <div class="w-full md:w-1/3 text-center mb-6 md:mb-0">
-                    <p>&copy; 2024 RealEst Real Estate Technology. All rights reserved.</p>
+                    <p>&copy; 2024 Twalisto Innovations. All rights reserved.</p>
                 </div>
                 <div class="w-full md:w-1/3 text-center md:text-right">
                     {{-- <a href="#" class="hover:text-accent mx-2 transition duration-300">Terms of Service</a> --}}
