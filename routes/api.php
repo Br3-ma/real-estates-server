@@ -106,12 +106,15 @@ Route::put('/locations/{id}', [LocationController::class, 'update']);
 Route::delete('/locations/{id}', [LocationController::class, 'destroy']);
 
 // Subscription Plan API Routes
+Route::get('subscription-plans', [PlanController::class, 'index']); // Get a single plan by ID
 Route::get('plans/{id}', [PlanController::class, 'show']); // Get a single plan by ID
 Route::post('plans', [PlanController::class, 'store']); // Create a new plan
 Route::put('plans/{id}', [PlanController::class, 'update']); // Update a plan
 Route::delete('plans/{id}', [PlanController::class, 'destroy']); // Delete a plan
 
 // Boost Plan API Routes
+
+Route::get('bid-packages', [BoostController::class, 'index']); // Get a single plan by ID
 Route::get('boostplans/{id}', [BoostController::class, 'show']); // Get a single plan by ID
 Route::post('boostplans', [BoostController::class, 'store']); // Create a new plan
 Route::put('boostplans/{id}', [BoostController::class, 'update']); // Update a plan

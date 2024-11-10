@@ -14,7 +14,8 @@ class PlanController extends Controller
      */
     public function index()
     {
-        //
+        $plans = Plan::get();
+        return response()->json($plans);
     }
     // Get a single subscription plan by ID
     public function show($id)

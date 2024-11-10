@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class BoostController extends Controller
 {
+    public function index()
+    {
+        $plans = Boost::get();
+        return response()->json($plans);
+    }
     public function show($id)
     {
         return response()->json(Boost::findOrFail($id));
@@ -17,7 +22,6 @@ class BoostController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
         $data = $request->validate([
             'name' => 'required|string',
             'description' => 'nullable|string',
