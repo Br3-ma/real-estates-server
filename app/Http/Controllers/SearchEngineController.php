@@ -22,7 +22,7 @@ class SearchEngineController extends Controller
         $numBaths = $request->input('numBaths');
 
         // Build the query with applied filters
-        $query = PropertyPost::query();
+        $query = PropertyPost::inRandomOrder();
 
         // Apply filters if they are present in the request
         if (!is_null($location)) {
@@ -59,7 +59,7 @@ class SearchEngineController extends Controller
     }
 
     public function index2(){
-        $results = PropertyPost::get();
+        $results = PropertyPost::inRandomOrder()->get();
         return response()->json($results);
     }
 }
