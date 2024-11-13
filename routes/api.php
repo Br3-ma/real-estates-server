@@ -86,6 +86,7 @@ Route::post('/connectx', [HandshakeController::class, 'connect']);
 // User
 Route::post('/v1/submit-mobile-payment', [PaymentController::class, 'deposit']);
 Route::post('deposit-callback', [PaymentCallbackController::class, 'deposit']);
+Route::get('deposit-callback', [PaymentCallbackController::class, 'deposit']);
 
 
 Route::get('/categories/{id}', [CategoryController::class, 'show']); // Fetch a single category
