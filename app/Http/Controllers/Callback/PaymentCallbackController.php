@@ -17,79 +17,84 @@ class PaymentCallbackController extends Controller
 {
     public function deposit(Request $request)
     {
-        //Log the request here
+        // Log the request data properly by passing it as an array
+        Log::info('Incoming payment callback request:', [$request->all()]);
 
-        Log::info('Incoming payment callback request:', $request->all());
         try {
             if ($request->status === 'COMPLETED') {
-                    // Parse the incoming request
-                    $data = $request->all();
-                    $payer = User::where('id', $data['metadata']['user_id'])->first();
+                // Parse the incoming request
+                $data = $request->all();
 
-                    // Insert into Payment Table
-                    $payment = Payment::create([
-                        'user_id'       => $data['metadata']['user_id'],
-                        'post_id'       => $data['metadata']['post_id'],
-                        'description'   => $data['statementDescription'],
-                        'amount'        => $data['depositedAmount'],
-                        'item'          => $data['metadata']['type'],
-                        'txn_fee'       => 0, // Set txn fee if available
-                        'txn_ref'       => $data['payer']['address']['value'],
-                        'txn_status'    => $data['status'],
-                        'status'        => ($data['status'] == 'COMPLETED') ? 'success' : 'failed'
-                    ]);
+                // Validate required metadata before accessing it
+                if (!isset($data['metadata']['user_id']) || !isset($data['metadata']['type'])) {
+                    return response()->json(['error' => 'Invalid metadata provided'], 400);
+                }
 
-                    // Switch based on what the user is paying for using the metadata type
-                    switch ($data['metadata']['type']) {
-                        case 'subscription':
-                            // Insert into Subscription Table
-                            Subscription::create([
-                                'name'                => 'Subscription Plan', // Provide a name or get from plan details
-                                'company_id'          => 1, // Assuming you have a company ID or fetch dynamically
-                                'plan_id'             => $data['metadata']['plan_id'],
-                                'user_id'             => $data['metadata']['user_id'],
-                                'amount'              => $data['depositedAmount'], // Payment amount
-                                // 'payment_id'          => $payment->id, // Payment ID
-                                'is_promo'            => false, // Set promo details if applicable
-                                'promo_name'          => null,
-                                'promo_duration'      => null,
-                                'promo_duration_value'=> null,
-                                'promo_code'          => null,
-                                'discount'            => 0, // Set discount if applicable
-                                'status'              => 'active', // Default to active if payment is completed
-                                'cancellation_run_at' => now()->addMonth(),
-                            ]);
-                            $payer->notify(new PaymentMade(
-                                'You have successfully subscribed to package ID'.$data['metadata']['plan_id'],
-                                'Square Subscription Plan'
-                            ));
-                            break;
+                $payer = User::where('id', $data['metadata']['user_id'])->first();
 
-                        case 'post_boost':
-                            // Insert into PostBoost Table or handle post boost logic
-                            $post = PropertyPost::where('post_id', $data['metadata']['post_id'])
+                // Insert into Payment Table
+                $payment = Payment::create([
+                    'user_id'       => $data['metadata']['user_id'],
+                    'post_id'       => $data['metadata']['post_id'] ?? null,
+                    'description'   => $data['statementDescription'] ?? 'No description provided',
+                    'amount'        => $data['depositedAmount'],
+                    'item'          => $data['metadata']['type'],
+                    'txn_fee'       => 0, // Set txn fee if available
+                    'txn_ref'       => $data['payer']['address']['value'] ?? 'No ref available',
+                    'txn_status'    => $data['status'],
+                    'status'        => ($data['status'] == 'COMPLETED') ? 'success' : 'failed'
+                ]);
+
+                // Switch based on what the user is paying for using the metadata type
+                switch ($data['metadata']['type']) {
+                    case 'subscription':
+                        Subscription::create([
+                            'name'                => 'Subscription Plan',
+                            'company_id'          => 1,
+                            'plan_id'             => $data['metadata']['plan_id'] ?? null,
+                            'user_id'             => $data['metadata']['user_id'],
+                            'amount'              => $data['depositedAmount'],
+                            'is_promo'            => false,
+                            'promo_name'          => null,
+                            'promo_duration'      => null,
+                            'promo_duration_value'=> null,
+                            'promo_code'          => null,
+                            'discount'            => 0,
+                            'status'              => 'active',
+                            'cancellation_run_at' => now()->addMonth(),
+                        ]);
+                        $payer->notify(new PaymentMade(
+                            'You have successfully subscribed to package ID ' . ($data['metadata']['plan_id'] ?? 'N/A'),
+                            'Square Subscription Plan'
+                        ));
+                        break;
+
+                    case 'post_boost':
+                        $post = PropertyPost::where('post_id', $data['metadata']['post_id'] ?? null)
                             ->update([
                                 'on_bid'       => 1,
                                 'bid_value'    => $data['depositedAmount'],
-                                // 'bid_due_date' => $data['metadata']['boost']['bid_due_date'], // Set status to boosted or as per your logic
                             ]);
-                            $payer->notify(new PaymentMade(
-                                'You have successfully boosted your post ID'.$data['metadata']['post_id'],
-                                User::first(),
-                                $post
-                            ));
-                            break;
+                        $payer->notify(new PaymentMade(
+                            'You have successfully boosted your post ID ' . ($data['metadata']['post_id'] ?? 'N/A'),
+                            User::first(),
+                            $post
+                        ));
+                        break;
 
-                        // Add other cases for additional types
-                        default:
-                            // Handle other payment types or do nothing
-                            break;
-                    }
+                    // Add other cases for additional types
+                    default:
+                        break;
+                }
 
-                    return response()->json(['message' => 'Payment processed successfully'], 200);
+                return response()->json(['message' => 'Payment processed successfully'], 200);
             }
         } catch (\Throwable $th) {
-            Log::info('Caught Error:', $th->getMessage());
+            // Log the exception properly with context as an array
+            Log::error('Error processing payment callback:', ['exception' => $th]);
+            return response()->json(['error' => 'An error occurred while processing the payment'], 500);
         }
     }
+
+
 }
