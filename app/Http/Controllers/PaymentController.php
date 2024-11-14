@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Payment;
 use App\Http\Requests\StorePaymentRequest;
 use App\Http\Requests\UpdatePaymentRequest;
+use App\Models\Order;
 use App\Models\PropertyPost;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -70,6 +71,17 @@ class PaymentController extends Controller
 
     private function preparePayload(Request $request, string $depositId): array
     {
+        // 1. Create new Order
+        $order = Order::create([
+            'post_id' => $request->input('post_id'),
+            'plan_id' => $request->input('plan_id'),
+            'user_id' => $request->input('user_id'),
+            'type' => $request->input('payingFor'),
+            'duration' => $request->input('boost') ? $request->input('boost')['duration'] : null,
+            'duration_type' => $request->input('boost') ? $request->input('boost')['duration_type'] : null
+        ]);
+
+        // 2. Pass the order ID as metadata orderId value
         return [
             "depositId" => $depositId,
             "amount" => (string)$request->input('amount'),
@@ -88,7 +100,7 @@ class PaymentController extends Controller
             "metadata" => [
                 [
                     "fieldName" => "orderId",
-                    "fieldValue" => $request->input('post_id') ? (string)$request->input('post_id') : (string)$request->input('plan_id')
+                    "fieldValue" => (string)$order->id // Use the created order ID here
                 ],
                 [
                     "fieldName" => "customerId",
@@ -98,6 +110,7 @@ class PaymentController extends Controller
             ]
         ];
     }
+
 
     private function getHeaders(): array
     {
