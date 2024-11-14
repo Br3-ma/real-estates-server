@@ -41,7 +41,6 @@ class PaymentCallbackController extends Controller
 
                 $order = Order::where('id', (int)$data['metadata']['orderId'])->first();
                 $plan = Plan::where('id', $order->plan_id)->first();
-
                 $sub_expdate = $this->getSubscriptionExpirationDate($plan);
 
                 $this->createPayment($data);
