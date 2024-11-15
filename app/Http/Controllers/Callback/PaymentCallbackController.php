@@ -40,12 +40,12 @@ class PaymentCallbackController extends Controller
                 }
 
                 $order = Order::where('id', (int)$data['metadata']['orderId'])->first();
-                $plan = Plan::where('id', $order->plan_id)->first();
-                $sub_expdate = $this->getSubscriptionExpirationDate($plan);
 
-                $this->createPayment($data);
 
                 if ($order) {
+                    $this->createPayment($data, $order);
+                    $plan = Plan::where('id', $order->plan_id)->first();
+                    $sub_expdate = $this->getSubscriptionExpirationDate($plan);
                     switch ($order->type) {
                         case 'subscription':
                             Subscription::create([
@@ -95,7 +95,7 @@ class PaymentCallbackController extends Controller
         }
     }
 
-    public function createPayment($data){
+    public function createPayment($data, $order){
         // Insert into Payment Table
         return Payment::create([
             'user_id'       => $data['metadata']['customerId'],
