@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
+
+    public function info($id){
+        $data = User::where('id', $id)->first();
+        return response()->json(['message' => 'User information stored successfully', 'user' => $data ], 200);
+    }
+
     public function update(Request $request)
     {
         try {

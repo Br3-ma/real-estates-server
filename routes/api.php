@@ -33,6 +33,7 @@ Route::post('/signup/user-info', [AuthController::class, 'userInfo']);
 Route::post('/signup/request-otp', [AuthController::class, 'requestOtp']);
 Route::post('/signup/verify-otp', [AuthController::class, 'verifyOtp']);
 Route::post('/reset-password', [AuthController::class, 'resetPassword']);
+Route::get('/user-info', [UserController::class, 'info']);
 
 // Route for user login with mobile number and OTP verification
 Route::post('/signin', [AuthController::class, 'login']);
