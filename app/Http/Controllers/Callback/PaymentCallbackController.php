@@ -44,10 +44,10 @@ class PaymentCallbackController extends Controller
 
                 if ($order) {
                     $this->createPayment($data, $order);
-                    $plan = Plan::where('id', $order->plan_id)->first();
-                    $sub_expdate = $this->getSubscriptionExpirationDate($plan);
                     switch ($order->type) {
                         case 'subscription':
+                            $plan = Plan::where('id', $order->plan_id)->first();
+                            $sub_expdate = $this->getSubscriptionExpirationDate($plan);
                             Subscription::create([
                                 'name'                => 'Subscription Plan',
                                 'company_id'          => 1,
@@ -70,10 +70,13 @@ class PaymentCallbackController extends Controller
                             break;
 
                         case 'post_boost':
+                            $sub_expdate = $this->getSubscriptionExpirationDate($order);
                             PropertyPost::where('id', $order->post_id ?? null)
                                 ->update([
                                     'on_bid'    => 1,
                                     'bid_value' => $data['depositedAmount'],
+                                    'bid_due_date' => $data['depositedAmount'],
+
                                 ]);
                             $payer->notify(new PaymentMade(
                                 'You have successfully boosted your post ID ' . ($order->post_id ?? 'N/A'),
