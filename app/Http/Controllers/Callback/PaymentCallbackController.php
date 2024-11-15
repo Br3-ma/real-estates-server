@@ -70,7 +70,7 @@ class PaymentCallbackController extends Controller
                             break;
 
                         case 'post_boost':
-                            PropertyPost::where('post_id', $order->post_id ?? null)
+                            PropertyPost::where('id', $order->post_id ?? null)
                                 ->update([
                                     'on_bid'    => 1,
                                     'bid_value' => $data['depositedAmount'],
