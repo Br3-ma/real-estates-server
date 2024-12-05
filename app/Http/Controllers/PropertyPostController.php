@@ -32,7 +32,7 @@ class PropertyPostController extends Controller
         //Get all unhidden posts that are on bid 1
         return response()->json(PropertyPost::inRandomOrder()->where('status_id', 1)->where('on_bid', 1)->get());
     }
-    
+
     public function hotx2()
     {
         // Get all unhidden posts that are on bid 1, ordered by bid_value descending
@@ -66,6 +66,7 @@ class PropertyPostController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request);
         // Attempt to increase upload limits
         ini_set('upload_max_filesize', '50M'); // Set to 50 megabytes
         ini_set('post_max_size', '55M'); // Set slightly larger than upload_max_filesize

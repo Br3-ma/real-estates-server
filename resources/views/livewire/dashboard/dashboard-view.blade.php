@@ -38,7 +38,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-6">
+                    <a href="{{ route('posts') }}" class="col-sm-12 col-md-6">
                         <div class="card">
                             <div class="card-body">
                                 <div class="media align-items-center">
@@ -55,7 +55,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                     <div class="col-sm-12 col-md-6">
                         <div class="card">
                             <div class="card-body">

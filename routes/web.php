@@ -7,6 +7,7 @@ use App\Livewire\Dashboard\CustomersView;
 use App\Livewire\Dashboard\DashboardView;
 use App\Livewire\Dashboard\LocationView;
 use App\Livewire\Dashboard\PlansView;
+use App\Livewire\Dashboard\PostView;
 use App\Livewire\Dashboard\PropertyTypeView;
 use App\Livewire\Payments\PaymentView;
 use Illuminate\Support\Facades\Route;
@@ -38,5 +39,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'),])->group(fu
     Route::get('/customers', CustomersView::class)->name('customers');
     Route::get('/boost-plans', BoosterView::class)->name('boost-plans');
     Route::get('/payment-test', PaymentView::class)->name('payments');
+    Route::get('/posts', PostView::class)->name('posts');
 
 });
