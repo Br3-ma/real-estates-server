@@ -23,8 +23,10 @@ class PropertyPostController extends Controller
      */
     public function index()
     {
-        //Get random unhidden posts
-        return response()->json(PropertyPost::inRandomOrder()->where('status_id', 1)->get());
+        // Get the latest unhidden posts
+        return response()->json(PropertyPost::where('status_id', 1)
+            ->orderBy('created_at', 'desc') // Order by created_at in descending order
+            ->get());
     }
 
     public function hot()
