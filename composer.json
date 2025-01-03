@@ -13,6 +13,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/socialite": "^5.15",
         "laravel/tinker": "^2.8",
+        "league/flysystem": "^3.29",
         "livewire/livewire": "^3.0",
         "ramsey/uuid": "^4.7",
         "spatie/laravel-notification-log": "^1.3"
