@@ -104,6 +104,9 @@ class AuthController extends Controller
         }
     }
 
+    public function facebook(){
+        
+    }
 
     /**
      * Generate and send OTP to the provided mobile number.

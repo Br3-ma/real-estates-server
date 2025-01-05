@@ -38,6 +38,7 @@ Route::get('/user-info/{id}', [UserController::class, 'info']);
 // Route for user login with mobile number and OTP verification
 Route::post('/signin', [AuthController::class, 'login']);
 Route::post('/google-signin', [AuthController::class, 'google']);
+Route::post('/facebook-signin', [AuthController::class, 'facebook']);
 
 //Preset Information
 Route::get('property-types', [PropertyTypeController::class, 'index']);
