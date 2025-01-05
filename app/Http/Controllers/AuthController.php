@@ -104,8 +104,9 @@ class AuthController extends Controller
         }
     }
 
-    public function facebook(){
-        
+    public function facebook(Request $request){
+
+        return response()->json(['message' => 'worked'], 200);
     }
 
     /**
