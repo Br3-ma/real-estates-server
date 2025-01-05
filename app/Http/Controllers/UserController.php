@@ -78,13 +78,23 @@ class UserController extends Controller
         }
     }
 
-    public function deleteUser($id)
+    public function deleteUser(Request $request)
     {
-        $user = User::find($id);
-        if ($user) {
-            $user->delete(); // Delete the user
-            return response()->json(['success' => 'User deleted successfully']);
+        try {
+            // Retrieve the user by ID from the request
+            $user = User::findOrFail($request->user_id);
+
+            // Delete the user
+            $user->delete();
+
+            return response()->json(['success' => 'User deleted successfully'], 200);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            // Handle the case where the user is not found
+            return response()->json(['error' => 'User not found'], 404);
+        } catch (\Exception $e) {
+            // Handle other exceptions
+            return response()->json(['error' => 'Failed to delete the user'], 500);
         }
-        return response()->json(['error' => 'User not found'], 404);
     }
+
 }
