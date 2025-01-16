@@ -191,6 +191,7 @@ class AuthController extends Controller
             // Hash the password before storing it
             $hashedPassword = Hash::make($request->input('password'));
 
+
             // Store user information in the database
             $user = User::create([
                 'name' => $request->input('name'),
@@ -205,8 +206,22 @@ class AuthController extends Controller
                 'cover' => 'profile/no-cover.jpg',
                 'picture' => 'profile/no-user.png',
                 'isSub' => 0,
-                'is_plan_id',
+                'is_plan_id' => null,
+                'otp' => null,
             ]);
+
+            // Generate OTP (for example, a 4-digit random code)
+            $otp = mt_rand(1000, 9999);
+            $user->otp = $otp;
+            $user->save();
+
+            $data = [
+                'name' => $user->name,
+                'email' => $request->input('email'),
+                'message' => $otp
+            ];
+
+            Mail::to($request->input('email'))->send(new OTPVerificationCode($data));
 
             //Send a welcome notification
             $user->notify(new WelcomeNotification(
@@ -214,7 +229,7 @@ class AuthController extends Controller
                 $user
             ));
 
-            return response()->json(['message' => 'success', 'user' => $user ], 200);
+            return response()->json(['message' => 'success', 'user' => $user, 'otp'=>$otp ], 200);
         } catch (\Throwable $th) {
             return response()->json(['message' => 'failed', 'error' => $th->getMessage() ], 200);
         }
