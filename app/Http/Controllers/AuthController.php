@@ -111,6 +111,7 @@ class AuthController extends Controller
 
     /**
      * Generate and send OTP to the provided mobile number.
+     * Mail::to($request->input('email'))->send(new OTPVerificationCode($data));
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
@@ -125,13 +126,11 @@ class AuthController extends Controller
         $user->otp = $otp;
         $user->save();
 
-        $data = [
-            'name' => $user->name,
-            'email' => $request->input('email'),
-            'message' => $otp
-        ];
-
-        Mail::to($request->input('email'))->send(new OTPVerificationCode($data));
+        // $data = [
+        //     'name' => $user->name,
+        //     'email' => $request->input('email'),
+        //     'message' => $otp
+        // ];
 
         // For now, just return the OTP in the response for testing purposes
         return response()->json(['otp' => $otp], 200);
@@ -158,8 +157,6 @@ class AuthController extends Controller
         // Check if OTP matches the one sent to the user
         $otp = $request->input('otp');
         $user = User::where('email', $request->input('email'))->first();
-
-
 
         if ($otp == $user->otp) {
             return response()->json(['is_valid' => true], 200);
