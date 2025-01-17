@@ -209,8 +209,8 @@ class AuthController extends Controller
                 'cover' => 'profile/no-cover.jpg',
                 'picture' => 'profile/no-user.png',
                 'isSub' => 0,
-                'is_plan_id'=> '',
-                'otp' => '',
+                'is_plan_id',
+                'otp',
             ]);
 
             // Generate OTP (for example, a 4-digit random code)
