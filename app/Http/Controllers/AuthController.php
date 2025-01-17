@@ -145,6 +145,7 @@ class AuthController extends Controller
      */
     public function verifyOtp(Request $request)
     {
+
         // Validate request data
         $validator = Validator::make($request->all(), [
             'otp' => 'required|numeric',
@@ -157,6 +158,8 @@ class AuthController extends Controller
         // Check if OTP matches the one sent to the user
         $otp = $request->input('otp');
         $user = User::where('email', $request->input('email'))->first();
+
+
 
         if ($otp == $user->otp) {
             return response()->json(['is_valid' => true], 200);
@@ -206,8 +209,8 @@ class AuthController extends Controller
                 'cover' => 'profile/no-cover.jpg',
                 'picture' => 'profile/no-user.png',
                 'isSub' => 0,
-                'is_plan_id' => null,
-                'otp' => null,
+                'is_plan_id'=> '',
+                'otp' => '',
             ]);
 
             // Generate OTP (for example, a 4-digit random code)
@@ -221,7 +224,7 @@ class AuthController extends Controller
                 'message' => $otp
             ];
 
-            Mail::to($request->input('email'))->send(new OTPVerificationCode($data));
+            // Mail::to($request->input('email'))->send(new OTPVerificationCode($data));
 
             //Send a welcome notification
             $user->notify(new WelcomeNotification(
