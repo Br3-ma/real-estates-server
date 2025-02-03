@@ -31,7 +31,11 @@ class PropertyPost extends Model
         'area',
         'on_bid',
         'bid_value',
-        'bid_due_date'
+        'bid_due_date',
+        'verified_status',
+        'reviewed_by',
+        'reviewed_at',
+        'review_notes'
     ];
 
     /**
@@ -130,9 +134,9 @@ class PropertyPost extends Model
      */
     public function location()
     {
-        return $this->hasOne(Location::class);
+        return $this->belongsTo(Location::class);
     }
-    
+
     /**
      * Get the amenities for the property post.
      */
@@ -140,6 +144,15 @@ class PropertyPost extends Model
     {
         return $this->hasMany(PropertyAmenities::class, );
     }
+
+    /**
+     * Get the files for the property post.
+     */
+    public function files()
+    {
+        return $this->hasMany(PropertyFile::class)->orderBy('created_at', 'desc')->limit(3);
+    }
+
 
     /**
      * Scope a query to only include active property posts.

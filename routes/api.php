@@ -14,7 +14,9 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\PropertyPostController;
+use App\Http\Controllers\PropertyReviewController;
 use App\Http\Controllers\PropertyTypeController;
+use App\Http\Controllers\PropertyVerificationController;
 use App\Http\Controllers\SearchEngineController;
 use App\Http\Controllers\UserController;
 /*
@@ -32,6 +34,7 @@ use App\Http\Controllers\UserController;
 Route::post('/signup/user-info', [AuthController::class, 'userInfo']);
 Route::post('/signup/request-otp', [AuthController::class, 'requestOtp']);
 Route::post('/signup/verify-otp', [AuthController::class, 'verifyOtp']);
+Route::post('/update-role', [AuthController::class, 'updateRole']);
 Route::post('/reset-password', [AuthController::class, 'resetPassword']);
 Route::get('/user-info/{id}', [UserController::class, 'info']);
 
@@ -85,7 +88,6 @@ Route::get('notify/{user_id}', [NotificationController::class, 'index']);
 Route::get('notify-count/{user_id}', [NotificationController::class, 'count']);
 Route::post('/connectx', [HandshakeController::class, 'connect']);
 
-
 // User
 Route::post('/v1/submit-mobile-payment', [PaymentController::class, 'deposit']);
 Route::post('deposit-callback', [PaymentCallbackController::class, 'deposit']);
@@ -96,12 +98,15 @@ Route::get('/categories/{id}', [CategoryController::class, 'show']); // Fetch a 
 Route::post('/categories', [CategoryController::class, 'store']); // Create a new category
 Route::put('/categories/{id}', [CategoryController::class, 'update']); // Update an existing category
 Route::delete('/categories/{id}', [CategoryController::class, 'destroy']); // Delete a category
-// In web.php or api.php
 
+//Property Types management
 Route::get('/property-types/{id}', [PropertyTypeController::class, 'show'])->name('property-types.show');
 Route::post('/property-types', [PropertyTypeController::class, 'store'])->name('property-types.store');
 Route::put('/property-types/{id}', [PropertyTypeController::class, 'update'])->name('property-types.update');
 Route::delete('/property-types/{id}', [PropertyTypeController::class, 'destroy'])->name('property-types.destroy');
+
+//Property verification
+Route::post('/property-verification', [PropertyVerificationController::class, 'index'])->name('property.verify');
 
 // Route for creating a new location
 Route::post('/locations', [LocationController::class, 'store']);
@@ -117,7 +122,6 @@ Route::put('plans/{id}', [PlanController::class, 'update']); // Update a plan
 Route::delete('plans/{id}', [PlanController::class, 'destroy']); // Delete a plan
 
 // Boost Plan API Routes
-
 Route::get('bid-packages', [BoostController::class, 'index']); // Get a single plan by ID
 Route::get('boostplans/{id}', [BoostController::class, 'show']); // Get a single plan by ID
 Route::post('boostplans', [BoostController::class, 'store']); // Create a new plan
@@ -125,6 +129,12 @@ Route::put('boostplans/{id}', [BoostController::class, 'update']); // Update a p
 Route::delete('boostplans/{id}', [BoostController::class, 'destroy']); // Delete a plan
 
 Route::post('/delete-user', [UserController::class, 'deleteUser']);
+
+
+Route::post('/property/verify', [PropertyReviewController::class, 'store']);
+Route::get('/approve-post/{id}', [PropertyReviewController::class, 'approvePost']);
+Route::get('/hold-post/{id}', [PropertyReviewController::class, 'holdPost']);
+Route::get('/decline-post/{id}', [PropertyReviewController::class, 'declinePost']);
 // Protected route to retrieve user information after successful authentication
 // Route::middleware('auth:sanctum')->group(function () {
 // });

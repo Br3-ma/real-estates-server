@@ -13,6 +13,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/socialite": "^5.15",
         "laravel/tinker": "^2.8",
+        "laravolt/avatar": "^6.0",
         "league/flysystem": "^3.29",
         "livewire/livewire": "^3.0",
         "ramsey/uuid": "^4.7",

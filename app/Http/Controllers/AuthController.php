@@ -268,4 +268,8 @@ class AuthController extends Controller
         }
     }
 
+    public function updateRole(Request $request){
+
+    }
+
 }

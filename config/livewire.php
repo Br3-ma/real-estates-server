@@ -76,7 +76,7 @@ return [
     |
     */
 
-    // 'app_url' => 'http://localhost/square-api-server/public/',
+    'app_url' => 'http://localhost/square-api-server/public/',
 
     'lazy_placeholder' => null,
 
