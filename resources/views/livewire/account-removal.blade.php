@@ -56,7 +56,7 @@
 
           <!-- Email Button -->
           <div class="mt-8">
-            <a href="mailto:info@twalitso.com?subject=Account%20Deletion%20Request&body=Please%20help%20me%20delete%20my%20account.%0A%0AFull%20Name:%0AEmail%20Address:%0AReason%20for%20deletion%20(optional):%0A%0AThank%20you."
+            <a href="mailto:info@twalitso.com?subject=Account%20Deletion%20Request&body=Please%20help%20me%20delete%20my%20account%20from%20Square.%0A%0AFull%20Name:%0AEmail%20Address:%0AReason%20for%20deletion%20(optional):%0A%0AThank%20you."
                class="inline-flex items-center justify-center w-full px-6 py-3 text-base font-medium text-white bg-blue-600 border border-transparent rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
               Request Deletion via Email
               <svg class="w-5 h-5 ml-2 -mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
