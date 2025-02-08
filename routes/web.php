@@ -31,7 +31,7 @@ Route::get('/', function () {
 })->name('home');
 Route::get('/privacy-policy', [PrivacyPolicyPageController::class, 'index'])->name('privacy-policy');
 Route::get('/ads', [AdController::class, 'index'])->name('ads');
-Route::get('/account-removal', AccountRemoval::class)->name('account-removal');
+Route::get('/delete-account', AccountRemoval::class)->name('delete-account');
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'),])->group(function () {
 
