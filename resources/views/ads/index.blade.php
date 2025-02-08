@@ -1,8 +1,8 @@
-@extends('layouts.app')
+
 
 @section('content')
 @php
-    $adunit = $_GET['adUnitId'];
+    $adunit = $_GET['adUnitId'] ?? null;
 
 @endphp
 

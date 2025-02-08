@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('property_posts', function (Blueprint $table) {
-            $table->integer('verified_status')->default(1);
+            $table->integer('verified_status')->default(0);
         });
     }
 

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdController;
 use App\Http\Controllers\Legal\PrivacyPolicyPageController;
+use App\Livewire\AccountRemoval;
 use App\Livewire\Dashboard\BoosterView;
 use App\Livewire\Dashboard\CategoryView;
 use App\Livewire\Dashboard\CustomersView;
@@ -30,7 +31,7 @@ Route::get('/', function () {
 })->name('home');
 Route::get('/privacy-policy', [PrivacyPolicyPageController::class, 'index'])->name('privacy-policy');
 Route::get('/ads', [AdController::class, 'index'])->name('ads');
-
+Route::get('/account-removal', AccountRemoval::class)->name('account-removal');
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'),])->group(function () {
 
