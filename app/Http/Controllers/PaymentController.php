@@ -30,6 +30,7 @@ class PaymentController extends Controller
     {
         //
     }
+
     public function deposit(Request $request)
     {
         // Validate the form data

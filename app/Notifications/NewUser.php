@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewPostComment extends Notification
+class NewUser extends Notification
 {
     use Queueable;
     private $message, $from, $post;
@@ -38,7 +38,7 @@ class NewPostComment extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line($this->message.'. From '.$this->from,)
+                    ->line($this->message)
                     ->action('Notification Action', url('/'))
                     ->line('Thank you for using our application!');
     }
@@ -50,11 +50,12 @@ class NewPostComment extends Notification
      */
     public function toArray(object $notifiable): array
     {
+
         return [
-            'title' => 'Comment on your post',
+            'title' => 'You have a new user',
             'message' => $this->message,
             'from' => $this->from,
-            'type' => 'comment',
+            'type' => 'onboarding',
             'post' => '',
         ];
     }

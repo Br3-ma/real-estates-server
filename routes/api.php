@@ -34,8 +34,9 @@ use App\Http\Controllers\UserController;
 Route::post('/signup/user-info', [AuthController::class, 'userInfo']);
 Route::post('/signup/request-otp', [AuthController::class, 'requestOtp']);
 Route::post('/signup/verify-otp', [AuthController::class, 'verifyOtp']);
-Route::post('/update-role', [AuthController::class, 'updateRole']);
+Route::get('/update-role', [AuthController::class, 'updateRole']);
 Route::post('/reset-password', [AuthController::class, 'resetPassword']);
+Route::get('/user-info/{id}', [UserController::class, 'info']);
 Route::get('/user-info/{id}', [UserController::class, 'info']);
 
 // Route for user login with mobile number and OTP verification
@@ -138,4 +139,3 @@ Route::get('/decline-post/{id}', [PropertyReviewController::class, 'declinePost'
 // Protected route to retrieve user information after successful authentication
 // Route::middleware('auth:sanctum')->group(function () {
 // });
-

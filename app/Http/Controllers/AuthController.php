@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Mail\OTPVerificationCode;
 use App\Models\User;
 use App\Notifications\WelcomeNotification;
+use App\Notifications\NewUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -268,8 +270,43 @@ class AuthController extends Controller
         }
     }
 
-    public function updateRole(Request $request){
+    public function updateRole(Request $request)
+    {
+        
+        if($_GET['user_id'] && $_GET['role']){
+            try {
+                // Find the user
+                $user = User::findOrFail($_GET['user_id']);
+    
+                // Update the role
+                $user->role = $_GET['role'];
+                $user->save();
+    
+                // Notify administrator
+                // User::first()->notify(new NewUser(
+                //     $user->name.'a '.$_GET['role'].' has joined Square.',
+                //     $user
+                // ));
 
+                return response()->json([
+                    'success' => true,
+                    'message' => 'User role updated successfully.',
+                    'user' => $user
+                ]);
+            } catch (\Exception $e) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Failed to update user role.',
+                    'error' => $e->getMessage()
+                ], 500);
+            }
+        }
+        return response()->json([
+            'success' => false,
+            'message' => 'Failed to update user role.',
+            'error' => $e->getMessage()
+        ], 500);
     }
+
 
 }
